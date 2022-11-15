@@ -21,10 +21,10 @@ function Audiobook() {
         initial={{opacity:0}}
         animate={{opacity:1}}
         exit={{opacity:0}}>
-            Audiobook
+            <div class="example">Audiobook</div>
             
             <Link to="/music">
-                <button>next page</button>
+                <button class="example">next page</button>
             </Link>
 
             <div> sssss</div>

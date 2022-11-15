@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 function Test3() {
 
     /*
@@ -38,13 +38,10 @@ function Test3() {
 */
     return(
         <div>
-            <h1 id="halo" class="example" role="button" aria-pressed="false" tabindex="10" aria-valuetext="dd" >halo55</h1>
-            <h1 id="halo" class="example" role="button" aria-pressed="false" tabindex="10" aria-valuetext="สวัสดี" onfocus="myFunction()">halyyo</h1>
-            
-            <input type= "text" id= "tab1" value="สวัสดี"></input>
-            <input type= "text" id= "tab2" value="ม่ายยยยยย"></input>
-            <input type= "text" id= "tab3" value="เราจะไปไหน"></input>
-            <input type= "text" id= "tab4" value="ไม่น่าเลย"></input>
+            <div id="fuck" tabindex="-1"></div>
+            <h1 id="halo" class="example" role="dialog" aria-pressed="false" tabindex="1" aria-hidden="true" >first</h1>
+            <h1 id="halo1" class="example" role="dialog" aria-pressed="false" tabindex="2" aria-valuetext="สวัสดี">second</h1>
+            <div class="example" tabindex="3">สวัสดี</div>
         </div>
     )
 

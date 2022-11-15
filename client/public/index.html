@@ -41,13 +41,10 @@
     -->
 
   <script>
-    const msg = new SpeechSynthesisUtterance()
-    msg.voice = speechSynthesis.getVoices().filter(voice => voice.lang === 'th-TH')[0];
-    msg.volume = 1;                  // 0 ถึง1 เป็นระดับความดัง
-    msg.rate = 1.25;                  // 0.1 ถึง 10 อัตราเร็วของการพูด
-    msg.pitch = 2;                //0 ถึง 2 // ลักษณะระดับเสียงสูงต่ำ
+    
     
     const speechHandler = (txt) => {
+      const msg = new SpeechSynthesisUtterance()
       msg.text = txt
       msg.voice = speechSynthesis.getVoices().filter(voice => voice.lang === 'th-TH')[0];
       msg.volume = 1;                  // 0 ถึง1 เป็นระดับความดัง
@@ -56,20 +53,70 @@
       window.speechSynthesis.speak(msg)
     }
     
-  function myFunction(x) {
-    x.style.background = "yellow";
-  }
-
+    const quote = [];
+    let count = 0;
+    let max = 0;
+    /*
     document.addEventListener("keydown", (e) => {  
-    if(e.key === "Tab"){
-      const text = document.getElementsByTagName("h1")
-      speechHandler(text)
+    if(e.key === "Tab" && document.getElementsByClassName("example")){
+      const text = document.getElementsByClassName("example")
+      speechHandler(text[0].innerHTML)
       console.log(e.key)
-      console.log(text)
+      console.log(text[0].innerHTML)
         
     }
     })
+    */
+    window.addEventListener('load', (event) => {
+      const text = document.getElementsByClassName("example")
+       
+      console.log(text)
+      max = text.length
+      for (let i = 0; i < text.length; i++) {
+        quote.push(text[i].innerHTML);
+        console.log(quote)
+      }
+      console.log("maxdd:",max)
+    });
+    /*
+    const text = document.getElementsByClassName("example")
+    console.log(text)
+    
+    for (let i = 0; i < text.length; i++) {
+      quote.push(text[i].innerHTML);
+      console.log(quote)
+    }
+    
+    */
   
+
+
+    document.addEventListener("keydown", (e) => {
+      console.log(e.key)
+      if(e.key === "Tab" && count < max ){
+        console.log("count:",count)
+        console.log("Index tab:",document.activeElement.tabIndex)
+        console.log(quote[count])
+        speechHandler(quote[count])
+        count = count + 1;
+        console.log("count after:",count)
+        console.log(document.hasFocus())
+        console.log("-----------------------------")
+        
+      }
+      else if(count >= max){
+        document.getElementById("fuck").focus();
+        console.log("exceed count now=",count)
+        console.log(quote[count])
+        console.log("Index tab exceed:",document.activeElement.tabIndex)
+        console.log("dd",document.hasFocus())
+        count = 0
+        speechHandler(quote[count])
+        count = 1
+      }
+    })
+    
+
     document.getElementById('tab2').addEventListener("keydown", (e) => {  
       if(e.key === 13){
         window.location.replace('www.google.com');
