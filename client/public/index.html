@@ -39,8 +39,43 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <p>"dd"</p>
-    <img src="kob.jpg" alt="ee" />
-    <script type="text/babel" src="./client/src/text_to_speech.js"></script>
+
+  <script>
+    const msg = new SpeechSynthesisUtterance()
+    msg.voice = speechSynthesis.getVoices().filter(voice => voice.lang === 'th-TH')[0];
+    msg.volume = 1;                  // 0 ถึง1 เป็นระดับความดัง
+    msg.rate = 1.25;                  // 0.1 ถึง 10 อัตราเร็วของการพูด
+    msg.pitch = 2;                //0 ถึง 2 // ลักษณะระดับเสียงสูงต่ำ
+    
+    const speechHandler = (txt) => {
+      msg.text = txt
+      msg.voice = speechSynthesis.getVoices().filter(voice => voice.lang === 'th-TH')[0];
+      msg.volume = 1;                  // 0 ถึง1 เป็นระดับความดัง
+      msg.rate = 1.25;                  // 0.1 ถึง 10 อัตราเร็วของการพูด
+      msg.pitch = 2;                //0 ถึง 2 // ลักษณะระดับเสียงสูงต่ำ
+      window.speechSynthesis.speak(msg)
+    }
+    
+  function myFunction(x) {
+    x.style.background = "yellow";
+  }
+
+    document.addEventListener("keydown", (e) => {  
+    if(e.key === "Tab"){
+      const text = document.getElementsByTagName("h1")
+      speechHandler(text)
+      console.log(e.key)
+      console.log(text)
+        
+    }
+    })
+  
+    document.getElementById('tab2').addEventListener("keydown", (e) => {  
+      if(e.key === 13){
+        window.location.replace('www.google.com');
+      }
+    })
+  </script>
+    
   </body>
 </html>
