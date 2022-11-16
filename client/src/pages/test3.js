@@ -1,5 +1,5 @@
-import React from 'react';
-//import ReactDOM from 'react-dom';
+import {React,useEffect} from 'react';
+import Button from '@mui/material/Button';
 function Test3() {
 
     /*
@@ -35,13 +35,37 @@ function Test3() {
         window.location.replace('www.google.com');
       }
     })
+
 */
+    useEffect(() => {
+      document.addEventListener('keydown',detectKeyDown,true)},[])
+
+    const detectKeyDown = (e) => {
+      if(e.key === '1'){
+          window.location.replace("http://localhost:3000/");
+      }
+      else if (e.key === '2') {
+          window.location.replace("http://localhost:3000/audiobook")
+      }
+      else if (e.key === '3') {
+          window.location.replace("http://localhost:3000/music")
+      }
+      else if (e.key === '4') {
+          window.location.replace("http://localhost:3000/test3")
+      }
+      else if (e.key === '5') {
+        window.location.replace("http://localhost:3000/setting")
+      }
+
+    }
     return(
         <div>
-            <div id="fuck" tabindex="-1"></div>
-            <h1 id="halo" class="example" role="dialog" aria-pressed="false" tabindex="1" aria-hidden="true" >first</h1>
-            <h1 id="halo1" class="example" role="dialog" aria-pressed="false" tabindex="2" aria-valuetext="สวัสดี">second</h1>
-            <div class="example" tabindex="3">สวัสดี</div>
+            <div id="first" tabindex="-1"></div>
+            <Button className="example" tabindex="0" variant="contained">Topic</Button>
+            <Button className="example" tabindex="0" variant="contained">second</Button>
+            <Button className="example" tabindex="0" variant="contained">third</Button>
+            <Button className="example" tabindex="0" variant="contained">Hello World</Button>
+
         </div>
     )
 

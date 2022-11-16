@@ -7,14 +7,24 @@ function Audiobook() {
     useEffect(() => {
         document.addEventListener('keydown',detectKeyDown,true)},[])
     
-    const detectKeyDown = (e) => {
-        if(e.key === 'F2'){
-            window.location.replace("http://localhost:3000/music");
+        const detectKeyDown = (e) => {
+            if(e.key === '1'){
+                window.location.replace("http://localhost:3000/");
+            }
+            else if (e.key === '2') {
+                window.location.replace("http://localhost:3000/audiobook")
+            }
+            else if (e.key === '3') {
+                window.location.replace("http://localhost:3000/music")
+            }
+            else if (e.key === '4') {
+                window.location.replace("http://localhost:3000/test3")
+            }
+            else if (e.key === '5') {
+                window.location.replace("http://localhost:3000/setting")
+            }
+      
         }
-        else if (e.key === 'F1') {
-            window.location.replace("http://localhost:3000/music")
-        }
-    }
     return (
 
         <motion.div style={{background:"red",height:1000}}

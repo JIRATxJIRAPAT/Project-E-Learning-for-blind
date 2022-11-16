@@ -6,6 +6,8 @@ import {AnimatePresence} from 'framer-motion';
 import Test from "./Test";
 import Test2 from "./test2";
 import Test3 from "./test3";
+import Tutorial from "./Tutorial";
+import Setting from "./Setting";
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -18,6 +20,8 @@ function AnimatedRoutes() {
             <Route path="/test" element={<Test />} />
             <Route path="/test2" element={<Test2 />} />
             <Route path="/test3" element={<Test3 />} />
+            <Route path="/" element={<Tutorial />} />
+            <Route path="/setting" element={<Setting/>} />
           </Routes>
         </AnimatePresence>
       </div>
