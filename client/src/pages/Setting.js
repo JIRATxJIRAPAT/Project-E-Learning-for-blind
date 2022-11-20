@@ -48,8 +48,8 @@ function Setting() {
     }
 
     const myfirstelement = (
-    <div id="test" class="slidecontainer">
-    <h1>kkk</h1>        
+    <div id="test" class="slidecontainer" style={{background:"orange",height:10000}}>
+    <h1>setting</h1>        
         <button onClick={passVol_1} type="button" id="t1">Set volume to 0.2</button>
         <button onClick={passVol_2} type="button" id="t2">Set volume to 0.5</button>
         <button onClick={passVol_3} type="button" id="t3">Set volume to 1.0</button>

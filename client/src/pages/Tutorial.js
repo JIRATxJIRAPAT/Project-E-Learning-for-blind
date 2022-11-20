@@ -1,8 +1,30 @@
 import {React,useEffect} from 'react';
 import {motion} from "framer-motion"
 import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 function Tutorial() {
+
+
+    function HomePage_passVal(){
+        var homepage_pass_val1 = document.getElementById('HP1').value;
+        localStorage.setItem('homepage_pass_val1',homepage_pass_val1)
+
+        var homepage_pass_val2 = document.getElementById('HP2').value;
+        localStorage.setItem('homepage_pass_val2',homepage_pass_val2)
+        
+        var homepage_pass_val3 = document.getElementById('HP3').value;
+        localStorage.setItem('homepage_pass_val3',homepage_pass_val3)
+        
+        var homepage_pass_val4 = document.getElementById('HP4').value;
+        localStorage.setItem('homepage_pass_val4',homepage_pass_val4)
+
+        var homepage_pass_val5 = document.getElementById('HP5').value;
+        localStorage.setItem('homepage_pass_val5',homepage_pass_val5)
+
+
+        return false;
+      }
 
     useEffect(() => {
         document.addEventListener('keydown',detectKeyDown,true)},[])
@@ -17,24 +39,28 @@ function Tutorial() {
         else if (e.key === '3') {
             window.location.replace("http://localhost:3000/music")
         }
-        else if (e.key === '4') {
+        else if (e.key === '5') {
             window.location.replace("http://localhost:3000/test3")
         }
-        else if (e.key === '5') {
+        else if (e.key === '4') {
             window.location.replace("http://localhost:3000/setting")
         }
 
     }
+    
     return (
 
-        <motion.div id="first" tabindex="-1" style={{background:"pink",height:1000}} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
+        
+        <motion.div  id="first" tabindex="-1" style={{background:"pink",height:1000}} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
             
-            <div class="example" tabIndex="0">Welcome to tutorial</div>
-            <div class="example" tabIndex="0">Press F2 to go Home page</div>
-            <div class="example" tabIndex="0">Press F3 to go Audio book</div>
-            <div class="example" tabIndex="0">Press F4 Music</div>
-            <div class="example" tabIndex="0">กดปุ่ม F4 เพื่อเข้าสู่หน้า Setting </div>
-
+            <div  id="first" tabindex="-1"></div>
+            
+            <Button value="Welcome to tutorial" className="example" tabindex="0" variant="contained" id="HP1">Welcome to tutorial</Button>
+            <Button value="Press 1 to go Home page" className="example" tabindex="0" variant="contained" id="HP2">Press 1 to go Home page</Button>
+            <Button value="Press 2 to go Audio book" className="example" tabindex="0" variant="contained" id="HP3">Press 2 to go Audio book</Button>
+            <Button value="Press 3 to go Music" className="example" tabindex="0" variant="contained" id="HP4">Press 3 to go Music</Button>
+            <Button value="Press 4 to go Setting" className="example" tabindex="0" variant="contained" id="HP5">Press 4 to go Setting</Button>
+            
 
             <br></br>
             <Link to="/music">
@@ -45,6 +71,7 @@ function Tutorial() {
         </motion.div>
         
     )
+
     
 }
 

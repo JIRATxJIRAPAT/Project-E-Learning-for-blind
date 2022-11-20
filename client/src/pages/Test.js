@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 
-import { useSpeechSynthesis } from 'react-speech-kit';
+//import { useSpeechSynthesis } from 'react-speech-kit';
 
 function Test() {
   const [text,setText] = useState('');
-  const {speak} = useSpeechSynthesis();
+  //const {speak} = useSpeechSynthesis();
 
   const handleOnClick = () => {
-    speak({text:text})
+    //speak({text:text})
   }
 
   return (

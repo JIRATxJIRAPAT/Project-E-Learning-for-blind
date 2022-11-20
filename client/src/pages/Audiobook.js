@@ -1,6 +1,7 @@
 import {React,useEffect} from 'react';
 import {motion} from "framer-motion"
 import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 function Audiobook() {
 
@@ -27,17 +28,19 @@ function Audiobook() {
         }
     return (
 
-        <motion.div style={{background:"red",height:1000}}
+        <motion.div style={{background:"powderblue",height:1000}}
         initial={{opacity:0}}
         animate={{opacity:1}}
         exit={{opacity:0}}>
-            <div class="example">Audiobook</div>
-            
+
+            <div id="first" tabindex="-1"></div>
+            <Button className="example" tabindex="0" variant="contained">AudioBook</Button>
+            <Button className="example" tabindex="0" variant="contained">Book List</Button>
             <Link to="/music">
-                <button class="example">next page</button>
+            <Button className="example" tabindex="0" variant="contained">NextPage</Button>
             </Link>
 
-            <div> sssss</div>
+            
         </motion.div>
         
     )

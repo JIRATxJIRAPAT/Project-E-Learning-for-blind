@@ -1,5 +1,6 @@
 import {React,useEffect} from 'react';
 import {motion} from "framer-motion"
+import Button from '@mui/material/Button';
 
 
 function Music() {
@@ -24,7 +25,14 @@ function Music() {
       }
 
   }
-  return <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} style={{background:"green",height:1000}}> THIS IS THE HOME PAGE</motion.div>;
+  return <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} style={{background:"lightgreen",height:1000}}>
+      <div id="first" tabindex="-1"></div>
+            <Button className="example" tabindex="0" variant="contained">Music List</Button>
+            <Button className="example" tabindex="0" variant="contained">Hot This Week</Button>
+            <Button className="example" tabindex="0" variant="contained">NextPage</Button>
+            
+     
+      </motion.div>;
 }
 
 export default Music;

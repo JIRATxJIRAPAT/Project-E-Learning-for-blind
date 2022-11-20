@@ -50,6 +50,42 @@
     msg.volume = vol_int;
     console.log(msg.volume,'wwwwwwwww')
 
+    const speechHandler = (txt) => {
+      msg.text = txt
+      msg.voice = speechSynthesis.getVoices().filter(voice => voice.lang === 'th-TH')[0];
+      //msg.volume = 1;                  // 0 ถึง1 เป็นระดับความดัง
+      msg.rate = 1;                  // 0.1 ถึง 10 อัตราเร็วของการพูด
+      msg.pitch = 2;                //0 ถึง 2 // ลักษณะระดับเสียงสูงต่ำ
+      window.speechSynthesis.speak(msg)
+    }
+
+      const hp_list = []
+
+      if(window.location.href == "http://localhost:3000/"){
+
+        var hp1 = localStorage.getItem('homepage_pass_val1');
+        var hp2 = localStorage.getItem('homepage_pass_val2');
+        var hp3 = localStorage.getItem('homepage_pass_val3');
+        var hp4 = localStorage.getItem('homepage_pass_val4');
+        var hp5 = localStorage.getItem('homepage_pass_val5');
+
+        hp_list.push(hp1,hp2,hp3,hp4,hp5)
+      }
+
+      console.log(hp1,hp2,hp3,hp4,hp5)
+      console.log('>>>: ',hp_list)
+
+    
+    
+    console.log(hp_list.length)
+    for (let k=0; k < hp_list.length ; k++) {
+      setTimeout(function () {
+        speechHandler(hp_list[k])
+        console.log('valllll :',hp_list[k])
+      }, 3500*k);
+      
+    }
+
 
       //var outputx = slider.value;
 
@@ -67,14 +103,7 @@
 
     }*/
 
-    const speechHandler = (txt) => {
-      msg.text = txt
-      msg.voice = speechSynthesis.getVoices().filter(voice => voice.lang === 'th-TH')[0];
-      //msg.volume = 1;                  // 0 ถึง1 เป็นระดับความดัง
-      msg.rate = 1.25;                  // 0.1 ถึง 10 อัตราเร็วของการพูด
-      msg.pitch = 2;                //0 ถึง 2 // ลักษณะระดับเสียงสูงต่ำ
-      window.speechSynthesis.speak(msg)
-    }
+    
     
     const quote = [];
     let count = 0;
