@@ -1,9 +1,30 @@
 import {React,useEffect} from 'react';
 import {motion} from "framer-motion"
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import jwt_decode from 'jwt-decode'
+
 
 function Tutorial() {
+
+    //check login
+    const navigate = useNavigate()
+    
+    useEffect(() => {
+		const token = localStorage.getItem('token')
+        console.log("token",token)
+		if (token) {
+			const user = jwt_decode(token)
+			if (!user) {
+				localStorage.removeItem('token')
+				navigate('/login')
+			} else {
+				console.log("already login");
+			}
+		}else{
+            window.location.href = '/login'
+        }
+	}, [])
 
 
     function HomePage_passVal(){
@@ -23,8 +44,8 @@ function Tutorial() {
         localStorage.setItem('homepage_pass_val5',homepage_pass_val5)
 
 
-        return false;
-      }
+        //return false;
+    }
 
     useEffect(() => {
         document.addEventListener('keydown',detectKeyDown,true)},[])
@@ -54,12 +75,12 @@ function Tutorial() {
         <motion.div  id="first" tabindex="-1" style={{background:"pink",height:1000}} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
             
             <div  id="first" tabindex="-1"></div>
-            
-            <Button value="Welcome to tutorial" className="example" tabindex="0" variant="contained" id="HP1">Welcome to tutorial</Button>
-            <Button value="Press 1 to go Home page" className="example" tabindex="0" variant="contained" id="HP2">Press 1 to go Home page</Button>
-            <Button value="Press 2 to go Audio book" className="example" tabindex="0" variant="contained" id="HP3">Press 2 to go Audio book</Button>
-            <Button value="Press 3 to go Music" className="example" tabindex="0" variant="contained" id="HP4">Press 3 to go Music</Button>
-            <Button value="Press 4 to go Setting" className="example" tabindex="0" variant="contained" id="HP5">Press 4 to go Setting</Button>
+
+            <Button value="Welcome to tutorial" className="example" tabIndex="0" variant="contained" id="HP1">Welcome to tutorial</Button>
+            <Button value="Press 1 to go Home page" className="example" tabIndex="0" variant="contained" id="HP2">Press 1 to go Home page</Button>
+            <Button value="Press 2 to go Audio book" className="example" tabIndex="0" variant="contained" id="HP3">Press 2 to go Audio book</Button>
+            <Button value="Press 3 to go Music" className="example" tabIndex="0" variant="contained" id="HP4">Press 3 to go Music</Button>
+            <Button value="Press 4 to go Setting" className="example" tabIndex="0" variant="contained" id="HP5">Press 4 to go Setting</Button>
             
 
             <br></br>

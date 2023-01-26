@@ -53,13 +53,14 @@
     const speechHandler = (txt) => {
       msg.text = txt
       msg.voice = speechSynthesis.getVoices().filter(voice => voice.lang === 'th-TH')[0];
-      //msg.volume = 1;                  // 0 ถึง1 เป็นระดับความดัง
+      msg.volume = 1;                  // 0 ถึง1 เป็นระดับความดัง
       msg.rate = 1;                  // 0.1 ถึง 10 อัตราเร็วของการพูด
       msg.pitch = 2;                //0 ถึง 2 // ลักษณะระดับเสียงสูงต่ำ
       window.speechSynthesis.speak(msg)
     }
-
-      const hp_list = []
+    
+    
+    const hp_list = []
 
       if(window.location.href == "http://localhost:3000/"){
 
@@ -81,7 +82,7 @@
     for (let k=0; k < hp_list.length ; k++) {
       setTimeout(function () {
         speechHandler(hp_list[k])
-        console.log('valllll :',hp_list[k])
+        console.log('load word :',hp_list[k])
       }, 3500*k);
       
     }
@@ -111,6 +112,7 @@
     const call = []
 
     window.addEventListener('load', (event) => {
+      
       const text = document.getElementsByClassName("example")
       //const topic = document.getElementsByClassName("topic")[0].innerHTML
       //call.push(topic)      
@@ -118,10 +120,14 @@
       max = text.length
       for (let i = 0; i < text.length; i++) {
         quote.push(text[i].innerHTML);
+        //localStorage.setItem(`word ${i}`,text[i].innerHTML)
         console.log(quote)
       }
-
+      
       console.log("lenght:",max)
+      
+      
+      
       
     });
     /*
@@ -134,10 +140,9 @@
     }
     
     */
-    
 
     document.addEventListener("keydown", (e) => {
-      console.log(e.key)
+      //console.log(e.key)
       
       if(e.key === "Tab" && count < max ){
         console.log("count:",count)
@@ -146,7 +151,7 @@
         speechHandler(quote[count])
         count = count + 1;
         console.log("count after:",count)
-        console.log(document.hasFocus())
+        //console.log(document.hasFocus())
         console.log("-----------------------------")
         
       }
@@ -155,7 +160,7 @@
         console.log("exceed count now=",count)
         console.log(quote[count])
         console.log("Index tab exceed:",document.activeElement.tabIndex)
-        console.log("dd",document.hasFocus())
+        //console.log("dd",document.hasFocus())
         count = 0
         speechHandler(quote[count])
         count = 1

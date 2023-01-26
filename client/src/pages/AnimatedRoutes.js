@@ -8,6 +8,8 @@ import Test2 from "./test2";
 import Test3 from "./test3";
 import Tutorial from "./Tutorial";
 import Setting from "./Setting";
+import Register from "../Auth/register";
+import Login from "../Auth/Login";
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -22,6 +24,8 @@ function AnimatedRoutes() {
             <Route path="/test3" element={<Test3 />} />
             <Route path="/" element={<Tutorial />} />
             <Route path="/setting" element={<Setting/>} />
+            <Route path="/register" element={<Register/>} />
+            <Route path="/login" element={<Login/>} />
           </Routes>
         </AnimatePresence>
       </div>
