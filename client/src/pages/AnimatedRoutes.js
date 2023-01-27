@@ -10,6 +10,7 @@ import Tutorial from "./Tutorial";
 import Setting from "./Setting";
 import Register from "../Auth/register";
 import Login from "../Auth/Login";
+import Spotify_page from "../spotify_music/spotify_page"
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -26,6 +27,7 @@ function AnimatedRoutes() {
             <Route path="/setting" element={<Setting/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/spotifypage" element={<Spotify_page/>} />
           </Routes>
         </AnimatePresence>
       </div>
