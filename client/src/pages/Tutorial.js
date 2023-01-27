@@ -26,6 +26,11 @@ function Tutorial() {
         }
 	}, [])
 
+    
+    function logout() {
+        window.localStorage.removeItem('token')
+        navigate('/login')
+    }
 
     function HomePage_passVal(){
         var homepage_pass_val1 = document.getElementById('HP1').value;
@@ -81,7 +86,7 @@ function Tutorial() {
             <Button value="Press 2 to go Audio book" className="example" tabIndex="0" variant="contained" id="HP3">Press 2 to go Audio book</Button>
             <Button value="Press 3 to go Music" className="example" tabIndex="0" variant="contained" id="HP4">Press 3 to go Music</Button>
             <Button value="Press 4 to go Setting" className="example" tabIndex="0" variant="contained" id="HP5">Press 4 to go Setting</Button>
-            
+            <Button value="logout" className="example" onClick={logout} tabIndex="0" variant="contained" id="HP6">logout</Button>
 
             <br></br>
             <Link to="/music">
