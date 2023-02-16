@@ -20,6 +20,7 @@ function Register() {
 				name,
 				email,
 				password,
+				role:"student"
 			}),
 		})
 
@@ -32,13 +33,16 @@ function Register() {
 
 	return (
 		<div>
-			<h1>Register</h1>
+			<h1 className="example" tabIndex="0" >Register</h1>
 			<form onSubmit={registerUser}>
 				<input
 					value={name}
 					onChange={(e) => setName(e.target.value)}
 					type="text"
 					placeholder="Name"
+					className="example" 
+					tabIndex="0"
+
 				/>
 				<br />
 				<input
@@ -46,6 +50,8 @@ function Register() {
 					onChange={(e) => setEmail(e.target.value)}
 					type="email"
 					placeholder="Email"
+					className="example" 
+					tabIndex="0"
 				/>
 				<br />
 				<input
@@ -53,9 +59,12 @@ function Register() {
 					onChange={(e) => setPassword(e.target.value)}
 					type="password"
 					placeholder="Password"
+					className="example" 
+					tabIndex="0"
 				/>
 				<br />
-				<input type="submit" value="Register" />
+		
+				<input type="submit" value="Register" className="example" tabIndex="0"/>
 			</form>
 		</div>
 	)

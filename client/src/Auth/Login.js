@@ -22,6 +22,7 @@ function Login() {
 		console.log(data)
 		if (data.user) {
 			localStorage.setItem('token', data.user)
+			localStorage.setItem('role', data.role)
 			alert('Login successful')
 			window.location.href = '/'
 		} else {
@@ -38,6 +39,7 @@ function Login() {
 					onChange={(e) => setEmail(e.target.value)}
 					type="email"
 					placeholder="Email"
+					className="example"
 				/>
 				<br />
 				<input
@@ -45,6 +47,7 @@ function Login() {
 					onChange={(e) => setPassword(e.target.value)}
 					type="password"
 					placeholder="Password"
+					className="example"
 				/>
 				<br />
 				<input type="submit" value="Login" />
