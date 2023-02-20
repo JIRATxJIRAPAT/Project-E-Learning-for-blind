@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Navbar1 from '../../components/Navbar'
+import Button from 'react-bootstrap/Button'
 
 
 const AllCourse = () => {
@@ -27,20 +28,31 @@ const AllCourse = () => {
 
     },[])
     */
+    
+    function Enroll(id){
+
+		
+		axios.put(`http://localhost:5000/api/enroll/${id}`)
+        .then((res)=>console.log(res.data))
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
     return(
         <div>
         <Navbar1 />
         {courses.map((course,key) => (
             <div className='container' key={key}>
                 <h2>{`${course.name}` }</h2>
-                <img src={`/uploads/images/${course.img}` } width="30%" height="10%" />
+                <img src={`/uploads/images/${course.img}` } width="20%" height="10%" />
                 
                 <Link to={{pathname:`/course/${course._id}`}}>
-                    <h2 className="example" tabIndex="0">view</h2>
+                    <h5 className="example" tabIndex="0">view</h5>
                 </Link>
                 <Link to={{pathname:`/course/edit/${course._id}`}}>
-                    <h2 className="example" tabIndex="0">edit</h2>
+                    <h5 className="example" tabIndex="0">edit</h5>
                 </Link>
+                
             </div>
         ))}
         

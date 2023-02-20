@@ -1,9 +1,32 @@
+import { useState,useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import axios from 'axios'
+
+
 
 function Navbar1() {
+  const [username,setUserName] = useState("")
+  const [token,setToken] = useState("")
+  
+
+  useEffect(() => {
+    const formData = new FormData();
+    const tk = localStorage.getItem('token')
+    
+    console.log(typeof(tk))
+    formData.append("token",tk)
+      
+    axios.get(`http://localhost:5000/api/login/`,formData)
+    .then(res => [
+      setUserName(res.data),
+      console.log("user",res.data)
+    ])
+    .catch(error => console.log(error));
+  },[]);
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -30,7 +53,7 @@ function Navbar1() {
         
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            Signed in as: <a href="#login">Mark Otto</a>
+            Signed in as: <a href="#login">{username}</a>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>

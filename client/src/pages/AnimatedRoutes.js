@@ -19,6 +19,7 @@ import axios from "axios";
 import Chapter from "./E-learning/chapter";
 import CreateChapter from "./E-learning/create_new_chapter";
 import CreateQuiz from "./E-learning/createQuiz";
+import Quiz from "./E-learning/quiz";
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -52,6 +53,7 @@ function AnimatedRoutes() {
             <Route path="/course/chapter/:id" element={<Chapter/>} />
             <Route path="/course/chapter/create/:id" element={<CreateChapter/>} />
             <Route path="/course/quiz/create/:id" element={<CreateQuiz/>} />
+            <Route path="/course/quiz/:id" element={<Quiz/>} />
           </Routes>
         </AnimatePresence>
       </div>
