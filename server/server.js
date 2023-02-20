@@ -158,6 +158,8 @@ app.put("/api/create/quiz/:id",(req,res) => {
     })
 })
 
+
+//User
 app.post('/api/register',async (req,res) => {
     console.log(req.body);
     try{
@@ -188,6 +190,12 @@ app.post('/api/login',async (req,res) => {
             name: user.name,
             email: user.email
         },'secret123')
+
+        user.token = token;
+        user
+        .save()
+        //.then(() => res.json(user))
+        /*.catch(err => res.status(400).json(`Error: ${err}`))*/
         return res.json({status:"ok",user: token,role:user.role})
     }
     else{
@@ -196,19 +204,55 @@ app.post('/api/login',async (req,res) => {
     
 })
 
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
 
+app.get('/api/login', (req,res) => {
+   
+    const tk = `${req.body.token}`
+    console.log("req",req.body.token)
+    User.findOne({
+        token: tk,
+    }).then(user => res.json(user))
+    .catch((err)=> res.status(400).json(`Error: ${err}`))
+    
+    
+})
+
+//Enroll
+app.put('/api/enroll/:id',(req,res) => {
+
+    
+})
 
 const mediaRoutes = require("./routes/media");
 app.use("/api/v1/media", mediaRoutes);
 app.use("/public", express.static(path.join(__dirname, "public")));
 
+app.get('/api/login', (req,res) => {
+   
+    const tk = `${req.body.token}`
+    console.log("req",req.body.token)
+    User.findOne({
+        token: tk,
+    }).then(user => res.json(user))
+    .catch((err)=> res.status(400).json(`Error: ${err}`))
+    /////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
+    
+const mediaRoutes = require("./routes/media");
+app.use("/api/v1/media", mediaRoutes);
+app.use("/public", express.static(path.join(__dirname, "public")));
+
+})
+
+//Enroll
+app.put('/api/enroll/:id',(req,res) => {
+
+    
+})
+
+
 app.listen(5000,() => {
     console.log("server started on port 5000")
 })

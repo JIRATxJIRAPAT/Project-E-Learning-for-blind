@@ -2,7 +2,21 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import Navbar1 from '../../components/Navbar'
+import Quiz from './quiz'
 
+import ChaptersList from '../../components/ChaptersList'
+
+function CreateTabList(chapters){
+    return(
+        <ChaptersList key={chapters.key} title={chapters.title} id={chapters.id}/>
+    )
+}
+
+function CreateQuestionList(questions){
+    return(
+        <ChaptersList key={questions.key} title={questions.question} id={questions.id}/>
+    )
+}
 
 
 const Course = () => {
@@ -10,6 +24,8 @@ const Course = () => {
 	const [img, setPic] = useState('')
     const [desc,setDescription] = useState('')
     const [chapters,setChapters] = useState([])
+    const [quizs, setQuiz] = useState([]);
+    
     const {id} = useParams();
 
     useEffect(() => {
@@ -19,7 +35,8 @@ const Course = () => {
         setCourseName(res.data.name),
         setPic(res.data.img),
         setDescription(res.data.desc),
-        setChapters(res.data.chapters)
+        setChapters(res.data.chapters),
+        setQuiz(res.data.quiz),
       ])
       .catch(error => console.log(error));
     },[]);
@@ -34,6 +51,15 @@ const Course = () => {
         .catch((err)=> console.log(err));
 
     },[])
+
+               <h2>course:{name}</h2>
+           
+           <img src={`/uploads/images/${img}` } width="30%" height="10%" />
+           <div>desc: {desc}</div>
+           <div>Chapter: {chapters.map(chapter=>
+            <div>{chapter.title}:{chapter.id}</div>)}</div>
+            <div>{quizs.map(quiz=><div>quiz:{quiz.question}</div>)}</div>
+        
     */
     return(
         
@@ -41,11 +67,14 @@ const Course = () => {
             <Navbar1 />
            <h2>course:{name}</h2>
            
-           <img src={`/uploads/images/${img}` } width="30%" height="10%" />
-           <div>desc: {desc}</div>
-           <div>Chapter: {chapters.map(chapter=>
-            <div>{chapter.title}:{chapter.id}</div>)}</div>
+
+
+           <div>{chapters.map(CreateTabList)}</div>
+           <div>{quizs.map(CreateQuestionList)}</div>
+        
+
         </div>
+      
     )
 }
 
