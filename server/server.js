@@ -3,6 +3,7 @@ const cors = require('cors')
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken')
 const multer = require('multer');
+const path = require("path");
 
 //model
 const User = require('./model/user');
@@ -25,7 +26,9 @@ const app = express();
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect('mongodb://localhost:27017/e-learning')
+mongoose.connect('mongodb://localhost:27017/e-learning',{
+    useNewUrlParser: true,
+  })
 
 app.post("/api/create",(req,res) => {
     upload(req,res,(err)=>{
@@ -193,9 +196,19 @@ app.post('/api/login',async (req,res) => {
     
 })
 
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
 
 
+const mediaRoutes = require("./routes/media");
+app.use("/api/v1/media", mediaRoutes);
+app.use("/public", express.static(path.join(__dirname, "public")));
 
+
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
 app.listen(5000,() => {
     console.log("server started on port 5000")
 })
