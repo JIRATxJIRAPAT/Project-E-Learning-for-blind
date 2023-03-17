@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { BACKEND_URI } from "../config/constants";
-
+import { useParams } from 'react-router-dom'
 const UploadForm = ({ getAllMedias }) => {
   const [name, setName] = useState("");
   const [videos, setVideos] = useState([]);
+  const [epiname,setEpiName] = useState('');
+  const {id} = useParams();
 
-  const hadleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     let formdata = new FormData();
@@ -15,9 +17,10 @@ const UploadForm = ({ getAllMedias }) => {
     }
 
     formdata.append("name", name);
+    formdata.append("episodeName",epiname)
 
     axios
-      .post(`${BACKEND_URI}/api/v1/media/create`, formdata)
+      .post(`${BACKEND_URI}/api/v1/media/create/${id}`, formdata)
       .then((success) => {
         getAllMedias();
         alert("Submitted successfully");
@@ -30,7 +33,8 @@ const UploadForm = ({ getAllMedias }) => {
 
   return (
     <>
-      <form onSubmit={hadleSubmit}>
+
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input
@@ -53,6 +57,16 @@ const UploadForm = ({ getAllMedias }) => {
             onChange={(e) => {
               setVideos(e.target.files);
             }}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="name">Chapter Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            className="form-control"
+            onChange={(e) => setEpiName(e.target.value)}
           />
         </div>
 

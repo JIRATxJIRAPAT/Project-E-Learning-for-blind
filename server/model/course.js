@@ -1,10 +1,19 @@
+const Media = require("./Media");
 
 var mongoose = require('mongoose');
+
+const MediaSchema = new mongoose.Schema({
+
+    videos: { type: String },
+    
+
+});
+  
 
 const chapterSchema = new mongoose.Schema({
     id: {type:Number,require: true},
     title: {type: String,require: true},
-
+    video: { type: String },
 }); 
 
 const choiceSchema = new mongoose.Schema({

@@ -104,7 +104,7 @@ app.put("/api/createChapter/:id",(req,res) => {
         
             id: num,
             title: req.body.episodeName
-            
+
         }
         course.chapters.push(newChap)
         console.log(req.body.episodeName)
@@ -134,7 +134,7 @@ app.put("/api/create/quiz/:id",(req,res) => {
             question: req.body.question,
             answer: req.body.answer,
             choice:[{
-                text: req.body.choice,
+                text: req.body.choice1,
                 value: "1",
                 isAns: req.body.value
             },
@@ -235,16 +235,16 @@ app.get('/api/login', (req,res) => {
         token: tk,
     }).then(user => res.json(user))
     .catch((err)=> res.status(400).json(`Error: ${err}`))
-    /////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
 
-    
-const mediaRoutes = require("./routes/media");
-app.use("/api/v1/media", mediaRoutes);
-app.use("/public", express.static(path.join(__dirname, "public")));
 
 })
+
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+
+app.use("/api/v1/media", mediaRoutes);
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 //Enroll
 app.put('/api/enroll/:id',(req,res) => {

@@ -1,5 +1,5 @@
 const Media = require("../model/Media");
-
+const Course = require('../model/course');
 exports.getAll = async (req, res) => {
   try {
     const media = await Media.find();
@@ -14,6 +14,7 @@ exports.getAll = async (req, res) => {
 exports.create = async (req, res) => {
   const { name } = req.body;
   let videosPaths = [];
+  const id = req.params.id;
 
   if (Array.isArray(req.files.videos) && req.files.videos.length > 0) {
     for (let video of req.files.videos) {
@@ -22,10 +23,33 @@ exports.create = async (req, res) => {
   }
 
   try {
-    const createdMedia = await Media.create({
+    const createdMedia = {
       name,
       videos: videosPaths,
-    });
+    };
+    Course.findById(req.params.id)
+    .then(course => {
+        //course.name = req.body.name;
+        //course.img = req.file.originalname;
+        //course.desc = req.body.desc;
+        //course.episodes.name = req.body.episodeName;
+        const num = course.chapters.length + 1
+        
+        newChap = {
+        
+          id: num,
+          title: req.body.episodeName,
+          video: videosPaths[0]
+        }
+        course.chapters.push(newChap)
+        console.log(req.body.episodeName)
+        course.save()
+            
+            
+            
+
+    })
+    .catch((err)=> res.status(400).json(`Error: ${err}`))
 
     res.json({ message: "Media created successfully", createdMedia });
   } catch (error) {

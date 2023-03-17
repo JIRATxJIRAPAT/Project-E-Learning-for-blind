@@ -5,16 +5,17 @@ import Navbar1 from '../../components/Navbar'
 import Quiz from './quiz'
 
 import ChaptersList from '../../components/ChaptersList'
+import QuestionList from '../../components/QuestionList'
 
 function CreateTabList(chapters){
     return(
-        <ChaptersList key={chapters.key} title={chapters.title} id={chapters.id}/>
+        <ChaptersList key={chapters.key} title={chapters.title} id={chapters.id} video={chapters.video}/>
     )
 }
 
 function CreateQuestionList(questions){
     return(
-        <ChaptersList key={questions.key} title={questions.question} id={questions.id}/>
+        <QuestionList key={questions.key} title={questions.question} id={questions.id} choice={questions.choice}/>
     )
 }
 
@@ -25,7 +26,7 @@ const Course = () => {
     const [desc,setDescription] = useState('')
     const [chapters,setChapters] = useState([])
     const [quizs, setQuiz] = useState([]);
-    
+    const [video,setVideos] = useState([])
     const {id} = useParams();
 
     useEffect(() => {
@@ -37,6 +38,7 @@ const Course = () => {
         setDescription(res.data.desc),
         setChapters(res.data.chapters),
         setQuiz(res.data.quiz),
+        setVideos(res.data.video)
       ])
       .catch(error => console.log(error));
     },[]);
@@ -72,7 +74,7 @@ const Course = () => {
            <div>{chapters.map(CreateTabList)}</div>
            <div>{quizs.map(CreateQuestionList)}</div>
         
-
+           
         </div>
       
     )

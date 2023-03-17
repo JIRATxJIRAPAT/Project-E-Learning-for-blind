@@ -25,7 +25,7 @@ import Quiz from "./E-learning/quiz";
 function AnimatedRoutes() {
     const location = useLocation();
     const [courses,setCourse] = useState([])
-
+    //<Route path="/course/chapter/create/:id" element={<CreateChapter/>} />
     useEffect(() => {
       
       axios.get("http://localhost:5000/api/course/")
@@ -47,14 +47,14 @@ function AnimatedRoutes() {
             <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/spotifypage" element={<Spotify_page/>} />
-            <Route path="/create" element={<CreateCourse/>} />
+            <Route path="/course/create" element={<CreateCourse/>} />
             <Route path="/course" element={<AllCourse/>} />
             <Route path="/course/:id" element={<Course/>} />
             <Route path="/course/edit/:id" element={<EditCourse/>} />
             <Route path="/course/chapter/:id" element={<Chapter/>} />
-            <Route path="/course/chapter/create/:id" element={<CreateChapter/>} />
+            
             <Route path="/course/quiz/create/:id" element={<CreateQuiz/>} />
-            <Route path="/uploadvideo" element={<UploadVideo/>} />
+            <Route path="/course/chapter/create/:id" element={<UploadVideo/>} />
             <Route path="/course/quiz/:id" element={<Quiz/>} />
           </Routes>
         </AnimatePresence>

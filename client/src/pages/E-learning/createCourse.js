@@ -33,7 +33,7 @@ function CreateCourse() {
         formData.append("testImage",img)
         formData.append("desc",desc)
 		
-		axios.post("api/create",formData)
+		axios.post("http://localhost:5000/api/create",formData)
         .then((res)=>console.log(res.data))
         .catch((err)=>{
             console.log(err);
@@ -41,8 +41,8 @@ function CreateCourse() {
 	}
     
     return(
-    <div>
-        <Form onSubmit={onSubmit} encType="multipart/form-data">
+    <div >
+        <Form onSubmit={onSubmit} encType="multipart/form-data" >
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Course setName</Form.Label>
                 <Form.Control type="text" placeholder="course name" onChange={(e) => setName(e.target.value)} />

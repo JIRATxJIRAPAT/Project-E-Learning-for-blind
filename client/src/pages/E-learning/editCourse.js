@@ -70,14 +70,8 @@ function EditCourse() {
                 <Form.Label>Description</Form.Label>
                 <Form.Control as="textarea" rows={3} placeholder={`old: ${olddesc}`} onChange={(e) => setDescription(e.target.value)} />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="name">
-                <Form.Label>episode</Form.Label>
-                <Form.Control type="text" placeholder="course name" onChange={(e) => setEpiName(e.target.value)} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="name">
-                <Form.Label>num</Form.Label>
-                <Form.Control type="text" placeholder="course name" onChange={(e) => setNum(e.target.value)} />
-            </Form.Group>
+
+
 
             <Button variant="success" type="sumbit">submit</Button>
         </Form>

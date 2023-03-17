@@ -41,7 +41,7 @@ router.get("/all", mediaController.getAll);
 
 //post create new media
 router.post(
-  "/create",
+  "/create/:id",
   upload.fields([
     {
       name: "videos",

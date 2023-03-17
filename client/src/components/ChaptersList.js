@@ -19,7 +19,15 @@ function ChaptersList(props) {
         <Col sm={8}>
           <Tab.Content>
             <Tab.Pane eventKey={`#link${props.id}`}>
-              id:{props.id}
+            <video
+                preload="auto"
+                width="320"
+                height="240"
+                controls
+              >
+                <source src={`http://localhost:5000${props.video}`} />
+                ;Your browser does not support the video tag.
+            </video>
               
             </Tab.Pane>
 

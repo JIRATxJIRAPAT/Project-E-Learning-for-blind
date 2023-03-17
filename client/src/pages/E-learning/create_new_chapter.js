@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import UploadForm from '../../video_upload/components/UploadForm'
 
 function CreateChapter() {
     const [epiname,setEpiName] = useState('');
@@ -50,7 +51,7 @@ function CreateChapter() {
                 <Form.Control type="text" placeholder="Chapter name" onChange={(e) => setEpiName(e.target.value)} />
             </Form.Group>
 
-
+            
             <Button variant="success" type="sumbit">submit</Button>
         </Form>
 
