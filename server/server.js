@@ -26,9 +26,7 @@ const app = express();
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect('mongodb://localhost:27017/e-learning',{
-    useNewUrlParser: true,
-  })
+mongoose.connect('mongodb+srv://rainz:zxc32120@project01.af0lfzz.mongodb.net/?retryWrites=true&w=majority')
 
 app.post("/api/create",(req,res) => {
     upload(req,res,(err)=>{
