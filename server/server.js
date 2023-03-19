@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken')
 const multer = require('multer');
 const path = require("path");
+require('dotenv').config();
 
 //model
 const User = require('./model/user');
@@ -26,7 +27,8 @@ const app = express();
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect('mongodb+srv://rainz:zxc32120@project01.af0lfzz.mongodb.net/?retryWrites=true&w=majority')
+//Mongo connect
+mongoose.connect(process.env.MONGO_CONNECT)
 
 app.post("/api/create",(req,res) => {
     upload(req,res,(err)=>{
@@ -251,6 +253,6 @@ app.put('/api/enroll/:id',(req,res) => {
 })
 
 
-app.listen(5000,() => {
+app.listen(process.env.PORT,() => {
     console.log("server started on port 5000")
 })
