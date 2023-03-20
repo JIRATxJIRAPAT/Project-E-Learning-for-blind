@@ -26,12 +26,14 @@ function AnimatedRoutes() {
     const location = useLocation();
     const [courses,setCourse] = useState([])
     //<Route path="/course/chapter/create/:id" element={<CreateChapter/>} />
+    /*
     useEffect(() => {
       
       axios.get("http://localhost:5000/api/course/")
       .then(res => setCourse(res.data))
       .catch(error => console.log(error));
     });
+    */
     
     return (
       <div>

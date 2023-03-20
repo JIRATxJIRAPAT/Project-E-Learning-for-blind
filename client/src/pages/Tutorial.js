@@ -60,19 +60,19 @@ function Tutorial() {
     
     const detectKeyDown = (e) => {
         if(e.key === '1'){
-            window.location.replace("http://localhost:3000/");
+            window.location.replace("https://eclectic-maamoul-72e8fb.netlify.app/");
         }
         else if (e.key === '2') {
-            window.location.replace("http://localhost:3000/audiobook")
+            window.location.replace("https://eclectic-maamoul-72e8fb.netlify.app/audiobook")
         }
         else if (e.key === '3') {
-            window.location.replace("http://localhost:3000/music")
+            window.location.replace("https://eclectic-maamoul-72e8fb.netlify.app/music")
         }
         else if (e.key === '5') {
-            window.location.replace("http://localhost:3000/test3")
+            window.location.replace("https://eclectic-maamoul-72e8fb.netlify.app/test3")
         }
         else if (e.key === '4') {
-            window.location.replace("http://localhost:3000/setting")
+            window.location.replace("https://eclectic-maamoul-72e8fb.netlify.app/setting")
         }
 
     }
