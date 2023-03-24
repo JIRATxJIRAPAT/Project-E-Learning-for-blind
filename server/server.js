@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken')
 const multer = require('multer');
 const path = require("path");
+const mediaRoutes = require("./routes/media");
 require('dotenv').config();
 
 //model
@@ -217,27 +218,55 @@ app.get('/api/login', (req,res) => {
     
 })
 
-//Enroll
-app.put('/api/enroll/:id',(req,res) => {
-
+//Get user data
+app.get('/api/getUser',async (req,res) => {
+    const token = req.headers['x-auth-token']
     
+    try {
+		const decoded = jwt.verify(token, 'secret123')
+		const email = decoded.email
+		const user = await User.findOne({ email: email })
+
+		return res.json({ status: 'ok', user: user })
+	} catch (error) {
+		console.log(error)
+		res.json({ status: 'error', error: 'invalid token' })
+	}
 })
 
-const mediaRoutes = require("./routes/media");
-app.use("/api/v1/media", mediaRoutes);
-app.use("/public", express.static(path.join(__dirname, "public")));
+//Enroll course
+app.put("/api/enroll/:id",(req,res) => {
+    upload(req,res,(err)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+    User.findOne({email:req.body.email})
+    .then(user => {
+        
+        
+        
+        enroll = {
+            coursename: req.body.name,
+            score: 0
+        }
+            
+        console.log(enroll)
+           
+        user.enrolled.push(enroll)
+        
+        user
+            .save()
+            .then(() => res.json("enroll success!!"))
+            .catch(err => res.status(400).json(`Error: ${err}`))
 
-app.get('/api/login', (req,res) => {
-   
-    const tk = `${req.body.token}`
-    console.log("req",req.body.token)
-    User.findOne({
-        token: tk,
-    }).then(user => res.json(user))
+    })
     .catch((err)=> res.status(400).json(`Error: ${err}`))
-
-
+    }
+    })
 })
+
+
 
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
@@ -246,11 +275,7 @@ app.get('/api/login', (req,res) => {
 app.use("/api/v1/media", mediaRoutes);
 app.use("/public", express.static(path.join(__dirname, "public")));
 
-//Enroll
-app.put('/api/enroll/:id',(req,res) => {
 
-    
-})
 
 
 app.listen(5000,() => {
