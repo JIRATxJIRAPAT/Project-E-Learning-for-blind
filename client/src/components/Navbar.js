@@ -9,20 +9,21 @@ import axios from 'axios'
 
 function Navbar1() {
   const [username,setUserName] = useState("")
-  const [token,setToken] = useState("")
   
-
   useEffect(() => {
-    const formData = new FormData();
+
     const tk = localStorage.getItem('token')
-    
-    console.log(typeof(tk))
-    formData.append("token",tk)
-      
-    axios.get(`http://localhost:5000/api/login/`,formData)
+
+
+    axios.get(`http://localhost:5000/api/getUser/`,{
+      headers:  {
+                  "X-Auth-Token":tk,
+                  "content-type": "application/json"
+                }
+    })
     .then(res => [
-      setUserName(res.data),
-      console.log("user",res.data)
+      setUserName(res.data.user.name),
+      console.log("navbar",res.data.user.name)
     ])
     .catch(error => console.log(error));
   },[]);
@@ -35,7 +36,7 @@ function Navbar1() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/course">all course</Nav.Link>
-            <Nav.Link href="#link">profile</Nav.Link>
+            <Nav.Link href="/profile">profile</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -53,7 +54,7 @@ function Navbar1() {
         
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            Signed in as: <a href="#login">{username}</a>
+            Signed in as: <a href="/profile">{username}</a>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>

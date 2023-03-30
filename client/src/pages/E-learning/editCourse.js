@@ -46,7 +46,7 @@ function EditCourse() {
      
         const formData = new FormData();
         formData.append("name",name)
-        //formData.append("testImage",img)
+        formData.append("testImage",img)
         formData.append("desc",desc)
         formData.append("episodeName",epiname)
 		
@@ -70,7 +70,10 @@ function EditCourse() {
                 <Form.Label>Description</Form.Label>
                 <Form.Control as="textarea" rows={3} placeholder={`old: ${olddesc}`} onChange={(e) => setDescription(e.target.value)} />
             </Form.Group>
-
+            <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Default file input example</Form.Label>
+                <Form.Control type="file" filename="testImage" onChange={(e) => setPic(e.target.files[0])}/>
+            </Form.Group>
 
 
             <Button variant="success" type="sumbit">submit</Button>

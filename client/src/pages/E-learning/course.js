@@ -3,13 +3,14 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import Navbar1 from '../../components/Navbar'
 import Quiz from './quiz'
+import Button from 'react-bootstrap/Button'
 
 import ChaptersList from '../../components/ChaptersList'
 import QuestionList from '../../components/QuestionList'
 
-function CreateTabList(chapters){
+function CreateTabList(chapters,key){
     return(
-        <ChaptersList key={chapters.key} title={chapters.title} id={chapters.id} video={chapters.video}/>
+        <ChaptersList key={key} title={chapters.title} id={chapters.id} video={chapters.video}/>
     )
 }
 
@@ -19,6 +20,17 @@ function CreateQuestionList(questions){
     )
 }
 
+async function Enroll(id,email,name){
+    
+    const formData = new FormData();
+    formData.append("name",name)
+    formData.append("email",email)
+    await axios.put(`http://localhost:5000/api/enroll/${id}`,formData)
+    .then((res)=>console.log(res.data))
+    .catch((err)=>{
+        console.log(err);
+    })
+}
 
 const Course = () => {
     const [name, setCourseName] = useState('')
@@ -28,6 +40,7 @@ const Course = () => {
     const [quizs, setQuiz] = useState([]);
     const [video,setVideos] = useState([])
     const {id} = useParams();
+    const [email,setEmail] = useState('')
 
     useEffect(() => {
       
@@ -38,42 +51,46 @@ const Course = () => {
         setDescription(res.data.desc),
         setChapters(res.data.chapters),
         setQuiz(res.data.quiz),
-        setVideos(res.data.video)
+        setVideos(res.data.video),
+        console.log("course",res.data)
       ])
       .catch(error => console.log(error));
     },[]);
-    
-    /*
+
     useEffect(() => {
-        axios.get(`api/course/${course.match.param.id}`)
-        .then((response)=>[
-            setCourseName(response.data.name),
-            setPic(response.data.image)
+        const tk = localStorage.getItem('token')
+        const data = {
+          headers:  {
+                      "X-Auth-Token":tk,
+                      "content-type": "application/json"
+                    }
+        }
+      
+        axios.get(`http://localhost:5000/api/getUser/`,{
+          headers:  {
+                      "X-Auth-Token":tk,
+                      "content-type": "application/json"
+                    }
+        })
+        .then(res => [
+
+          setEmail(res.data.user.email),
+          console.log("email",res.data.user.email)
         ])
-        .catch((err)=> console.log(err));
+        .catch(error => console.log(error));
+    },[]);
+    
 
-    },[])
-
-               <h2>course:{name}</h2>
-           
-           <img src={`/uploads/images/${img}` } width="30%" height="10%" />
-           <div>desc: {desc}</div>
-           <div>Chapter: {chapters.map(chapter=>
-            <div>{chapter.title}:{chapter.id}</div>)}</div>
-            <div>{quizs.map(quiz=><div>quiz:{quiz.question}</div>)}</div>
-        
-    */
     return(
         
         <div>
             <Navbar1 />
            <h2>course:{name}</h2>
            
-
-
-           <div>{chapters.map(CreateTabList)}</div>
+           <div>{chapters.map((chapter,key)=>CreateTabList(chapter,key))}</div>
            <div>{quizs.map(CreateQuestionList)}</div>
-        
+           <div>{id}</div>
+           <Button onClick={()=>{Enroll(id,email,name)}}>enroll</Button>
            
         </div>
       

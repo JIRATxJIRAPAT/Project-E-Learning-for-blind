@@ -52,9 +52,9 @@
     var slider = localStorage.getItem('pass_val');
     var vol_int = localStorage.getItem('pass_val2');
 
-    console.log(msg.volume,'aaaaaaaaaaaa')
+    //console.log(msg.volume,'volume base')
     msg.volume = vol_int;
-    console.log(msg.volume,'wwwwwwwww')
+    console.log(msg.volume,'volume')
 
     const speechHandler = (txt) => {
       msg.text = txt
@@ -69,7 +69,7 @@
     /*
     const hp_list = []
 
-      if(window.location.href == "http://localhost:3000/"){
+      if(window.location.href == "http://localhost:3000/")
 
         var hp1 = localStorage.getItem('homepage_pass_val1');
         var hp2 = localStorage.getItem('homepage_pass_val2');
@@ -135,7 +135,7 @@
       console.log("lenght:",max)
       
       const ex = document.querySelectorAll('input[type=email]')
-      console.log("ex",ex.placeholder)
+      //console.log("placeholder",ex.placeholder)
       
       
     });

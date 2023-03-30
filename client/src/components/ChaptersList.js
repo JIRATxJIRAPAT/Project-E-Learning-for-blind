@@ -4,9 +4,9 @@ import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 
 
-function ChaptersList(props) {
+function ChaptersList(props,key) {
   return (
-    <Tab.Container id="list-group-tabs-example" >
+    <Tab.Container id="list-group-tabs-example" key={key}>
       <Row>
         <Col sm={4}>
           <ListGroup>

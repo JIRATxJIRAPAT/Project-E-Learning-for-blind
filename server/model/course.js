@@ -23,18 +23,21 @@ const choiceSchema = new mongoose.Schema({
 });
 
 const quizSchema = new mongoose.Schema({
+    number:{type: Number,default:0},
     question: {type: String,require: true},
     answer: {type: String,require: true},
-    choice: [choiceSchema]
+    choice1: {type: String,require: true},
+    choice2:{type: String,require: true},
 });
 
 
 var courseSchema = new mongoose.Schema({
-    name: {type: String,require: true},
+    name: {type: String,require: true,unique: true},
     img: {type: String,require: true},
     desc: {type: String,require: true},
     chapters: [chapterSchema],
-    quiz: [quizSchema]
+    quiz: [quizSchema],
+    pass_score: {type: Number}
 });
  
 //Image is a model which has a schema imageSchema

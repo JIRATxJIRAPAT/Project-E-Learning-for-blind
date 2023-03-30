@@ -61,6 +61,12 @@ app.get("/api/course/:id",(req,res)=>{
     .then(course => res.json(course))
     .catch((err)=> res.status(400).json(`Error: ${err}`))
 })
+//test
+app.get("/api/course/quiz/:id",(req,res)=>{
+    Course.findById(req.params.id)
+    .then(course => res.json({question:JSON.stringify(course.quiz),choice:course.choice}))
+    .catch((err)=> res.status(400).json(`Error: ${err}`))
+})
 
 app.put("/api/course/edit/:id",(req,res)=>{
     upload(req,res,(err)=>{
@@ -71,10 +77,10 @@ app.put("/api/course/edit/:id",(req,res)=>{
             Course.findById(req.params.id)
             .then(course => {
                 course.name = req.body.name;
-                //course.img = req.file.originalname;
+                course.img = req.file.originalname;
                 course.desc = req.body.desc;
                 //course.episodes.name = req.body.episodeName;
-
+                course.pass_score = 2;
                 course
                     .save()
                     .then(() => res.json("Course update completed!!"))
@@ -129,22 +135,14 @@ app.put("/api/create/quiz/:id",(req,res) => {
         else{
     Course.findById(req.params.id)
     .then(course => {
-        
+        const num = course.quiz.length + 1
         newQuiz = {
-        
+            number:num,
             question: req.body.question,
             answer: req.body.answer,
-            choice:[{
-                text: req.body.choice1,
-                value: "1",
-                isAns: req.body.value
-            },
-            {
-                text: req.body.choice2,
-                value: "2",
-                isAns: req.body.value2
-            }]
-            
+            choice1: req.body.choice1,
+            choice2: req.body.choice2,
+       
         }
         course.quiz.push(newQuiz)
         
@@ -241,40 +239,55 @@ app.put("/api/enroll/:id",(req,res) => {
             console.log(err)
         }
         else{
-    User.findOne({email:req.body.email})
-    .then(user => {
-        
-        
-        
-        enroll = {
-            coursename: req.body.name,
-            score: 0
-        }
-            
-        console.log(enroll)
-           
-        user.enrolled.push(enroll)
-        
-        user
-            .save()
-            .then(() => res.json("enroll success!!"))
-            .catch(err => res.status(400).json(`Error: ${err}`))
+            User.findOne({email:req.body.email})
+            .then(user => {
+                
+                enroll = {
+                    coursename: req.body.name,
+                    score: 0
+                }
+                    
+                console.log(enroll)
+                
+                user.enrolled.push(enroll)
+                
+                user
+                    .save()
+                    .then(() => res.json("enroll success!!"))
+                    .catch(err => res.status(400).json(`Error: ${err}`))
 
+            })
+            .catch((err)=> res.status(400).json(`Error: ${err}`))
+        }
     })
-    .catch((err)=> res.status(400).json(`Error: ${err}`))
-    }
+})
+
+//Quiz submit
+app.put("/api/quiz/submit",(req,res) => {
+    upload(req,res,(err)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            
+            User.updateOne(
+                { "enrolled.coursename": req.body.coursename },
+                { $set: { "enrolled.$.score" : req.body.score , "enrolled.$.status": req.body.status} }
+            )
+            .then(() => res.json(`update success!! ${req.body.score} ${req.body.status}`))
+            .catch(err => res.status(400).json(`Error: ${err}`))
+                
+        
+        }
     })
 })
 
 
 
 /////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
 
 app.use("/api/v1/media", mediaRoutes);
 app.use("/public", express.static(path.join(__dirname, "public")));
-
 
 
 

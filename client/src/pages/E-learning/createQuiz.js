@@ -39,9 +39,9 @@ function CreateQuiz() {
         formData.append("question",question)
         formData.append("answer",answer)
         formData.append("choice1",choiceText)
-        formData.append("value",isAns1)
+        
         formData.append("choice2",choice2Text)
-        formData.append("value2",isAns2)
+       
 		
         console.log(formData.req)
 		axios.put(`http://localhost:5000/api/create/quiz/${id}`,formData)
@@ -72,12 +72,13 @@ function CreateQuiz() {
                 <Form.Control aria-label="Text input with checkbox" onChange={(e) => setChoice(e.target.value)}/>
             </InputGroup>
             <InputGroup className="mb-3">
-            <InputGroup.Checkbox aria-label="Checkbox for following text input" onClick={(e) => setValue2(!isAns1)}/>
+            <InputGroup.Checkbox aria-label="Checkbox for following text input" onClick={(e) => setValue2(!isAns2)}/>
                 
                 <Form.Control aria-label="Text input with checkbox" onChange={(e) => setChoice2(e.target.value)}/>
             </InputGroup>
             
             {isAns1 ? "True" : "False"}
+            {isAns2 ? "True" : "False"}
             <Button variant="success" type="sumbit">submit</Button>
         </Form>
 

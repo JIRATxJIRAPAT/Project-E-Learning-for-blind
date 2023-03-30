@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Navbar1 from '../../components/Navbar'
-import Button from 'react-bootstrap/Button'
+
 
 
 const AllCourse = () => {
@@ -10,34 +10,15 @@ const AllCourse = () => {
 	const [img, setPic] = useState('')
     const [courses,setCourse] = useState([])
 
+    
     useEffect(() => {
       
       axios.get("http://localhost:5000/api/course/")
       .then(res => setCourse(res.data))
       .catch(error => console.log(error));
-    });
+    },[]);
     
-    /*
-    useEffect(() => {
-        axios.get(`api/course/${course.match.param.id}`)
-        .then((response)=>[
-            setCourseName(response.data.name),
-            setPic(response.data.image)
-        ])
-        .catch((err)=> console.log(err));
 
-    },[])
-    */
-    
-    function Enroll(id){
-
-		
-		axios.put(`http://localhost:5000/api/enroll/${id}`)
-        .then((res)=>console.log(res.data))
-        .catch((err)=>{
-            console.log(err);
-        })
-    }
     return(
         <div>
         <Navbar1 />
@@ -54,6 +35,7 @@ const AllCourse = () => {
                 </Link>
                 
             </div>
+            
         ))}
         
         </div>

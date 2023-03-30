@@ -11,7 +11,7 @@ const  Quiz = () => {
 
     const [quizs, setQuiz] = useState([]);
 
-    const [coursename,setCourseName] = useState("");
+    const [answer,setAnswer] = useState('');
 
     const {id} = useParams();
     const [email,setEmail] = useState('')
@@ -29,6 +29,18 @@ const  Quiz = () => {
     const [passScore,setPassScore] = useState(0)
        
     useEffect(() => {
+      //Get course information
+      axios.get(`http://localhost:5000/api/course/${id}`)
+      .then(res => [
+
+        setMax(res.data.quiz.length),
+        //setQuiz(res.data.quiz),
+        setQuiz(res.data.quiz[activeQuestion]),
+        setPassScore(res.data.pass_score),
+        
+      ])
+      .catch(error => console.log(error));
+
       //Get user
       const tk = localStorage.getItem('token')
       
@@ -40,31 +52,18 @@ const  Quiz = () => {
       })
       .then(res => [
         setEmail(res.data.user.email),
+
       ])
       .catch(error => console.log(error));
-      
+      console.log("ppppp")
     },[]);
 
     useEffect(() => {
       console.log("useEff",activeQuestion)
-      NextQuestion()
-
-    },[activeQuestion])
-
-    useEffect(() => {
-      if(correctAns === passScore){
-        console.log("1")
-        setPassStatus(true)
-      }else{
-        setPassStatus(false)
-        console.log("2")
+      if (activeQuestion === max){
+        onfinish()
       }
-
-    },[correctAns])
-
-    useEffect(()=>{
-      onfinish()
-    },[showResult])
+    },[activeQuestion])
     
 
     async function onfinish() {
@@ -73,7 +72,7 @@ const  Quiz = () => {
           formData.append("email",email)  
           formData.append("score",correctAns)
           formData.append("status",passStatus)
-          formData.append("coursename",coursename)
+          
       
           console.log("fn Score",score)
           console.log("passStatus",passStatus)
@@ -85,48 +84,61 @@ const  Quiz = () => {
           })
     }
 
-    const NextQuestion = () => {
-      console.log(`active ${activeQuestion} < ${max}`)
-      if(activeQuestion===0){
-        axios.get(`http://localhost:5000/api/course/${id}`)
-        .then(res => [
-          console.log("3:setQuiz",activeQuestion),
-          setQuiz(res.data.quiz[activeQuestion]),
-          setMax(res.data.quiz.length),
-          setPassScore(res.data.pass_score),
-          setCourseName(res.data.name)
-        ])
-        .catch(error => console.log(error));
-      }
-      else if(activeQuestion<max){
+    const checkAns = () => {
+      if(activeQuestion+1<max){
           axios.get(`http://localhost:5000/api/course/${id}`)
           .then(res => [
             console.log("3:setQuiz",activeQuestion),
-            setQuiz(res.data.quiz[activeQuestion]),
-
+            setQuiz(res.data.quiz[activeQuestion+1]),
+            
           ])
           .catch(error => console.log(error));
       }else{
         setShowResult(true)
+        console.log("fn*--",passScore)
+        console.log("fn*--5555",correctAns) //อัพเดตช้า
+        if(passScore === correctAns){
+          console.log("pass")
+          setPassStatus(true)
+        }else{
+          setPassStatus(false)
+          console.log("fail")
+        }
+         //ส่ง api
       }
     }
   
     const onClickNext = () => {
-    
       console.log("1:onclick",activeQuestion)
-      if(selectedAnswer === `${quizs.answer}`){
-        console.log("ถูก-------------------")
-        setCorrectAns((prev)=>prev+1)
-      }else{
-        console.log("ผิด----------------------")
-        setWrongAns((prev)=>prev+1)
+      setActiveQuestion((prev) => prev + 1)
+      console.log("select",selectedAnswer)
+      console.log("ans",quizs.answer)
+      if (activeQuestion < max){ 
+        
+
+        var x = false
+        if(selectedAnswer === `${quizs.answer}`){
+          
+          x = true
+          
+          console.log("ถูก-------------------")
+          setCorrectAns((prev)=>prev+1,()=>{
+
+          })
+        }else{
+
+          console.log("ผิด----------------------")
+          setWrongAns((prev)=>prev+1)
+        }
+        checkAns()
+        setSelectedAnswer("")
       }
-      
-      setSelectedAnswer("")
-      setActiveQuestion(prev=>prev+1)
-    }
+      else{
+        //setActiveQuestion(0)
+        console.log("finish",activeQuestion)
  
-    
+      }
+    }
 
 
     return(

@@ -21,7 +21,9 @@ function QuestionList(props) {
         <Col sm={8}>
           <Tab.Content>
             <Tab.Pane eventKey={`#link${props.id}`}>
-            <Quiz></Quiz>
+              
+              <Quiz></Quiz>
+              
             </Tab.Pane> 
 
           </Tab.Content>

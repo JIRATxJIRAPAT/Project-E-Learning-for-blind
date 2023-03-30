@@ -3,7 +3,8 @@ const mongoose = require("mongoose")
 const enrollSchema = new mongoose.Schema({
     id: {type:Number,require: true},
     coursename: {type: String,require: true},
-    score:{type: Number,default:0}
+    score:{type: Number,default:0},
+    status:{type:Boolean,default:false}
 }); 
 
 

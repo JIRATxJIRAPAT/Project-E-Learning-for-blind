@@ -15,12 +15,12 @@ import CreateCourse from "./E-learning/createCourse";
 import AllCourse from "./E-learning/allCourse";
 import Course from "./E-learning/course";
 import EditCourse from "./E-learning/editCourse";
-import axios from "axios";
 import Chapter from "./E-learning/chapter";
 import CreateChapter from "./E-learning/create_new_chapter";
 import CreateQuiz from "./E-learning/createQuiz";
 import UploadVideo from "../video_upload/test_upload";
 import Quiz from "./E-learning/quiz";
+import Profile from "./User/profile";
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -58,6 +58,7 @@ function AnimatedRoutes() {
             <Route path="/course/quiz/create/:id" element={<CreateQuiz/>} />
             <Route path="/course/chapter/create/:id" element={<UploadVideo/>} />
             <Route path="/course/quiz/:id" element={<Quiz/>} />
+            <Route path="/profile" element={<Profile/>} />
           </Routes>
         </AnimatePresence>
       </div>
