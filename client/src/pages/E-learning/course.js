@@ -14,9 +14,9 @@ function CreateTabList(chapters,key){
     )
 }
 
-function CreateQuestionList(questions){
+function CreateQuestionList(){
     return(
-        <QuestionList key={questions.key} title={questions.question} id={questions.id} choice={questions.choice}/>
+        <QuestionList/>
     )
 }
 
@@ -88,8 +88,8 @@ const Course = () => {
            <h2>course:{name}</h2>
            
            <div>{chapters.map((chapter,key)=>CreateTabList(chapter,key))}</div>
-           <div>{quizs.map(CreateQuestionList)}</div>
-           <div>{id}</div>
+           <div>{CreateQuestionList()}</div>
+           
            <Button onClick={()=>{Enroll(id,email,name)}}>enroll</Button>
            
         </div>

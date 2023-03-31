@@ -13,7 +13,7 @@ function QuestionList(props) {
         <Col sm={4}>
           <ListGroup>
             <ListGroup.Item action href={`#link${props.id}`}>
-              {props.title}
+              Quiz
             </ListGroup.Item>
 
           </ListGroup>

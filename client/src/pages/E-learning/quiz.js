@@ -142,6 +142,7 @@ const  Quiz = () => {
               name="group1"
               type='radio'
               id={`inline-radio-1`}
+              tabIndex={0}
               onClick={(e) => setSelectedAnswer(`${quizs.choice1}`)}
             />
             <Form.Check
@@ -150,6 +151,7 @@ const  Quiz = () => {
               name="group1"
               type='radio'
               id={`inline-radio-2`}
+              tabIndex={0}
               onClick={(e) => setSelectedAnswer(`${quizs.choice2}`)}
             />
               
