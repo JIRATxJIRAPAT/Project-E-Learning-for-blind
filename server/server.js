@@ -74,6 +74,7 @@ app.put("/api/course/edit/:id",(req,res)=>{
             console.log(err)
         }
         else{
+            
             Course.findById(req.params.id)
             .then(course => {
                 course.name = req.body.name;
@@ -88,6 +89,13 @@ app.put("/api/course/edit/:id",(req,res)=>{
 
             })
             .catch((err)=> res.status(400).json(`Error: ${err}`))
+
+            User.updateMany(
+                { "enrolled.id": req.params.id } ,
+                { $set: { "enrolled.$.coursename" : req.body.name } }
+            ).then(() => res.json("User update completed!!"))
+            .catch(err => res.status(400).json(`Error: ${err}`))
+      
         }
     })
 })
@@ -243,8 +251,10 @@ app.put("/api/enroll/:id",(req,res) => {
             .then(user => {
                 
                 enroll = {
+                    id: req.params.id,
                     coursename: req.body.name,
                     score: 0
+                    
                 }
                     
                 console.log(enroll)
@@ -263,7 +273,7 @@ app.put("/api/enroll/:id",(req,res) => {
 })
 
 //Quiz submit
-app.put("/api/quiz/submit",(req,res) => {
+app.put("/api/quiz/submit", (req,res) => {
     upload(req,res,(err)=>{
         if(err){
             console.log(err)
