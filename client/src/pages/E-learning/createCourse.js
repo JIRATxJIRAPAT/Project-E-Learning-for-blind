@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
@@ -7,6 +7,27 @@ function CreateCourse() {
     const [name, setName] = useState('')
 	const [img, setPic] = useState('')
     const [desc ,setDescription] = useState('')
+    const [username,setUsername] = useState('')
+    const [userid,setUserId] = useState('')
+
+    useEffect(() => {
+
+        const tk = localStorage.getItem('token')
+    
+        axios.get(`http://localhost:5000/api/getUser/`,{
+          headers:  {
+                      "X-Auth-Token":tk,
+                      "content-type": "application/json"
+                    }
+        })
+        .then(res => [
+          setUsername(res.data.user.name),
+          setUserId(res.data.user._id),
+          console.log("navbar",res.data.user.name)
+        ])
+        .catch(error => console.log(error));
+    },[]);
+
     async function onSubmit(event) {
 		event.preventDefault()
         
@@ -14,24 +35,14 @@ function CreateCourse() {
         console.log(name)
         console.log(img)
         console.log(desc)
-        /*
-        const response = await fetch('http://localhost:5000/api/create', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'image/png',
-			},
-			body: JSON.stringify({
-				name,
-				img,
-			}),
-		})
-        
-        const data = await response.json()
-		console.log(data)*/
+
         const formData = new FormData();
         formData.append("name",name)
         formData.append("testImage",img)
         formData.append("desc",desc)
+        formData.append("username",username)
+        formData.append("userid",userid)
+
 		
 		axios.post("http://localhost:5000/api/create",formData)
         .then((res)=>console.log(res.data))

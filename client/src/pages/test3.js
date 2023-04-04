@@ -1,5 +1,6 @@
 import {React,useEffect} from 'react';
 import Button from '@mui/material/Button';
+import Navbar1 from '../../src/components/Navbar';
 function Test3() {
 
     /*
@@ -60,12 +61,14 @@ function Test3() {
     }
     return(
         <div>
+            <Navbar1></Navbar1>
             <div id="first" tabindex="-1"></div>
-            <Button className="example" tabindex="0" variant="contained">Topic</Button>
-            <Button className="example" tabindex="0" variant="contained">second</Button>
-            <Button className="example" tabindex="0" variant="contained">third</Button>
-            <Button className="example" tabindex="0" variant="contained">Hello World</Button>
-
+            <Button className="example"  variant="contained">Topic</Button>
+            <Button className="example"  variant="contained">second</Button>
+            <Button className="example"  variant="contained">third</Button>
+            <Button className="example"  variant="contained">Hello World</Button>
+            <a href="">dwkpk</a>
+            <progress id="percent-loaded" value="75" max="100">75 %</progress>
         </div>
     )
 

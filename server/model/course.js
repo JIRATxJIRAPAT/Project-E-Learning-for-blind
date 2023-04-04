@@ -37,7 +37,9 @@ var courseSchema = new mongoose.Schema({
     desc: {type: String,require: true},
     chapters: [chapterSchema],
     quiz: [quizSchema],
-    pass_score: {type: Number}
+    pass_score: {type: Number},
+    owner_id: {type: String, require:true,unique:true},
+    owner_name: {type: String, require:true,unique:true},
 });
  
 //Image is a model which has a schema imageSchema

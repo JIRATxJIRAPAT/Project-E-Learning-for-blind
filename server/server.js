@@ -41,10 +41,12 @@ app.post("/api/create",(req,res) => {
                 name: req.body.name,
                 img: req.file.originalname,
                 desc: req.body.desc,
+                owner_id: req.body.userid,
+                owner_name: req.body.username
                 
             });
             newCourse.save()
-            .then(()=>res.send("successful"))
+            .then(()=>res.send("create new course successful"))
             .catch((err)=>console.log(err));
         }
     })
@@ -84,17 +86,18 @@ app.put("/api/course/edit/:id",(req,res)=>{
                 course.pass_score = 2;
                 course
                     .save()
-                    .then(() => res.json("Course update completed!!"))
+                    .then(
+                        User.updateMany(
+                            { "enrolled.id": req.params.id } ,
+                            { $set: { "enrolled.$.coursename" : req.body.name } }
+                        ).then(() => res.json("Data update completed!!"))
+                        .catch(err => res.status(400).json(`Error: ${err}`))
+                    )
                     .catch(err => res.status(400).json(`Error: ${err}`))
 
             })
             .catch((err)=> res.status(400).json(`Error: ${err}`))
 
-            User.updateMany(
-                { "enrolled.id": req.params.id } ,
-                { $set: { "enrolled.$.coursename" : req.body.name } }
-            ).then(() => res.json("User update completed!!"))
-            .catch(err => res.status(400).json(`Error: ${err}`))
       
         }
     })
@@ -257,13 +260,38 @@ app.put("/api/enroll/:id",(req,res) => {
                     
                 }
                     
-                console.log(enroll)
+                console.log(req.body)
                 
                 user.enrolled.push(enroll)
                 
                 user
                     .save()
-                    .then(() => res.json("enroll success!!"))
+                    .then(
+                        User.findById(req.body.owner_id)
+                        .then(owned_user => {
+                            follower = {
+                                username: req.body.username,
+                                score: 0,
+                                status: false,
+                                id: req.body.userid
+
+                            }
+                            owned = {
+                                coursename: req.body.name,
+                                course_id: req.params.id,
+                                followers: follower
+                            }
+
+
+                            console.log(follower)
+                            owned_user.owned_course.push(owned)
+                            owned_user.save()
+                            .then(() => res.json(`Data update completed!!`))
+                            .catch(err => res.status(400).json(`Error: ${err}`))
+                            }
+                        )
+                        .catch(err => res.status(400).json(`Error: ${err}`))
+                    )
                     .catch(err => res.status(400).json(`Error: ${err}`))
 
             })

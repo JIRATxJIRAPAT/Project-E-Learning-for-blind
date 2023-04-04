@@ -20,17 +20,6 @@ function CreateQuestionList(){
     )
 }
 
-async function Enroll(id,email,name){
-    
-    const formData = new FormData();
-    formData.append("name",name)
-    formData.append("email",email)
-    await axios.put(`http://localhost:5000/api/enroll/${id}`,formData)
-    .then((res)=>console.log(res.data))
-    .catch((err)=>{
-        console.log(err);
-    })
-}
 
 const Course = () => {
     const [name, setCourseName] = useState('')
@@ -40,7 +29,13 @@ const Course = () => {
     const [quizs, setQuiz] = useState([]);
     const [video,setVideos] = useState([])
     const {id} = useParams();
+    const [owner_id,setOwnerID] = useState('')
+    const [owner_name,setOwnerName] = useState('')
+
+    //user
     const [email,setEmail] = useState('')
+    const [userid,setUserID] = useState('')
+    const [username,setUsername] = useState('')
 
     useEffect(() => {
       
@@ -52,33 +47,47 @@ const Course = () => {
         setChapters(res.data.chapters),
         setQuiz(res.data.quiz),
         setVideos(res.data.video),
+        setOwnerID(res.data.owner_id),
+        setOwnerName(res.data.owner_name),
         console.log("course",res.data)
+      ])
+      .catch(error => console.log(error));
+
+      const tk = localStorage.getItem('token')
+      
+      axios.get(`http://localhost:5000/api/getUser/`,{
+        headers:  {
+                    "X-Auth-Token":tk,
+                    "content-type": "application/json"
+                  }
+      })
+      .then(res => [
+        setUsername(res.data.user.name),
+        setUserID(res.data.user._id),
+        setEmail(res.data.user.email),
+        console.log("email",res.data.user.email)
       ])
       .catch(error => console.log(error));
     },[]);
 
-    useEffect(() => {
-        const tk = localStorage.getItem('token')
-        const data = {
-          headers:  {
-                      "X-Auth-Token":tk,
-                      "content-type": "application/json"
-                    }
-        }
-      
-        axios.get(`http://localhost:5000/api/getUser/`,{
-          headers:  {
-                      "X-Auth-Token":tk,
-                      "content-type": "application/json"
-                    }
-        })
-        .then(res => [
 
-          setEmail(res.data.user.email),
-          console.log("email",res.data.user.email)
-        ])
-        .catch(error => console.log(error));
-    },[]);
+    
+    
+    async function Enroll(){
+        
+        const formData = new FormData();
+        formData.append("name",name)
+        formData.append("email",email)
+        formData.append("username",username)
+        formData.append("userid",userid)
+        formData.append("owner_id",owner_id)
+        formData.append("owner_name",owner_name)
+        await axios.put(`http://localhost:5000/api/enroll/${id}`,formData)
+        .then((res)=>console.log(res.data))
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
     
 
     return(
@@ -90,7 +99,7 @@ const Course = () => {
            <div>{chapters.map((chapter,key)=>CreateTabList(chapter,key))}</div>
            <div>{CreateQuestionList()}</div>
            
-           <Button onClick={()=>{Enroll(id,email,name)}}>enroll</Button>
+           <Button onClick={()=>{Enroll()}}>enroll</Button>
            
         </div>
       
