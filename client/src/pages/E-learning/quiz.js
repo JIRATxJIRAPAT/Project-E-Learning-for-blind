@@ -135,14 +135,15 @@ const  Quiz = () => {
           <div>
           <Form>
             
-            <h2>Question {activeQuestion+1} / {max} : {quizs.question}</h2>
+            <h2 tabIndex="0">Question {activeQuestion+1} / {max} : {quizs.question}</h2>
             <Form.Check
               inline
               label={quizs.choice1}
               name="group1"
               type='radio'
               id={`inline-radio-1`}
-              tabIndex={0}
+              
+              placeholder={quizs.choice1}
               onClick={(e) => setSelectedAnswer(`${quizs.choice1}`)}
             />
             <Form.Check
@@ -151,7 +152,8 @@ const  Quiz = () => {
               name="group1"
               type='radio'
               id={`inline-radio-2`}
-              tabIndex={0}
+              
+              placeholder={`choice two ${quizs.choice2}`}
               onClick={(e) => setSelectedAnswer(`${quizs.choice2}`)}
             />
               

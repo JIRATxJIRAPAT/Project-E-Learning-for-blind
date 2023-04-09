@@ -1,26 +1,80 @@
-import { useState,useEffect } from 'react';
+import "../../css/card2.css"
+import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+
+import Table from './table';
 
 
+/*            <h2>complete Course</h2>
+            <div>{props.enrolled.map(function(course){
+                    if(`${course.status}` === "true"){
+                        return (<>
+                            
+                                <div>{course.coursename}</div>
+                                <div>score:{course.score} status:{`${course.status}`}</div> </>
+                            )
+                    }
 
-function StudentProfile(props,key) {
-    
-    return(
-        <div>
-            <h2>your owned course</h2>
-            <div>{props.enrolled.map(course=>
-                    <><div>{course.coursename}</div>
-                    <div>score:{course.score} status:{`${course.status}`}</div>
 
-                    </>
-                )}
-                
-                
-                
-            
+                   
+                    }
+                )}    
             
             </div>
-        
-        </div>
+            <h2>INcomplete Course</h2>
+            <div>{props.enrolled.map(function(course){
+                    if(`${course.status}` === "false"){
+                        return (<>
+                            
+                                <ul className='rectangle'>
+                                    <li>score:{course.score} status:{`${course.status}`}</li>
+                                </ul> </>
+                            )
+                    }
+
+
+                   
+                    }
+                )}    
+            
+            </div>*/
+function createTable(course,key){
+    return(
+        <Table key={key} name={course.coursename} score={course.score} status={course.status}/>
+    )
+}
+
+function StudentProfile(props,key) {
+
+    return(
+   
+        <MDBTable align='middle'>
+        <MDBTableHead>
+          <tr>
+            <th scope='col' tabIndex={0}>Course name</th>
+            <th scope='col' tabIndex={0}>progress</th>
+            <th scope='col' tabIndex={0}>Status</th>
+            <th scope='col' tabIndex={0}>Score</th>
+            <th scope='col' tabIndex={0}>Actions</th>
+          </tr>
+        </MDBTableHead>
+        <MDBTableBody>
+            {props.enrolled.map((course,key) => {
+                    if(`${course.status}` === "true"){
+                        return createTable(course)                 
+                    }
+                }
+            )}
+            {props.enrolled.map(function(course,key){
+                    if(`${course.status}` === "false"){
+                        return createTable(course)          
+                    }
+                }
+            )}        
+          
+        </MDBTableBody>
+      </MDBTable>
+
+    
     )
 }
 

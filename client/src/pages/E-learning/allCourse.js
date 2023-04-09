@@ -2,12 +2,34 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Navbar1 from '../../components/Navbar'
+import CourseCard from '../../components/CourseCard'
+import Card2 from '../../components/Card2'
+/*
 
+        {courses.map((course,key) => (
+            <div className='container' key={key}>
+                <Link to={{pathname:`/course/${course._id}`} }>
+                <h2>{`${course.name}` }</h2>
+                <img src={`/uploads/images/${course.img}` } width="20%" height="10%" alt={`${course.name}`}/>
+                
+                </Link>
 
+            </div>
+            
+        ))}
+<Link to={{pathname:`/course/edit/${course._id}`}}>
+                    <button className="example" tabIndex="0">edit</button>
+                </Link>
+*/
+
+function CreateCourseCard(course,key){
+    return(
+        <CourseCard name={course.name} img={course.img} desc={course.desc} _id={course._id}/>
+    )
+}
 
 const AllCourse = () => {
-    const [name, setCourseName] = useState('')
-	const [img, setPic] = useState('')
+
     const [courses,setCourse] = useState([])
 
     
@@ -22,22 +44,8 @@ const AllCourse = () => {
     return(
         <div>
         <Navbar1 />
-        {courses.map((course,key) => (
-            <div className='container' key={key}>
-                <h2>{`${course.name}` }</h2>
-                <img src={`/uploads/images/${course.img}` } width="20%" height="10%" />
-                
-                <Link to={{pathname:`/course/${course._id}`}}>
-                    <h5 className="example" tabIndex="0">view</h5>
-                </Link>
-                <Link to={{pathname:`/course/edit/${course._id}`}}>
-                    <h5 className="example" tabIndex="0">edit</h5>
-                </Link>
-                
-            </div>
-            
-        ))}
-        
+        {courses.map((course,key) => CreateCourseCard(course,key))}
+       
         </div>
     )
 }

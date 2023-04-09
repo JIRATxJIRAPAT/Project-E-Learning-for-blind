@@ -30,6 +30,12 @@ const quizSchema = new mongoose.Schema({
     choice2:{type: String,require: true},
 });
 
+const studentSchema = new mongoose.Schema({
+    userid: {type: String, require:true,unique:true},
+    username: {type: String, require:true,unique:true},
+    score:{type:Number,default:0},
+    status:{type:Boolean,default:false}
+})
 
 var courseSchema = new mongoose.Schema({
     name: {type: String,require: true,unique: true},
@@ -38,8 +44,9 @@ var courseSchema = new mongoose.Schema({
     chapters: [chapterSchema],
     quiz: [quizSchema],
     pass_score: {type: Number},
-    owner_id: {type: String, require:true,unique:true},
-    owner_name: {type: String, require:true,unique:true},
+    owner_id: {type: String, require:true},
+    owner_name: {type: String, require:true},
+    students: [studentSchema]
 });
  
 //Image is a model which has a schema imageSchema

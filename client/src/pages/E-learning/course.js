@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import Navbar1 from '../../components/Navbar'
 import Quiz from './quiz'
 import Button from 'react-bootstrap/Button'
+import Dropdown from 'react-bootstrap/Dropdown';
 
 import ChaptersList from '../../components/ChaptersList'
 import QuestionList from '../../components/QuestionList'
@@ -20,6 +21,12 @@ function CreateQuestionList(){
     )
 }
 
+
+function ChapterDropDown(chapters,key) {
+    return (
+        <Dropdown.Item href="#/action-3">{chapters.title}</Dropdown.Item>
+    );
+  }
 
 const Course = () => {
     const [name, setCourseName] = useState('')
@@ -95,6 +102,18 @@ const Course = () => {
         <div>
             <Navbar1 />
            <h2>course:{name}</h2>
+           <Dropdown>
+        <Dropdown.Toggle variant="success" id="dropdown-basic">
+            Dropdown Button
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+            {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}
+        </Dropdown.Menu>
+        </Dropdown>
+           
+
+
            
            <div>{chapters.map((chapter,key)=>CreateTabList(chapter,key))}</div>
            <div>{CreateQuestionList()}</div>

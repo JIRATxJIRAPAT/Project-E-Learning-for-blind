@@ -3,6 +3,8 @@ import axios from 'axios'
 import Navbar1 from '../../components/Navbar';
 import TeacherProfile from './teacherProfile';
 import StudentProfile from './studentProfile';
+import Button from 'react-bootstrap/Button'
+
 
 
 
@@ -34,9 +36,11 @@ function Profile() {
     return(
       <div>
         <Navbar1></Navbar1>
-        <h2>Welcome: {username}</h2>
+
         {role === "student" && 
           <StudentProfile enrolled={enrolled} />
+        
+
         }
 
         {role === "teacher" &&

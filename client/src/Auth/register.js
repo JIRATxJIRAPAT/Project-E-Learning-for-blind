@@ -11,7 +11,7 @@ function Register() {
 	async function registerUser(event) {
 		event.preventDefault()
 
-		const response = await fetch('https://e-learning-backends.onrender.com/api/register', {
+		const response = await fetch('http://localhost:5000/api/register', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ function Register() {
 
 	return (
 		<div>
-			<h1 className="example" tabIndex="0" >Register</h1>
+			<h1 className="example" >Register</h1>
 			<form onSubmit={registerUser}>
 				<input
 					value={name}

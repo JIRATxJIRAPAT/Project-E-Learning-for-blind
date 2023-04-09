@@ -61,14 +61,18 @@ function Test3() {
     }
     return(
         <div>
+            
             <Navbar1></Navbar1>
-            <div id="first" tabindex="-1"></div>
-            <Button className="example"  variant="contained">Topic</Button>
+            <div tabIndex="-1"></div>
+            <Button id="second" className="example"  variant="contained">Topic</Button>
             <Button className="example"  variant="contained">second</Button>
             <Button className="example"  variant="contained">third</Button>
             <Button className="example"  variant="contained">Hello World</Button>
             <a href="">dwkpk</a>
-            <progress id="percent-loaded" value="75" max="100">75 %</progress>
+            <label className='example'>enter name
+            <input type='text' placeholder='enter name'></input>
+            </label>
+            <div id="demo"></div>
         </div>
     )
 

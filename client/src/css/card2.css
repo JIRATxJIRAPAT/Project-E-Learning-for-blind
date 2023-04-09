@@ -1,0 +1,15 @@
+.note {
+    border-radius: 7px;
+    box-shadow: 0 2px 5px #ccc;
+    padding: 10px;
+    width: 240px;
+    margin: 16px;
+    float: left;
+    height: 400px;
+  }
+
+  .rectangle {
+    width: 24rem;
+    height: 14rem;
+    background: rgb(0, 119, 128);
+  }

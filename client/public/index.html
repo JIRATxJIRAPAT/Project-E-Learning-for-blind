@@ -45,7 +45,7 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-
+    
     <script>
     
     const msg = new SpeechSynthesisUtterance() 
@@ -58,11 +58,12 @@
 
     const speechHandler = (txt) => {
       msg.text = txt
-      msg.voice = speechSynthesis.getVoices().filter(voice => voice.lang === 'th-TH')[0];
+      msg.voice = speechSynthesis.getVoices().filter(voice => voice.lang === 'en-US')[0];
       msg.volume = 1;                  // 0 ถึง1 เป็นระดับความดัง
       msg.rate = 1;                  // 0.1 ถึง 10 อัตราเร็วของการพูด
       msg.pitch = 2;                //0 ถึง 2 // ลักษณะระดับเสียงสูงต่ำ
       window.speechSynthesis.speak(msg)
+      
     }
     
     // ปิดไว้ก่อน
@@ -134,9 +135,9 @@
       
       console.log("lenght:",max)
       
-      const ex = document.querySelectorAll('input[type=email]')
-      //console.log("placeholder",ex.placeholder)
       
+      //console.log("placeholder",ex.placeholder)
+      //document.getElementById("first").focus();
       
     });
     /*
@@ -150,20 +151,51 @@
     
     */
 
-    document.addEventListener("keydown", (e) => {
+    document.body.addEventListener("keyup", (e) => {
       //console.log(e.key)
-      
-      if(e.key === "Tab" && count < max ){
-        console.log("count:",count)
-        console.log("Index tab:",document.activeElement.tabIndex)
-        console.log(quote[count])
-        speechHandler(quote[count])
+      //if(e.key === "Tab" && count < max )
+      if(e.key === "Tab" ){
+        console.log("count1:",document.activeElement.tagName)
+        //console.log("Index tab:",document.activeElement.textContent)
+        //console.log("word",quote[count])
+        
+        speechHandler(document.activeElement.textContent)
+       
+        var amIPending = window.speechSynthesis.pending;
+        console.log("pending",amIPending)
         count = count + 1;
         console.log("count after:",count)
         //console.log(document.hasFocus())
         console.log("-----------------------------")
         
       }
+      else if(e.key === "Tab" && (document.activeElement.tagName === "INPUT")){
+        console.log("count2:",document.activeElement.tagName)
+        console.log("Index tab:",document.activeElement.placeholder)
+        console.log("word",quote[count])
+        speechHandler(document.activeElement.placeholder)
+        count = count + 1;
+        console.log("count after:",count)
+        //console.log(document.hasFocus())
+        console.log("-----------------------------")
+        
+      }
+      else if((e.key === "ArrowRight" || e.key === "ArrowLeft") && (document.activeElement.tagName === "INPUT")){
+        console.log("count3:",document.activeElement.tagName)
+        console.log("Index tab:",document.activeElement.innerHTML)
+        console.log("word",quote[count])
+        speechHandler(document.activeElement.placeholder)
+        count = count + 1;
+        console.log("count after:",count)
+        //console.log(document.hasFocus())
+        console.log("-----------------------------")
+        
+      }
+      
+
+
+      /*
+
       else if(count >= max){
         document.getElementById("first").focus();
         console.log("exceed count now=",count)
@@ -173,9 +205,12 @@
         count = 0
         speechHandler(quote[count])
         count = 1
-      }
+      }*/
     })
-    
+    function myStopFunction() {
+      window.speechSynthesis.cancel()
+    }
+
 
   </script>
     

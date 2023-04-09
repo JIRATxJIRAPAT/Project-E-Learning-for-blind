@@ -17,8 +17,7 @@ const followerSchema = new mongoose.Schema({
 
 const owned_course = new mongoose.Schema({
     course_id: {type: String,require: true,unique:true},
-    coursename: {type: String,require: true,unique:true},
-    followers: [followerSchema] 
+    coursename: {type: String}, 
 })
 
 

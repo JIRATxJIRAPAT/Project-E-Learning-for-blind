@@ -4,12 +4,22 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import axios from 'axios'
+import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
+
 
 
 
 function Navbar1() {
   const [username,setUserName] = useState("")
-  
+  const navigate = useNavigate()
+
+  function logout() {
+    window.localStorage.removeItem('token')
+    navigate('/login')
+  }
+
+
   useEffect(() => {
 
     const tk = localStorage.getItem('token')
@@ -31,20 +41,20 @@ function Navbar1() {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">E-Learning for Blind</Navbar.Brand>
+        <Navbar.Brand href="#home" className='example' id="first">E-learning for blind</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/course">all course</Nav.Link>
-            <Nav.Link href="/profile">profile</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
+            <Nav.Link href="/course" className='example'>all course</Nav.Link>
+            <Nav.Link href="/profile" className='example'>profile</Nav.Link>
+            <NavDropdown title="Dropdown" id="basic-nav-dropdown" className='example'>
+              <NavDropdown.Item href="#action/3.1" className='example'>Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2"className='example'>
                 Another action
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3" className='example'>Something</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
+              <NavDropdown.Item href="#action/3.4"className='example'>
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
@@ -53,9 +63,11 @@ function Navbar1() {
         </Navbar.Collapse>
         
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            Signed in as: <a href="/profile">{username}</a>
+          <Navbar.Text className='example'>
+            
+            Signed in as:{username}  
           </Navbar.Text>
+          <Button value="logout" className="example" onClick={logout} tabIndex="0" variant="contained" id="HP6">logout</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

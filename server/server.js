@@ -28,7 +28,7 @@ const app = express();
 app.use(cors())
 app.use(express.json())
 
-//Mongo connect
+//Mongo connect ()=>res.send("create new course successful")
 mongoose.connect(process.env.MONGO_CONNECT)
 
 app.post("/api/create",(req,res) => {
@@ -46,7 +46,22 @@ app.post("/api/create",(req,res) => {
                 
             });
             newCourse.save()
-            .then(()=>res.send("create new course successful"))
+            .then(User.findById(req.body.userid)
+                .then(user =>  {
+                            
+                    course = {
+                        course_id: newCourse._id,
+                        coursename: req.body.name ,
+                    }
+
+                    user.owned_course.push(course)
+                    user.save()
+                    .then(() => res.json(`Create new course!!`))
+                    .catch(err => res.status(400).json(`Error: ${err}`))
+                    }
+                )
+                .catch(err => res.status(400).json(`Error: ${err}`))
+            )
             .catch((err)=>console.log(err));
         }
     })
@@ -267,25 +282,16 @@ app.put("/api/enroll/:id",(req,res) => {
                 user
                     .save()
                     .then(
-                        User.findById(req.body.owner_id)
-                        .then(owned_user => {
-                            follower = {
-                                username: req.body.username,
-                                score: 0,
-                                status: false,
-                                id: req.body.userid
-
-                            }
-                            owned = {
-                                coursename: req.body.name,
-                                course_id: req.params.id,
-                                followers: follower
+                        Course.findById(req.params.id)
+                        .then(course => {
+                            
+                            student = {
+                                userid: user._id,
+                                username: user.name,
                             }
 
-
-                            console.log(follower)
-                            owned_user.owned_course.push(owned)
-                            owned_user.save()
+                            course.students.push(student)
+                            course.save()
                             .then(() => res.json(`Data update completed!!`))
                             .catch(err => res.status(400).json(`Error: ${err}`))
                             }
@@ -332,3 +338,4 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 app.listen(5000,() => {
     console.log("server started on port 5000")
 })
+
