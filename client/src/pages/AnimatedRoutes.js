@@ -44,7 +44,7 @@ function AnimatedRoutes() {
             <Route path="/test" element={<Test />} />
             <Route path="/test2" element={<Test2 />} />
             <Route path="/test3" element={<Test3 />} />
-            <Route path="/" element={<Tutorial />} />
+            <Route path="/" element={<AllCourse/>} />
             <Route path="/setting" element={<Setting/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login/>} />

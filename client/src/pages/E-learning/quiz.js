@@ -15,7 +15,7 @@ const  Quiz = () => {
 
     const {id} = useParams();
     const [email,setEmail] = useState('')
-    
+    const [userid,setUserid] = useState('')
     const [max,setMax] = useState(0)
     //
     const [activeQuestion, setActiveQuestion] = useState(0)
@@ -40,6 +40,7 @@ const  Quiz = () => {
       })
       .then(res => [
         setEmail(res.data.user.email),
+        setUserid(res.data.user._id)
       ])
       .catch(error => console.log(error));
       
@@ -53,17 +54,20 @@ const  Quiz = () => {
 
     useEffect(() => {
       if(correctAns === passScore){
-        console.log("1")
+        console.log("pass")
         setPassStatus(true)
       }else{
         setPassStatus(false)
-        console.log("2")
+        console.log("false")
       }
 
-    },[correctAns])
+    },[correctAns,wrongAns])
 
     useEffect(()=>{
-      onfinish()
+      if(showResult === true){
+        onfinish()
+      }
+      
     },[showResult])
     
 
@@ -74,9 +78,10 @@ const  Quiz = () => {
           formData.append("score",correctAns)
           formData.append("status",passStatus)
           formData.append("coursename",coursename)
-      
-          console.log("fn Score",score)
-          console.log("passStatus",passStatus)
+          formData.append("userid",userid)
+
+          console.log("final Score",score)
+          console.log("Status",email)
           
           axios.put(`http://localhost:5000/api/quiz/submit`,formData)
           .then((res)=>console.log(res.data))

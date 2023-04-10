@@ -26,7 +26,7 @@ function ChaptersList(props,key) {
                 controls
               >
                 <source src={`http://localhost:5000${props.video}`} />
-                ;Your browser does not support the video tag.
+                
             </video>
               
             </Tab.Pane>

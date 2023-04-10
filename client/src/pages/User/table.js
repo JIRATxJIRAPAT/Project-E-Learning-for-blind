@@ -23,7 +23,7 @@ export default function Table(props) {
               {`${props.status}`}
             </MDBBadge>
           </td>
-          <td>{props.score}</td>
+          <td>{`${props.score}`}</td>
           <td>
             <MDBBtn color='link' rounded size='sm'>
               View

@@ -38,12 +38,22 @@ function QuestionList(props) {
     <Tab.Container id="list-group-tabs-example" >
     <Row>
       <Col sm={4}>
-        <ListGroup tabIndex={0}>
+        {props.status === "false" && 
+        <ListGroup >
+          <ListGroup.Item  action href={`#link${props.id}` } disabled>
+            Quiz
+          </ListGroup.Item>
+
+        </ListGroup>
+        }
+        {props.status === "true" && 
+        <ListGroup >
           <ListGroup.Item  action href={`#link${props.id}`} >
             Quiz
           </ListGroup.Item>
 
         </ListGroup>
+        }
       </Col>
       <Col sm={8}>
         <Tab.Content>

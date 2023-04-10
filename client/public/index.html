@@ -130,10 +130,10 @@
         quote.push(text[i].innerHTML);
         //quote.push(text[i].placeholder);
         //localStorage.setItem(`word ${i}`,text[i].innerHTML)
-        console.log(quote)
+        //console.log(quote)
       }
       
-      console.log("lenght:",max)
+      //console.log("lenght:",max)
       
       
       //console.log("placeholder",ex.placeholder)
@@ -154,42 +154,44 @@
     document.body.addEventListener("keyup", (e) => {
       //console.log(e.key)
       //if(e.key === "Tab" && count < max )
-      if(e.key === "Tab" ){
+      if(e.key === "Tab"  && document.activeElement !== document.body  ){
         console.log("count1:",document.activeElement.tagName)
         //console.log("Index tab:",document.activeElement.textContent)
         //console.log("word",quote[count])
-        
+        console.log(e.key)
         speechHandler(document.activeElement.textContent)
        
         var amIPending = window.speechSynthesis.pending;
-        console.log("pending",amIPending)
+        //console.log("pending",amIPending)
         count = count + 1;
-        console.log("count after:",count)
+        //console.log("count after:",count)
         //console.log(document.hasFocus())
         console.log("-----------------------------")
         
       }
       else if(e.key === "Tab" && (document.activeElement.tagName === "INPUT")){
-        console.log("count2:",document.activeElement.tagName)
-        console.log("Index tab:",document.activeElement.placeholder)
-        console.log("word",quote[count])
+        console.log("count2:",document.activeElement.innerHTML)
+        //console.log("Index tab:",document.activeElement.placeholder)
+        //console.log("word",quote[count])
         speechHandler(document.activeElement.placeholder)
         count = count + 1;
-        console.log("count after:",count)
+        //console.log("count after:",count)
         //console.log(document.hasFocus())
         console.log("-----------------------------")
         
       }
       else if((e.key === "ArrowRight" || e.key === "ArrowLeft") && (document.activeElement.tagName === "INPUT")){
-        console.log("count3:",document.activeElement.tagName)
-        console.log("Index tab:",document.activeElement.innerHTML)
-        console.log("word",quote[count])
+        //console.log("count3:",document.activeElement.tagName)
+       // console.log("Index tab:",document.activeElement.innerHTML)
+        //console.log("word",quote[count])
         speechHandler(document.activeElement.placeholder)
         count = count + 1;
-        console.log("count after:",count)
+       // console.log("count after:",count)
         //console.log(document.hasFocus())
         console.log("-----------------------------")
         
+      }if(e.key === "Tab"  && document.activeElement.tagName === "VIDEO"){
+        speechHandler("press space to play video")
       }
       
 

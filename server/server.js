@@ -313,13 +313,14 @@ app.put("/api/quiz/submit", (req,res) => {
             console.log(err)
         }
         else{
-            
+
+            console.log(req.body)
             User.updateOne(
-                { "enrolled.coursename": req.body.coursename },
+                { "enrolled.coursename": req.body.coursename ,"email":req.body.email},
                 { $set: { "enrolled.$.score" : req.body.score , "enrolled.$.status": req.body.status} }
             )
-            .then(() => res.json(`update success!! ${req.body.score} ${req.body.status}`))
-            .catch(err => res.status(400).json(`Error: ${err}`))
+            .then(() => res.json(`update success!! ${req.body.userid} ${req.body.status}`))
+            .catch(err => res.status(400).json(`Error: ${err}  ${req.body.userid}`))
                 
         
         }

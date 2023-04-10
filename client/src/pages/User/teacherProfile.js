@@ -13,30 +13,6 @@ function createTable(course,key){
 
 function TeacherProfile(props,key) {
 
-    const [name, setCourseName] = useState('')
-	const [img, setPic] = useState('')
-    const [desc,setDescription] = useState('')
-    const [chapters,setChapters] = useState([])
-    const [quizs, setQuiz] = useState([]);
-    const [video,setVideos] = useState([])
-    const [owner_id,setOwnerID] = useState('')
-    const [owner_name,setOwnerName] = useState('')
-
-    useEffect(() => {
-        axios.get(`http://localhost:5000/api/course/${props.owned_courses}`)
-            .then(res => [
-            setCourseName(res.data.name),
-            setPic(res.data.img),
-            setDescription(res.data.desc),
-            setChapters(res.data.chapters),
-            setQuiz(res.data.quiz),
-            setVideos(res.data.video),
-            setOwnerID(res.data.owner_id),
-            setOwnerName(res.data.owner_name),
-            console.log("course",res.data)
-            ])
-            .catch(error => console.log(error));
-    },[]);
 
     return(
         <MDBTable align='middle'>
