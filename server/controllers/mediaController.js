@@ -45,9 +45,6 @@ exports.create = async (req, res) => {
         console.log(req.body.episodeName)
         course.save()
             
-            
-            
-
     })
     .catch((err)=> res.status(400).json(`Error: ${err}`))
 

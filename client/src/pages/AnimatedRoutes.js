@@ -21,11 +21,15 @@ import CreateQuiz from "./E-learning/createQuiz";
 import UploadVideo from "../video_upload/test_upload";
 import Quiz from "./E-learning/quiz";
 import Profile from "./User/profile";
+import BasicExample from "./audioBook/createAudio";
+import AllAudioBook from "./audioBook/allAudio";
+import Firebase_upload from "./E-learning/upload";
 
 function AnimatedRoutes() {
     const location = useLocation();
     const [courses,setCourse] = useState([])
     //<Route path="/course/chapter/create/:id" element={<CreateChapter/>} />
+    //<Route path="/course/chapter/create/:id" element={<UploadVideo/>} />
     /*
     useEffect(() => {
       
@@ -39,7 +43,7 @@ function AnimatedRoutes() {
       <div>
         <AnimatePresence>
           <Routes location={location} key={location.pathname}>
-            <Route path="/audiobook" element={<Audiobook />} />
+            
             <Route path="/music" element={<Music />} />
             <Route path="/test" element={<Test />} />
             <Route path="/test2" element={<Test2 />} />
@@ -56,9 +60,12 @@ function AnimatedRoutes() {
             <Route path="/course/chapter/:id" element={<Chapter/>} />
             
             <Route path="/course/quiz/create/:id" element={<CreateQuiz/>} />
-            <Route path="/course/chapter/create/:id" element={<UploadVideo/>} />
+            
             <Route path="/course/quiz/:id" element={<Quiz/>} />
             <Route path="/profile" element={<Profile/>} />
+            <Route path="/course/chapter/create/:id" element={<Firebase_upload />} />
+            <Route path="/audiobook" element={<AllAudioBook />} />
+            <Route path="/audiobook/create" element={<BasicExample/>} />
           </Routes>
         </AnimatePresence>
       </div>

@@ -39,7 +39,7 @@ import Table from './table';
             </div>*/
 function createTable(course,key){
     return(
-        <Table key={key} name={course.coursename} score={course.score} status={course.status}/>
+        <Table key={key} id={course.id} name={course.coursename} score={course.score} status={course.status}/>
     )
 }
 
@@ -48,31 +48,33 @@ function StudentProfile(props,key) {
     return(
    
         <MDBTable align='middle'>
-        <MDBTableHead>
-          <tr>
-            <th scope='col' tabIndex={0}>Course name</th>
-            <th scope='col' tabIndex={0}>progress</th>
-            <th scope='col' tabIndex={0}>Status</th>
-            <th scope='col' tabIndex={0}>Score</th>
-            <th scope='col' tabIndex={0}>Actions</th>
-          </tr>
-        </MDBTableHead>
-        <MDBTableBody>
-            {props.enrolled.map((course,key) => {
-                    if(`${course.status}` === "true"){
-                        return createTable(course)                 
+            <caption >Enrolled Course</caption>
+            <MDBTableHead>
+                
+            <tr>
+                <th scope='col' tabIndex={0}>Course name</th>
+                <th scope='col' tabIndex={0}>progress</th>
+                <th scope='col' tabIndex={0}>Status</th>
+                <th scope='col' tabIndex={0}>Score</th>
+                <th scope='col' tabIndex={0}>Actions</th>
+            </tr>
+            </MDBTableHead>
+            <MDBTableBody>
+                {props.enrolled.map((course,key) => {
+                        if(`${course.status}` === "true"){
+                            return createTable(course)                 
+                        }
                     }
-                }
-            )}
-            {props.enrolled.map(function(course,key){
-                    if(`${course.status}` === "false"){
-                        return createTable(course)          
+                )}
+                {props.enrolled.map(function(course,key){
+                        if(`${course.status}` === "false"){
+                            return createTable(course)          
+                        }
                     }
-                }
-            )}        
-          
-        </MDBTableBody>
-      </MDBTable>
+                )}        
+            
+            </MDBTableBody>
+        </MDBTable>
 
     
     )

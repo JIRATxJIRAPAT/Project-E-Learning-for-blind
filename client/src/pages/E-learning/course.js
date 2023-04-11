@@ -81,6 +81,7 @@ const Course = () => {
     const [userid,setUserID] = useState('')
     const [username,setUsername] = useState('')
     const [enrolled,setEnrolled] = useState([])
+    const [role,setRole] = useState("")
 
     useEffect(() => {
       
@@ -109,6 +110,7 @@ const Course = () => {
         setUserID(res.data.user._id),
         setEmail(res.data.user.email),
         setEnrolled(res.data.user.enrolled),
+        setRole(res.data.user.role),
         console.log("email",res.data.user.email)
       ])
       .catch(error => console.log(error));
@@ -149,10 +151,6 @@ const Course = () => {
             </Dropdown.Menu>
             </Dropdown>
 
-
-
-
-    
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Row>
                 <Col sm={3}>
@@ -182,7 +180,7 @@ const Course = () => {
            <div id="test"></div>
 
             <video
-                preload="auto"
+           
                 width="320"
                 height="240"
                 controls
@@ -191,7 +189,11 @@ const Course = () => {
             <source id="src" src={""} />
 
             </video>
-           <Button onClick={()=>{Enroll()}}>enroll</Button>
+
+            
+            <Button onClick={()=>{Enroll()}}>enroll</Button>
+            
+           
            
         </div>
       

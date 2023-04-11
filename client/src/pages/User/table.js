@@ -25,7 +25,7 @@ export default function Table(props) {
           </td>
           <td>{`${props.score}`}</td>
           <td>
-            <MDBBtn color='link' rounded size='sm'>
+            <MDBBtn color='link' rounded size='sm' href={`http://localhost:3000/course/${props.id}`}>
               View
             </MDBBtn>
           </td>

@@ -37,12 +37,17 @@ export default function TeacherTable(props) {
               open
             </MDBBadge>
           </td>
-          <td>{props.score}</td>
           <td>
-            <MDBBtn color='link' rounded size='sm'>
+          <MDBBtn color='link' rounded size='sm' >
+              Edit
+            </MDBBtn>
+          </td>
+          <td>
+            <MDBBtn color='link' rounded size='sm' >
               View
             </MDBBtn>
           </td>
+
         </tr>
 
   );
