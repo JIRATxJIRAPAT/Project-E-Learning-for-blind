@@ -1,25 +1,26 @@
 import React , { useState, useEffect } from "react";
-import { storage } from "../../../src/firebase"
+import { storage } from "../../firebase"
 import { ref, uploadBytes, getBytes, getDownloadURL,} from "firebase/storage";
-import { v4 } from "uuid";
 import { getDatabase, set } from "firebase/database";
 import axios from "axios";
 import { useParams } from 'react-router-dom'
 
 
 
-function Firebase_upload() {
+function Mp3_upload() {
 
     const [imageUpload, setImageUpload] = useState(null);
     const [url,setUrl] = useState("");
     const {id} = useParams();
-    const [name, setName] = useState("");
+
     const [epiname,setEpiName] = useState('');
+
+
 
     const uploadFile = async(e) => {
         e.preventDefault()
         if (imageUpload == null) return;
-        const imageRef = ref(storage, `images/${imageUpload.name}`);
+        const imageRef = ref(storage, `mp3file/${imageUpload.name}`);
 
         await uploadBytes(imageRef, imageUpload).then(() => {
             alert("File Upload Success")
@@ -32,34 +33,21 @@ function Firebase_upload() {
             console.log(err);
         })
 
-
         const formData = new FormData();
         formData.append("url",url)
-        formData.append("name", name);
+        //formData.append("name", name);
         formData.append("episodeName",epiname)
-        await axios.put(`http://localhost:5000/api/chapter/create/${id}`,formData)
+        await axios.put(`http://localhost:5000/api/audiobook/chapter/create/${id}`,formData)
         .then((res)=>console.log(res.data))
         .catch((err)=>{
             console.log(err);
         })
     };
 
-
   return (
-
-
     <>
     <form onSubmit={uploadFile}>
-        <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input
-            type="text"
-            name="name"
-            id="name"
-            className="form-control"
-            onChange={(e) => setName(e.target.value)}
-            />
-        </div>
+
         <div className="form-group">
             <label htmlFor="videos">Upload Videos</label>
             <input
@@ -68,14 +56,14 @@ function Firebase_upload() {
             id="videos"
             multiple
             className="form-control"
-            accept=".mp4, .mkv"
+            accept=".mp3"
             onChange={(e) => {
                 setImageUpload(e.target.files[0]);
             }}
             />
         </div>
         <div className="form-group">
-            <label htmlFor="name">Chapter Name</label>
+            <label htmlFor="name">Title</label>
             <input
             type="text"
             name="name"
@@ -94,4 +82,4 @@ function Firebase_upload() {
   );
 }
 
-export default Firebase_upload;
+export default Mp3_upload;

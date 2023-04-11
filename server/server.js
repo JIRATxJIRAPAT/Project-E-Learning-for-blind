@@ -30,7 +30,8 @@ app.use(cors())
 app.use(express.json())
 
 //Mongo connect ()=>res.send("create new course successful")
-mongoose.connect(process.env.MONGO_CONNECT)
+mongoose.connect('mongodb+srv://rainz:zxc32120@project01.af0lfzz.mongodb.net/?retryWrites=true&w=majority')
+
 
 //User
 app.post('/api/register',async (req,res) => {
@@ -435,7 +436,8 @@ app.post("/api/audiobook/create", (req,res) => {
                     "desc":req.body.desc,
                     "owner_id": req.body.userid,
                     "owner_name" : req.body.username,
-                    "category":req.body.category
+                    "category":req.body.category,
+                    
                 }
                 
             )
@@ -446,6 +448,37 @@ app.post("/api/audiobook/create", (req,res) => {
         }
     })
 })
+
+////////////////////////////////////////////////////////////////
+app.put("/api/audiobook/chapter/create/:id", (req,res) => {
+    upload(req,res,(err)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            AudioBook.findById(req.params.id)
+            .then(course => {
+
+                const num = course.chapters.length + 1
+                console.log(req.body)
+
+                newChap = {
+                
+                id: num,
+                title: req.body.episodeName,
+                video: req.body.url
+                }
+                course.chapters.push(newChap)
+                console.log(req.body.episodeName)
+                course.save()
+                    
+            })
+            .catch((err)=> res.status(400).json(`Error: ${err}`))
+        }
+
+    })
+})
+///////////////////////////////////////////////////////////////
 
 app.get("/api/audiobook",(req,res)=>{
     AudioBook.find()

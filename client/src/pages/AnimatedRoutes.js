@@ -24,6 +24,8 @@ import Profile from "./User/profile";
 import BasicExample from "./audioBook/createAudio";
 import AllAudioBook from "./audioBook/allAudio";
 import Firebase_upload from "./E-learning/upload";
+import Mp3Upload from "./audioBook/audiobook_upload_mp3";
+import Mp3_upload from "./audioBook/audiobook_form";
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -65,7 +67,9 @@ function AnimatedRoutes() {
             <Route path="/profile" element={<Profile/>} />
             <Route path="/course/chapter/create/:id" element={<Firebase_upload />} />
             <Route path="/audiobook" element={<AllAudioBook />} />
-            <Route path="/audiobook/create" element={<BasicExample/>} />
+            {/* <Route path="/audiobook/create" element={<BasicExample/>} /> */}
+            <Route path="/audiobook/create/:id" element={<Mp3Upload/>} />
+            <Route path="/audiobook/create/form/:id" element={<Mp3_upload/>} />
           </Routes>
         </AnimatePresence>
       </div>
