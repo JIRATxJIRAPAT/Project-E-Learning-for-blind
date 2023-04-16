@@ -1,4 +1,4 @@
-import "../../css/card2.css"
+import "../../css/table.css"
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 
 import Table from './table';
@@ -47,13 +47,13 @@ function StudentProfile(props,key) {
 
     return(
    
-        <MDBTable align='middle'>
+        <MDBTable align='middle' responsive>
             <caption >Enrolled Course</caption>
             <MDBTableHead>
                 
-            <tr>
+            <tr className="tr">
                 <th scope='col' tabIndex={0}>Course name</th>
-                <th scope='col' tabIndex={0}>progress</th>
+                
                 <th scope='col' tabIndex={0}>Status</th>
                 <th scope='col' tabIndex={0}>Score</th>
                 <th scope='col' tabIndex={0}>Actions</th>

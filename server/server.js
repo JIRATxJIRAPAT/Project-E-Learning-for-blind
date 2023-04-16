@@ -28,9 +28,10 @@ var upload = multer({ storage: storage }).single('testImage');
 const app = express();
 app.use(cors())
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 
 //Mongo connect ()=>res.send("create new course successful")
-mongoose.connect('mongodb+srv://rainz:zxc32120@project01.af0lfzz.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGO_CONNECT)
 
 
 //User
@@ -272,6 +273,7 @@ app.put("/api/enroll/:id",(req,res) => {
             User.exists({ "enrolled.coursename":req.body.name, "email":req.body.email })
             .then(exists => {
                 if (exists) {
+                    console.log(req.body)
                     return res.json("already enroll")
                 } else {
                     User.findOne({email:req.body.email})
@@ -319,6 +321,29 @@ app.put("/api/enroll/:id",(req,res) => {
 
                     
  
+        }
+    )
+})
+
+//Enroll course
+app.put("/api/enroll/check/:id",(req,res) => {
+    upload(req,res,(err)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            //console.log(req.params)
+            //console.log(req.body)
+            User.exists({ "enrolled.id":req.params.id, "email":req.body.email })
+            .then(exists => {
+                if (exists) {
+                    return res.json(true)
+                } else {
+                    return res.json(false)
+                }
+            })
+        }
+
         }
     )
 })
@@ -449,7 +474,13 @@ app.post("/api/audiobook/create", (req,res) => {
     })
 })
 
-////////////////////////////////////////////////////////////////
+app.get("/api/audiobook/:id",(req,res)=>{
+    AudioBook.findById(req.params.id)
+    .then(course => res.json(course))
+    .catch((err)=> res.status(400).json(`Error: ${err}`))
+})
+
+
 app.put("/api/audiobook/chapter/create/:id", (req,res) => {
     upload(req,res,(err)=>{
         if(err){

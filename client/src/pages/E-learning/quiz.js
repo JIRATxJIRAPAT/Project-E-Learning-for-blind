@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import Navbar1 from '../../components/Navbar'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-
+import styles from "../../css/quiz.module.css"
 
 
 const  Quiz = () => {
@@ -136,10 +136,12 @@ const  Quiz = () => {
 
     return(
       <div>
+        <Navbar1/>
+        <div className={styles.box}>
         {!showResult ? (
           <div>
-          <Form>
-            
+          <Form className={styles.inner_box}>
+                                    
             <h2 tabIndex="0">Question {activeQuestion+1} / {max} : {quizs.question}</h2>
             <Form.Check
               inline
@@ -164,8 +166,9 @@ const  Quiz = () => {
               
           
             
-          </Form>
+          <br></br>
           <button onClick={onClickNext}>{activeQuestion === max - 1? 'Finish' : 'Next'}</button>
+          </Form>
           {activeQuestion}
         </div>
         ) : (
@@ -185,7 +188,7 @@ const  Quiz = () => {
             </p>
           </div>
     )}
-
+    </div>
   </div>
 )
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState,useRef, Fragment } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import Navbar1 from '../../components/Navbar'
@@ -6,14 +6,17 @@ import Quiz from './quiz'
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown';
 
-import ChaptersList from '../../components/ChaptersList'
-import QuestionList from '../../components/QuestionList'
-import LeftTabsExample from '../../components/ChapterList2'
-
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
+import AllCourse from './allCourse'
+import '../../css/test.css'
+
+
+import videojs from 'video.js';
+import 'video.js/dist/video-js.css';
+
 
 function CreateTabList(chapters,key){
     return(
@@ -40,30 +43,9 @@ function CreateTabList2(chapters,key){
     )
 }
 
-function CreateQuestionList(props){
-    return(
-        <QuestionList status={props}/>
-    )
-}
-
-function video(chapters) {
-    console.log("chage")
-    var player = document.getElementById('video');
-    var mp4Vid = document.getElementById('src');
-    player.pause();
-    mp4Vid.src = `http://localhost:5000${chapters.video}`;
-    
-    player.load();
-    player.play();
-   
-}
 
 
-function ChapterDropDown(chapters,key) {
-    return (
-        <Dropdown.Item onClick={()=>{video(chapters)}}>{chapters.title}</Dropdown.Item>
-    );
-  }
+
 
 const Course = () => {
     const [name, setCourseName] = useState('')
@@ -82,6 +64,10 @@ const Course = () => {
     const [username,setUsername] = useState('')
     const [enrolled,setEnrolled] = useState([])
     const [role,setRole] = useState("")
+    const [enrollStatus,setEnrollStatus] = useState(false)
+
+    //page check
+    const [onQuiz,setOnQuiz] = useState(false)
 
     useEffect(() => {
       
@@ -97,9 +83,15 @@ const Course = () => {
       ])
       .catch(error => console.log(error));
 
-      const tk = localStorage.getItem('token')
+      FetchData()
       
-      axios.get(`http://localhost:5000/api/getUser/`,{
+      
+    
+    },[]);
+
+    async function FetchData() {
+        const tk = localStorage.getItem('token')
+        await axios.get(`http://localhost:5000/api/getUser/`,{
         headers:  {
                     "X-Auth-Token":tk,
                     "content-type": "application/json"
@@ -111,14 +103,91 @@ const Course = () => {
         setEmail(res.data.user.email),
         setEnrolled(res.data.user.enrolled),
         setRole(res.data.user.role),
+        Check(res.data.user.email),
         console.log("email",res.data.user.email)
       ])
       .catch(error => console.log(error));
-    },[]);
+      }
 
+    async function Check(params) {
+        const formData2 = new FormData();
+        formData2.append('email',params)
+
+        //formData2.append("id",id)
+        console.log("check email",params)
+        console.log("form",formData2.get("email"))
+        await axios.put(`http://localhost:5000/api/enroll/check/${id}`,formData2)
+        .then(res => [
+        setEnrollStatus(res.data),
+        console.log("res.data",res.data)
+        ])
+        .catch(error => console.log(error));
+    }
+
+    function Duration() {
+        var myVideo = document.getElementById("my-video");
+        myVideo.onloadedmetadata = function() {
+          var duration = myVideo.duration;
+          return duration; // duration in seconds
+        };
+    }
+  
+
+    function videoo(chapters) {
+        /*
+        console.log("chage")
+        var player = document.getElementById('video');
+        var mp4Vid = document.getElementById('src');
+    
+        mp4Vid.src = `http://localhost:5000${chapters.video}`;
+        */
+        console.log(`${chapters.video}`);
+        var player = videojs('my-video');
+        player.src(`${chapters.video}`);
+       
+    }
+    function ChapterDropDown(chapters,key) {
+        return (
+            <Dropdown.Item onClick={()=>{videoo(chapters)}}>{chapters.title}</Dropdown.Item>
+        );
+    }
+
+    function CreateQuestionList(status){
+        if (status === "true"){
+            return(
+            //<QuestionList status={props}/>
+                <Dropdown.Item onClick={HandleQuiz} disabled>Quiz</Dropdown.Item>
+            )
+        }else{
+            return <Dropdown.Item onClick={HandleQuiz} >Quiz</Dropdown.Item>
+        }
+    
+    }
+
+    function HandleQuiz() {
+        setOnQuiz(true)
+    }
 
     
+    /*
+
+                <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+            <Row>
+                <Col sm={3}>
+                <Nav variant="pills" className="flex-column">
+
+                    {chapters.map((chapter,key)=>CreateTabList(chapter,key))}
+                </Nav>
+                </Col>
+                <Col sm={9}>
+                <Tab.Content>
+                    {chapters.map((chapter,key)=>CreateTabList2(chapter,key))}
+                </Tab.Content>
+                </Col>
+            </Row>
+            </Tab.Container>
     
+    */
     async function Enroll(){
         
         const formData = new FormData();
@@ -137,66 +206,102 @@ const Course = () => {
     
 
     return(
+        <Fragment>
         
-        <div>
-            <Navbar1 />
-           <h2>course:{name}</h2>
-           <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                     Dropdown Button
-            </Dropdown.Toggle>
+        <div className='grid'>
+            
+            <header class="page-header">
+                <Navbar1/>
+            </header>
+            
+           <aside class="page-rightbar">
 
-            <Dropdown.Menu>
-                {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}
-            </Dropdown.Menu>
-            </Dropdown>
+                <div class="content">
+                
+                <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
+                        Select Chapters
+                    </Dropdown.Toggle>
 
-            <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-            <Row>
-                <Col sm={3}>
-                <Nav variant="pills" className="flex-column">
+                    <Dropdown.Menu>
+                        {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}
+                        {enrolled.map(course=>{
+                            if(course.coursename === name && (`${course.status}` === "true")){
+                                //setNum(prev=>prev+1)
+                                console.log("statussssss",course.status)
+                                return CreateQuestionList("false")
+                            }else if(course.coursename === name  && (`${course.status}` === "false") ){
+                                //setNum(prev=>prev+1)
+                                return CreateQuestionList("true")
+                            }
+                        })}
+                    </Dropdown.Menu>
+                </Dropdown>
+                
 
-                {chapters.map((chapter,key)=>CreateTabList(chapter,key))}
-                </Nav>
-                </Col>
-                <Col sm={9}>
-                <Tab.Content>
-                {chapters.map((chapter,key)=>CreateTabList2(chapter,key))}
-                </Tab.Content>
-                </Col>
-            </Row>
-            </Tab.Container>
-     
+                    {enrolled.map(course=>{
+                    if(course.coursename === name && (`${course.status}` === "true")){
+                        //setNum(prev=>prev+1)
+                        console.log("statussssss",course.status)
+                        //return CreateQuestionList("false")
+                    }else if(course.coursename === name  && (`${course.status}` === "false") ){
+                        //setNum(prev=>prev+1)
+                        //return CreateQuestionList("true")
+                    }
+                    
+                    })}
+
+                            
+                    {`${enrollStatus}`=== "true" &&
+                        //<Button onClick={()=>{Enroll()}} disabled >enroll</Button>
+                        <></>
+                    }
+                    {`${enrollStatus}`=== "false" &&
+                        <Button onClick={()=>{Enroll()}} >enroll</Button>
+                    }
+                </div>
+           </aside>
         
-           {enrolled.map(course=>{
-                if(course.coursename === name && (`${course.status}` === "true")){
-                    console.log("statussssss",course.status)
-                    return CreateQuestionList("false")
-                }else if(course.coursename === name  && (`${course.status}` === "false") ){
-                    return CreateQuestionList("true")
-                }
-           })}
-          
-           <div id="test"></div>
 
-            <video
-           
-                width="320"
-                height="240"
-                controls
-                id="video"
-            >
-            <source id="src" src={""} />
+            <main class="page-main">
+                <div class="content">
+                    {onQuiz ? (
+                        <Quiz/>
+                    ) : (
+                    <>
+                    <video
+                        id="my-video"
+                        class="video-js"
+                        controls
+                        preload='metadata'
+                        width='800' 
+                        height="500"
+                        autoplay
 
-            </video>
+                        poster="../../uploads/images/video-player.jpg"
+                        data-setup="{}"
+                        
+                    >
+                    <source src="https://firebasestorage.googleapis.com/v0/b/e-learning-for-the-blind-d7398.appspot.com/o/images%2F12.mp4?alt=media&token=863720a0-1dca-47f0-bef0-e088e9aa37e1" type="video/mp4"></source>
+                        
+                    </video></>
+                    )}
 
-            
-            <Button onClick={()=>{Enroll()}}>enroll</Button>
-            
-           
-           
+                </div>
+            </main>
+
+            <summary class="page-details">
+                <div class="content">
+                    <p>{Duration}</p>
+                    
+                </div>
+                    
+            </summary>
+
+
+
         </div>
-      
+        </Fragment>
     )
 }
 

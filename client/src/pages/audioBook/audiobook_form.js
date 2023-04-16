@@ -77,8 +77,9 @@ function Mp3_upload() {
             Submit
         </button>
         </form>
+        <audio src={"https://firebasestorage.googleapis.com/v0/b/e-learning-for-the-blind-d7398.appspot.com/o/mp3file%2F5cd04ebc-5870-4568-aa7c-345f14d119f3.mp3?alt=media&token=ea95b306-0df6-4082-8fa3-a285780a60a2"} controls />
     </>
-
+    
   );
 }
 

@@ -17,9 +17,10 @@ export default function useAuth(code) {
         setExpiresIn(res.data.expiresIn)
         window.history.pushState({}, null, "/")
       })
+      /*
       .catch(() => {
         window.location = "/"
-      })
+      })*/
   }, [code])
 
   useEffect(() => {
@@ -33,9 +34,10 @@ export default function useAuth(code) {
           setAccessToken(res.data.accessToken)
           setExpiresIn(res.data.expiresIn)
         })
-        .catch(() => {
-          window.location = "/"
-        })
+              /*
+      .catch(() => {
+        window.location = "/"
+      })*/
     }, (expiresIn - 60) * 1000)
 
     return () => clearInterval(interval)

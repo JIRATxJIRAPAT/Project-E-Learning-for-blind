@@ -1,10 +1,11 @@
 import React from 'react';
 import { MDBBadge, MDBBtn} from 'mdb-react-ui-kit';
+import "../../css/table.css"
 
 export default function Table(props) {
   return (
 
-        <tr>
+        <tr className='tr'>
           <td>
             <div className='d-flex align-items-center'>
               
@@ -14,18 +15,23 @@ export default function Table(props) {
               </div>
             </div>
           </td>
+
           <td>
-            <p className='fw-normal mb-1'>progress</p>
-          
+            {`${props.status}`=== "false" &&
+              <MDBBadge color='danger' pill tabIndex="0">
+                {`${props.status}`}
+              </MDBBadge>
+            }
+            {`${props.status}`=== "true" &&
+              <MDBBadge color='success' pill tabIndex="0">
+                Pass
+              </MDBBadge>
+            }
+
           </td>
+          <td tabIndex="0">{`${props.score}`}</td>
           <td>
-            <MDBBadge color='success' pill>
-              {`${props.status}`}
-            </MDBBadge>
-          </td>
-          <td>{`${props.score}`}</td>
-          <td>
-            <MDBBtn color='link' rounded size='sm' href={`http://localhost:3000/course/${props.id}`}>
+            <MDBBtn color='success' rounded size='nm' href={`http://localhost:3000/course/${props.id}`}>
               View
             </MDBBtn>
           </td>

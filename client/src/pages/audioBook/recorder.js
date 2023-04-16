@@ -1,18 +1,19 @@
 import React , { useState, useEffect } from "react";
-import { storage } from "../../../src/firebase"
+import { storage } from "../../firebase"
 import { ref, uploadBytes, getBytes, getDownloadURL,} from "firebase/storage";
 import { getDatabase, set } from "firebase/database";
 import axios from "axios";
 import { useParams } from 'react-router-dom'
 import { render } from "react-dom";
 import vmsg from "vmsg";
+import Navbar1 from "../../components/Navbar";
 
 
 const recorder = new vmsg.Recorder({
     wasmURL: "https://unpkg.com/vmsg@0.3.0/vmsg.wasm"
   });
    
-class Mp3Upload extends React.Component {
+class Recorder extends React.Component {
 
 
 
@@ -49,7 +50,7 @@ class Mp3Upload extends React.Component {
       const { isLoading, isRecording, recordings } = this.state;
       return (
         <React.Fragment>
-            <br></br><br></br><br></br><br></br>
+            <Navbar1/>
           <button disabled={isLoading} onClick={this.record}>
             {isRecording ? "Stop" : "Record"}
           </button>
@@ -72,7 +73,7 @@ class Mp3Upload extends React.Component {
     }
   }
    
-  render(<Mp3Upload />, document.getElementById("root"));
+  //render(<Mp3Upload />, document.getElementById("root"));
   
-  export default Mp3Upload;
+  export default Recorder;
 

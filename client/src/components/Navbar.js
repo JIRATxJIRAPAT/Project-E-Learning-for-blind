@@ -39,7 +39,7 @@ function Navbar1() {
   },[]);
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand href="#home" className='example' id="first">E-learning for blind</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -48,7 +48,7 @@ function Navbar1() {
             <Nav.Link href="/course" className='example'>all course</Nav.Link>
             <Nav.Link href="/profile" className='example'>profile</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown" className='example'>
-              <NavDropdown.Item href="#action/3.1" className='example'>Action</NavDropdown.Item>
+              <NavDropdown.Item href="/audiobook" className='example'>AudioBook</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2"className='example'>
                 Another action
               </NavDropdown.Item>

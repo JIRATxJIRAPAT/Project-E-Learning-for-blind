@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import BasicExample from "../components/CourseCard";
-import '../../src/css/card.css'
+import React, { Fragment, useState } from "react";
+
+import '../../src/css/gpt.css'
 import { Button, Checkbox, Form } from 'semantic-ui-react'
 
 //import { useSpeechSynthesis } from 'react-speech-kit';
@@ -14,28 +14,34 @@ function Test() {
   }
 
   return (
-    
-    <div>
-        <label tabIndex="0">First Name
-            <input placeholder='First Name' />
-        </label>
-        <Form>
-          <Form.Field>
-            <label >First Name</label>
-            <input placeholder='First Name' />
-          </Form.Field>
-          <Form.Field>
-            <label>Last Name</label>
-            <input placeholder='Last Name' />
-          </Form.Field>
-          <Form.Field>
-            <Checkbox label='I agree to the Terms and Conditions' />
-          </Form.Field>
-          <Button type='submit'>Submit</Button>
-  </Form>
-    </div>
+    <Fragment>
+      	<header>
+		<h1>Video Course Title</h1>
+		<nav>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section class="video">
+			<video controls>
+				<source src="video.mp4" type="video/mp4"/>
+			</video>
+			<h2>Lesson Title</h2>
+			<p>Description of lesson.</p>
+		</section>
+	</main>
+
+	<footer>
+		<p>Copyright © 2023</p>
+	</footer>
 
 
+  </Fragment>
 
   );
 }

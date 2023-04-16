@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Navbar1 from '../../components/Navbar'
 import CourseCard from '../../components/CourseCard'
 import Card2 from '../../components/Card2'
+import "../../css/card2.css"
 /*
 
         {courses.map((course,key) => (
@@ -24,7 +25,7 @@ import Card2 from '../../components/Card2'
 
 function CreateCourseCard(course,key){
     return(
-        <CourseCard name={course.name} img={course.img} desc={course.desc} _id={course._id}/>
+        <CourseCard key={course._id} name={course.name} img={course.img} desc={course.desc} _id={course._id}/>
     )
 }
 
@@ -43,9 +44,10 @@ const AllCourse = () => {
 
     return(
         <div>
-        <Navbar1 />
-        {courses.map((course,key) => CreateCourseCard(course,key))}
-       
+            <Navbar1 />
+            <div className="container">
+                {courses.map((course,id) => CreateCourseCard(course,id))}
+            </div>
         </div>
     )
 }

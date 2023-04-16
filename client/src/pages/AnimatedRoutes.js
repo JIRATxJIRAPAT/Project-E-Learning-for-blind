@@ -1,6 +1,5 @@
 import React, {useEffect, useState } from "react";
 import { Route,Routes,useLocation} from 'react-router-dom'
-import Audiobook from "./Audiobook";
 import Music from "./Music";
 import {AnimatePresence} from 'framer-motion';
 import Test from "./Test";
@@ -24,8 +23,14 @@ import Profile from "./User/profile";
 import BasicExample from "./audioBook/createAudio";
 import AllAudioBook from "./audioBook/allAudio";
 import Firebase_upload from "./E-learning/upload";
-import Mp3Upload from "./audioBook/audiobook_upload_mp3";
+import Mp3Upload from "./audioBook/recorder";
 import Mp3_upload from "./audioBook/audiobook_form";
+import VideoJS from "./E-learning/video";
+import VideoPlayer from "./E-learning/video";
+import AudioBook from "./audioBook/playAudio";
+import Recorder from "./audioBook/recorder";
+import Quiz2 from "./E-learning/quiz2";
+
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -64,12 +69,16 @@ function AnimatedRoutes() {
             <Route path="/course/quiz/create/:id" element={<CreateQuiz/>} />
             
             <Route path="/course/quiz/:id" element={<Quiz/>} />
+            <Route path="/course/quiz2/:id" element={<Quiz2/>} />
             <Route path="/profile" element={<Profile/>} />
             <Route path="/course/chapter/create/:id" element={<Firebase_upload />} />
             <Route path="/audiobook" element={<AllAudioBook />} />
-            {/* <Route path="/audiobook/create" element={<BasicExample/>} /> */}
-            <Route path="/audiobook/create/:id" element={<Mp3Upload/>} />
-            <Route path="/audiobook/create/form/:id" element={<Mp3_upload/>} />
+            <Route path="/audiobook/:id" element={<AudioBook />} />
+            <Route path="/audiobook/create" element={<BasicExample/>} />
+            <Route path="/audiobook/record" element={<Recorder/>} />
+            <Route path="/audiobook/chapter/create/:id" element={<Mp3_upload/>} />
+
+            <Route path="/video" element={<VideoPlayer/>} />
           </Routes>
         </AnimatePresence>
       </div>

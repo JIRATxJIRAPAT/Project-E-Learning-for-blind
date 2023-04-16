@@ -10,15 +10,16 @@ function CourseCard(props) {
   return (
     <Fragment>
 
-          <Card style={{ width: '18rem' }} className='note' bg="light" text="dark">
-            <Card.Img variant="top" src={`/uploads/images/${props.img}`} />
+          <Card style={{ width: '18rem' }} className='note' bg="light" text="dark" key={props._id}>
+            <Card.Img variant="top" width="200" height="200" src={`/uploads/images/${props.img}`} alt='course image' />
             <Card.Body >
               <Card.Title tabIndex="0">{props.name}</Card.Title>
               <Card.Text tabIndex="0">
                 {props.desc}
               </Card.Text>
+              
               <Link to={{pathname:`/course/${props._id}`}}>
-                <Button  variant="primary">View</Button>
+                <Button variant="primary">View</Button>
               </Link>
             </Card.Body>
           </Card>
