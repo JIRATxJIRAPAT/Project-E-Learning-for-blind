@@ -4,6 +4,8 @@ import axios from "axios";
 import UploadForm from "./components/UploadForm";
 import UploadsList from "./components/UploadsList";
 import { BACKEND_URI } from "./config/constants";
+import  { BottomNavigation, BottomNavigationAction} from "@mui/material"
+import CastForEducationIcon from '@mui/icons-material/CastForEducation';
 
 const UploadVideo = () => {
   const [medias, setMedias] = useState([]);
@@ -39,7 +41,9 @@ const UploadVideo = () => {
             }}
           >
             <div className="card-body">
-              <UploadForm getAllMedias={getAllMedias} />
+              <UploadForm  getAllMedias={getAllMedias} /> 
+              <h1 icon={CastForEducationIcon} >kkkk</h1>
+        
             </div>
           </div>
         </div>

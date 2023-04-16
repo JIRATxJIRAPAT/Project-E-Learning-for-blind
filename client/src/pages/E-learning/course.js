@@ -191,7 +191,7 @@ const Course = () => {
             </video>
 
             
-            <Button onClick={()=>{Enroll()}}>enroll</Button>
+            <Button onClick={()=>{Enroll()}}>Enroll</Button>
             
            
            

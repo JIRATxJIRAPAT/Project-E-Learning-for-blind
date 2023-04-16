@@ -5,6 +5,7 @@ import Navbar1 from '../../components/Navbar'
 
 import Card2 from '../../components/Card2'
 import AudioCard from './components/AudioCard'
+import "../../css/audio.css";
 /*
 
         {courses.map((course,key) => (
@@ -47,7 +48,13 @@ const AllAudioBook = () => {
     return(
         <div>
         <Navbar1 />
-        {allAudio.map((audio,key) => CreateAudioCard(audio,key))}
+        <div className='box'>
+            <div className='inner_box'>
+            {allAudio.map((audio,key) => CreateAudioCard(audio,key))}
+            </div>
+        
+        </div>
+        
        
         </div>
     )

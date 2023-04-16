@@ -1,0 +1,15 @@
+{
+    "english":{
+        "value1":"Course setName",
+        "value2":"Description",
+        "value3":"Default file input example",
+        "value4":"submit"
+    },
+    "thai":{
+        "value1":"เปลี่ยนชื่อวิชา",
+        "value2":"คำอธิบาย",
+        "value3":"ไฟล์ตัวอย่าง",
+        "value4":"ยืนยัน"
+    }
+
+}

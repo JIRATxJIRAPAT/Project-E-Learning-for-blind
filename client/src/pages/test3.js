@@ -19,24 +19,6 @@ function Test3() {
       window.speechSynthesis.speak(msg)
     }
 
-
-    document.addEventListener("keydown", (e) => {  
-    if(e.key === "Tab"){
-      const text = document.addEventListener("")
-      speechHandler(text)
-      console.log(e.key)
-      console.log(text)
-        
-    }
-    })
-  
-  
-    document.getElementById('tab2').addEventListener("keydown", (e) => {  
-      if(e.key === 13){
-        window.location.replace('www.google.com');
-      }
-    })
-
 */
     useEffect(() => {
       document.addEventListener('keydown',detectKeyDown,true)},[])

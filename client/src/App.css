@@ -13,6 +13,10 @@
   }
 }
 
+.Box {
+  background-color: #9268a1;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

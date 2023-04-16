@@ -1,0 +1,17 @@
+{
+    "english":{
+        "value1":"Course Name",
+        "value2":"Default file input example",
+        "value3":"Description",
+        "value4":"Course Menu",
+        "value5":"submit"
+    },
+    "thai":{
+        "value1":"ชื่อวิชา",
+        "value2":"ไฟล์ตัวอย่าง",
+        "value3":"คำอธิบาย",
+        "value4":"ตัวเลือกวิชา",
+        "value5":"ยืนยัน"
+    }
+
+}

@@ -1,0 +1,28 @@
+{
+    "english":{
+        "value1":"Login",
+        "value2":"Email",
+        "value3":"Password",
+        "value4":"Login",
+        "value5":"Register",
+        "value6":"Name",
+        "value7":"Email",
+        "value8":"Password",
+        "value9":"Register",
+        "value10":"Login With Spotify"
+
+    },
+    "thai":{
+        "value1":"เข้าสู่ระบบ",
+        "value2":"อีเมลล์",
+        "value3":"รหัสผ่าน",
+        "value4":"ยืนยัน",
+        "value5":"ลงทะเบียนบัญชี",
+        "value6":"ชื่อ",
+        "value7":"อีเมลล์",
+        "value8":"รหัสผ่าน",
+        "value9":"ยืนยัน",
+        "value10":"เข้าสู่ระบบด้วย สปอติฟาย"
+    }
+
+}

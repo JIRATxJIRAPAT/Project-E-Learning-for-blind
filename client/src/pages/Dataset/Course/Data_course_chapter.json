@@ -1,0 +1,14 @@
+{
+    "english":{
+        "value1":"Create New Chapter",
+        "value2":"Course",
+        "value3":"Chapter"
+
+    },
+    "thai":{
+        "value1":"สร้างบทเรียนใหม่",
+        "value2":"วิชา",
+        "value3":"บทเรียน"
+    }
+
+}

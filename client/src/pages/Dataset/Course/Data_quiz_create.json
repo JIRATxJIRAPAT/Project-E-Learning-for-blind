@@ -1,0 +1,17 @@
+{
+    "english":{
+        "value1":"Question",
+        "value2":"Question",
+        "value3":"Answer",
+        "value4":"Answer",
+        "value5":"submit"
+    },
+    "thai":{
+        "value1":"คำถามทดสอบ",
+        "value2":"คำถาม",
+        "value3":"คำตอบ",
+        "value4":"คำตอบ",
+        "value5":"ยืนยัน"
+    }
+
+}

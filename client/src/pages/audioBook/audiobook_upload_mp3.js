@@ -6,6 +6,7 @@ import axios from "axios";
 import { useParams } from 'react-router-dom'
 import { render } from "react-dom";
 import vmsg from "vmsg";
+import "../../css/audio.css";
 
 
 const recorder = new vmsg.Recorder({
@@ -49,24 +50,27 @@ class Mp3Upload extends React.Component {
       const { isLoading, isRecording, recordings } = this.state;
       return (
         <React.Fragment>
-            <br></br><br></br><br></br><br></br>
-          <button disabled={isLoading} onClick={this.record}>
-            {isRecording ? "Stop" : "Record"}
-          </button>
-
-          <ul style={{ listStyle: "none", padding: 0 }}>
-            {recordings.map(url => (
-              <li key={url}>
-                <audio src={url} controls />
-                {console.log(url)}
-              </li>
-            ))}
-          </ul>
-            
-            <div>
-            
-            
+          <div className="box">
+            <div className="inner_box">
+                <br></br><br></br><br></br><br></br>
+              <button disabled={isLoading} onClick={this.record}>
+                {isRecording ? "Stop" : "Record"}
+              </button>
+              
+              <ul style={{ listStyle: "none", padding: 0 }}>
+              <br></br><br></br>
+                {recordings.map(url => (
+                  <li key={url}>
+                    <audio src={url} controls />
+                    Please download record file to upload
+                    {console.log(url)}
+                  </li>
+                ))}
+              </ul>
             </div>
+            
+          
+          </div>
         </React.Fragment>
       );
     }

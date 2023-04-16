@@ -1,0 +1,17 @@
+{
+    "english":{
+        "value1":"Course name",
+        "value2":"number of student",
+        "value3":"Status",
+        "value4":"Score",
+        "value5":"Actions"
+    },
+    "thai":{
+        "value1":"ชื่อวิชา",
+        "value2":"จำนวนนักเรียนที่ลงทะเบียน",
+        "value3":"สถานะ",
+        "value4":"คะแนน",
+        "value5":"ตัวเลือก"
+    }
+
+}

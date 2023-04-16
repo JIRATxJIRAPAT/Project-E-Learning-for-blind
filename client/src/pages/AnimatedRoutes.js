@@ -26,6 +26,7 @@ import AllAudioBook from "./audioBook/allAudio";
 import Firebase_upload from "./E-learning/upload";
 import Mp3Upload from "./audioBook/audiobook_upload_mp3";
 import Mp3_upload from "./audioBook/audiobook_form";
+import Radio from "../spotify_music/radio";
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -60,9 +61,7 @@ function AnimatedRoutes() {
             <Route path="/course/:id" element={<Course/>} />
             <Route path="/course/edit/:id" element={<EditCourse/>} />
             <Route path="/course/chapter/:id" element={<Chapter/>} />
-            
             <Route path="/course/quiz/create/:id" element={<CreateQuiz/>} />
-            
             <Route path="/course/quiz/:id" element={<Quiz/>} />
             <Route path="/profile" element={<Profile/>} />
             <Route path="/course/chapter/create/:id" element={<Firebase_upload />} />
@@ -70,6 +69,10 @@ function AnimatedRoutes() {
             {/* <Route path="/audiobook/create" element={<BasicExample/>} /> */}
             <Route path="/audiobook/create/:id" element={<Mp3Upload/>} />
             <Route path="/audiobook/create/form/:id" element={<Mp3_upload/>} />
+            <Route path="/tutorial" element={<Tutorial />} />
+            <Route path="/uploadvdo" element={<UploadVideo />} />
+            <Route path="/audiobook/create" element={<BasicExample/>} />
+            <Route path="/radio" element={<Radio />} />
           </Routes>
         </AnimatePresence>
       </div>
