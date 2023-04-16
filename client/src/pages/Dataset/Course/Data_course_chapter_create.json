@@ -1,0 +1,15 @@
+{
+    "english":{
+        "value1":"Name",
+        "value2":"Upload Videos",
+        "value3":"Chapter Name",
+        "value4":"Submit"
+    },
+    "thai":{
+        "value1":"ชื่อ",
+        "value2":"อัพโหลด วิดีโอ",
+        "value3":"ชื่อบท",
+        "value4":"ยืนยัน"
+    }
+
+}

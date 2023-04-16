@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import { render } from "react-dom";
 import vmsg from "vmsg";
 import Navbar1 from "../../components/Navbar";
+import "../../css/audio.css";
 
 
 const recorder = new vmsg.Recorder({
@@ -14,8 +15,6 @@ const recorder = new vmsg.Recorder({
   });
    
 class Recorder extends React.Component {
-
-
 
     state = {
       isLoading: false,
@@ -50,24 +49,27 @@ class Recorder extends React.Component {
       const { isLoading, isRecording, recordings } = this.state;
       return (
         <React.Fragment>
-            <Navbar1/>
-          <button disabled={isLoading} onClick={this.record}>
-            {isRecording ? "Stop" : "Record"}
-          </button>
-
-          <ul style={{ listStyle: "none", padding: 0 }}>
-            {recordings.map(url => (
-              <li key={url}>
-                <audio src={url} controls />
-                {console.log(url)}
-              </li>
-            ))}
-          </ul>
-            
-            <div>
-            
-            
+          <div className="box">
+            <div className="inner_box">
+                <br></br><br></br><br></br><br></br>
+              <button disabled={isLoading} onClick={this.record}>
+                {isRecording ? "Stop" : "Record"}
+              </button>
+              
+              <ul style={{ listStyle: "none", padding: 0 }}>
+              <br></br><br></br>
+                {recordings.map(url => (
+                  <li key={url}>
+                    <audio src={url} controls />
+                    Please download record file to upload
+                    {console.log(url)}
+                  </li>
+                ))}
+              </ul>
             </div>
+            
+          
+          </div>
         </React.Fragment>
       );
     }

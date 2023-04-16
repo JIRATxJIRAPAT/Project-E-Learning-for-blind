@@ -1,0 +1,13 @@
+{
+    "english":{
+        "value1":"Course",
+        "value2":"Select Chapter",
+        "value3":"Enroll"
+    },
+    "thai":{
+        "value1":"วิชา",
+        "value2":"บทเรียนย่อย",
+        "value3":"ลงทะเบียน"
+    }
+
+}

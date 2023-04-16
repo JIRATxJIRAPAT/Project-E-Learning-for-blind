@@ -3,6 +3,8 @@ import {motion} from "framer-motion"
 import { Link,useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import jwt_decode from 'jwt-decode'
+import { Col,Row } from 'react-bootstrap';
+
 
 
 function Tutorial() {
@@ -85,8 +87,9 @@ function Tutorial() {
             <div  id="first" tabindex="-1"></div>
             {role == "student" &&
             <div>
-            <Button value="Welcome to tutorial" className="example" tabIndex="0" variant="contained" id="HP1">Welcome to tutorial</Button>
-            <Button value="Press 1 to go Home page" className="example" tabIndex="0" variant="contained" id="HP2">Press 1 to go Home page</Button></div>
+                
+            <Button value="Welcome to tutorial" className="example" tabIndex="0" variant="red" id="HP1">Welcome to tutorial</Button>
+            <Button value="Press 1 to go Home page" className="example" tabIndex="0" variant="green" id="HP2">Press 1 to go Home page</Button></div>
             }
             <Button value="Press 2 to go Audio book" className="example" tabIndex="0" variant="contained" id="HP3">Press 2 to go Audio book</Button>
             <Button value="Press 3 to go Music" className="example" tabIndex="0" variant="contained" id="HP4">Press 3 to go Music</Button>

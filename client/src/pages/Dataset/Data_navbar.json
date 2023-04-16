@@ -1,0 +1,23 @@
+{
+    "english":{
+        "value1":"E-learning for blind",
+        "value2":"All Course",
+        "value3":"Profile",
+        "value4":"More",
+        "value5":"Setting",
+        "value6":"Help Center",
+        "value7":"Signed in as",
+        "value8":"Logout"
+    },
+    "thai":{
+        "value1":"การเรียนอิเล็กทรอนิกส์สำหรับคนตาบอด",
+        "value2":"วิชาเรียนทั้งหมด",
+        "value3":"ประวัติโดยย่อ",
+        "value4":"เพิ่มเติม",
+        "value5":"ตั้งค่า",
+        "value6":"ศูนย์ช่วยเหลือ",
+        "value7":"ลงชื่อเข้าใช้เป็น",
+        "value8":"ออกจากระบบ"
+    }
+
+}

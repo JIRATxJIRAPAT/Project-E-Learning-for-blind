@@ -5,7 +5,7 @@ import Navbar1 from '../../components/Navbar'
 
 import Card2 from '../../components/Card2'
 import AudioCard from './components/AudioCard'
-
+import "../../css/audio.css";
 /*
 
         {courses.map((course,key) => (
@@ -96,8 +96,18 @@ const AllAudioBook = () => {
             <AudioCard key={item.id} id={item._id} name={item.name} category={item.category} desc={item.desc} owner_name={item.owner_name}></AudioCard>
           ))}
         </ul>
-      </div>
+      
 
+        <Navbar1 />
+        <div className='box'>
+            <div className='inner_box'>
+            {allAudio.map((audio,key) => CreateAudioCard(audio,key))}
+            </div>
+        
+        </div>
+        </div>
+       
+        
     )
 }
 

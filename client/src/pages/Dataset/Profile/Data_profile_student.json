@@ -1,0 +1,19 @@
+{
+    "english":{
+        "value1":"Enrolled Course",
+        "value2":"Course Name",
+        "value3":"Progress",
+        "value4":"Status",
+        "value5":"Score",
+        "value6":"Actions"
+    },
+    "thai":{
+        "value1":"วิชาที่ลงทะเบียนแล้ว",
+        "value2":"ชื่อวิชา",
+        "value3":"ความคืบหน้า",
+        "value4":"สถานะ",
+        "value5":"คะแนน",
+        "value6":"ตัวเลือก"
+    }
+
+}

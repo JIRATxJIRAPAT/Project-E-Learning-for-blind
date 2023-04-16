@@ -1,0 +1,20 @@
+{
+    "english":{
+        "value1":"Question",
+        "value2":"Result",
+        "value3":"Total Question",
+        "value4":"Total Score",
+        "value5":"Correct Answers",
+        "value6":"Wrong Answers"
+
+    },
+    "thai":{
+        "value1":"คำถามทดสอบ",
+        "value2":"ผลลัพธ์",
+        "value3":"คำถามทั้งหมด",
+        "value4":"คะแนนรวม",
+        "value5":"ตอบถูก",
+        "value6":"ตอบผิด"
+    }
+
+}

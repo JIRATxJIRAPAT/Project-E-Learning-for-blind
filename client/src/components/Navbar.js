@@ -50,12 +50,7 @@ function Navbar1() {
             <NavDropdown title="Dropdown" id="basic-nav-dropdown" className='example'>
               <NavDropdown.Item href="/audiobook" className='example'>AudioBook</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2"className='example'>
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3" className='example'>Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4"className='example'>
-                Separated link
+                Help Center
               </NavDropdown.Item>
             </NavDropdown>
             
@@ -65,8 +60,8 @@ function Navbar1() {
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text className='example'>
             
-            Signed in as:{username}  
-          </Navbar.Text>
+            Signed in as : {username}  
+          </Navbar.Text>&nbsp;&nbsp;
           <Button value="logout" className="example" onClick={logout} tabIndex="0" variant="contained" id="HP6">logout</Button>
         </Navbar.Collapse>
       </Container>
