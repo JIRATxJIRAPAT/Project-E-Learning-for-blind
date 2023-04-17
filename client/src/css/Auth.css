@@ -1,0 +1,28 @@
+.box_auth { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(79, 108, 195);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-attachment: fixed;
+    border-radius: 5px; 
+    border: 8px solid #63685a;
+    font-weight: bold;
+  }
+
+.inner_box_auth{
+    
+    max-width: 1000px;
+    position:static;
+    display: block;
+    top: 50%;
+    left: 50%;
+    background: rgb(186, 203, 193);
+    padding: 30px;
+    border: 2px solid #A3A3A3;
+    border-radius: 10px;
+}

@@ -5,6 +5,7 @@ import Navbar1 from '../../components/Navbar'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import styles from "../../css/quiz.module.css"
+import "../../css/course.css"
 
 
 const  Quiz = () => {
@@ -137,10 +138,12 @@ const  Quiz = () => {
     return(
       <div>
         <Navbar1/>
-        <div className={styles.box}>
+        <div className='box_course'>
+          <div className='inner_box_course'>
+
         {!showResult ? (
           <div>
-          <Form className={styles.inner_box}>
+          <Form>
                                     
             <h2 tabIndex="0">Question {activeQuestion+1} / {max} : {quizs.question}</h2>
             <Form.Check
@@ -187,9 +190,10 @@ const  Quiz = () => {
               Wrong Answers:<span> {wrongAns}</span>
             </p>
           </div>
-    )}
+      )}
+      </div>
+      </div>
     </div>
-  </div>
 )
 
 

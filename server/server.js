@@ -31,7 +31,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
 //Mongo connect ()=>res.send("create new course successful")
-mongoose.connect(process.env.MONGO_CONNECT)
+mongoose.connect('mongodb+srv://rainz:zxc32120@project01.af0lfzz.mongodb.net/?retryWrites=true&w=majority')
 
 
 //User
@@ -116,7 +116,7 @@ app.post("/api/create",(req,res) => {
         else{
             const newCourse = new Course({
                 name: req.body.name,
-                img: req.file.originalname,
+                img: req.body.img_url,////////
                 desc: req.body.desc,
                 owner_id: req.body.userid,
                 owner_name: req.body.username

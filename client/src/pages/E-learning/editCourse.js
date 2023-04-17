@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import "../../css/course.css"
+import Navbar1 from '../../components/Navbar'
 
 function EditCourse() {
     const [name, setCourseName] = useState('');
@@ -60,24 +62,32 @@ function EditCourse() {
     
     return(
     <div>
-        <Form onSubmit={onSubmit} encType="multipart/form-data">
-            <Form.Group className="mb-3" controlId="name">
-                <Form.Label>Course setName</Form.Label>
-                <Form.Control type="text" placeholder={`old: ${oldname}`} onChange={(e) => setCourseName(e.target.value)} />
-            </Form.Group>
-            
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Description</Form.Label>
-                <Form.Control as="textarea" rows={3} placeholder={`old: ${olddesc}`} onChange={(e) => setDescription(e.target.value)} />
-            </Form.Group>
-            <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Default file input example</Form.Label>
-                <Form.Control type="file" filename="testImage" onChange={(e) => setPic(e.target.files[0])}/>
-            </Form.Group>
+
+        <Navbar1/>
+        <div className='box_course'>
+            <div className='inner_box_course'>
+
+                <Form onSubmit={onSubmit} encType="multipart/form-data">
+                    <Form.Group className="mb-3" controlId="name">
+                        <Form.Label>Course setName</Form.Label>
+                        <Form.Control type="text" placeholder={`old: ${oldname}`} onChange={(e) => setCourseName(e.target.value)} />
+                    </Form.Group>
+                    
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control as="textarea" rows={3} placeholder={`old: ${olddesc}`} onChange={(e) => setDescription(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group controlId="formFile" className="mb-3">
+                        <Form.Label>Default file input example</Form.Label>
+                        <Form.Control type="file" filename="testImage" onChange={(e) => setPic(e.target.files[0])}/>
+                    </Form.Group>
 
 
-            <Button variant="success" type="sumbit">submit</Button>
-        </Form>
+                    <Button variant="success" type="sumbit">submit</Button>
+                </Form>
+
+            </div>
+        </div>
 
     </div>
     )

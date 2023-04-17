@@ -5,6 +5,7 @@ import Navbar1 from '../../components/Navbar'
 import CourseCard from '../../components/CourseCard'
 import Card2 from '../../components/Card2'
 import "../../css/card2.css"
+import "../../css/course.css"
 /*
 
         {courses.map((course,key) => (
@@ -44,10 +45,17 @@ const AllCourse = () => {
 
     return(
         <div>
-            <Navbar1 />
-            <div className="container">
-                {courses.map((course,id) => CreateCourseCard(course,id))}
+            <Navbar1/>
+
+            <div className='box_course_only'>
+                <div className='inner_box_course'>
+                    <div className="container">
+                        {courses.map((course,id) => CreateCourseCard(course,id))}
+                    </div>
+
+                </div>
             </div>
+
         </div>
     )
 }

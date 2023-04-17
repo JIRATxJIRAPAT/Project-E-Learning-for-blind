@@ -105,8 +105,10 @@ function BasicExample() {
 
   return (
     <Fragment>
-    <Navbar1></Navbar1>
-    <form onSubmit={onSubmit} encType="multipart/form-data">
+    <Navbar1/>
+    <div className='box'>
+        <div className='inner_box'>
+        <form onSubmit={onSubmit} encType="multipart/form-data">
         <MDBContainer fluid>
 
         <MDBRow className='d-flex justify-content-center align-items-center'>
@@ -191,7 +193,10 @@ function BasicExample() {
         </MDBRow>
 
         </MDBContainer>
-    </form>
+    </form>        
+        </div>
+    </div>
+
     </Fragment>
   );
 }
