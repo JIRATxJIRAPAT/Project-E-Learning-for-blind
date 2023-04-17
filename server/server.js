@@ -31,7 +31,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
 //Mongo connect ()=>res.send("create new course successful")
-mongoose.connect(process.env.MONGO_CONNECT)
+mongoose.connect('mongodb+srv://rainz:zxc32120@project01.af0lfzz.mongodb.net/?retryWrites=true&w=majority')
 
 
 //User

@@ -12,6 +12,7 @@ import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import AllCourse from './allCourse'
 import '../../css/test.css'
+import "../../css/course.css"
 
 
 import videojs from 'video.js';
@@ -208,98 +209,102 @@ const Course = () => {
 
     return(
         <Fragment>
+
+        <Navbar1/>
+
+        <div className='box_course_play'>
+
+            <div className='inner_box_course'>
+
+            <div className='grid'>
+
+            <aside class="page-rightbar">
+                    <div class="content">
+                    <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
+                            Select Chapters
+                        </Dropdown.Toggle>
         
-        <div className='grid'>
-            
-            <header class="page-header">
-                <Navbar1/>
-            </header>
-            
-           <aside class="page-rightbar">
-
-                <div class="content">
-                
-                <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
-                        Select Chapters
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu>
-                        {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}
+                        <Dropdown.Menu>
+                            {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}
+                            {enrolled.map(course=>{
+                                if(course.coursename === name && (`${course.status}` === "true")){
+                                    //setNum(prev=>prev+1)
+                                    console.log("statussssss",course.status)
+                                    return CreateQuestionList("false")
+                                }else if(course.coursename === name  && (`${course.status}` === "false") ){
+                                    //setNum(prev=>prev+1)
+                                    return CreateQuestionList("true")
+                                }
+                            })}
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    
+                        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                        <br></br><br></br><br></br><br></br><br></br><br></br>     
                         {enrolled.map(course=>{
-                            if(course.coursename === name && (`${course.status}` === "true")){
-                                //setNum(prev=>prev+1)
-                                console.log("statussssss",course.status)
-                                return CreateQuestionList("false")
-                            }else if(course.coursename === name  && (`${course.status}` === "false") ){
-                                //setNum(prev=>prev+1)
-                                return CreateQuestionList("true")
-                            }
+                        if(course.coursename === name && (`${course.status}` === "true")){
+                            //setNum(prev=>prev+1)
+                            console.log("statussssss",course.status)
+                            //return CreateQuestionList("false")
+                        }else if(course.coursename === name  && (`${course.status}` === "false") ){
+                            //setNum(prev=>prev+1)
+                            //return CreateQuestionList("true")
+                        }
+                        
                         })}
-                    </Dropdown.Menu>
-                </Dropdown>
-                
-
-                    {enrolled.map(course=>{
-                    if(course.coursename === name && (`${course.status}` === "true")){
-                        //setNum(prev=>prev+1)
-                        console.log("statussssss",course.status)
-                        //return CreateQuestionList("false")
-                    }else if(course.coursename === name  && (`${course.status}` === "false") ){
-                        //setNum(prev=>prev+1)
-                        //return CreateQuestionList("true")
-                    }
-                    
-                    })}
-
-                            
-                    {`${enrollStatus}`=== "true" &&
-                        //<Button onClick={()=>{Enroll()}} disabled >enroll</Button>
-                        <></>
-                    }
-                    {`${enrollStatus}`=== "false" &&
-                        <Button onClick={()=>{Enroll()}} >enroll</Button>
-                    }
-                </div>
-           </aside>
         
+                                
+                        {`${enrollStatus}`=== "true" &&
+                            //<Button onClick={()=>{Enroll()}} disabled >enroll</Button>
+                            <></>
+                        }
+                        {`${enrollStatus}`=== "false" &&
+                            <Button onClick={()=>{Enroll()}} >Enroll</Button>
+                        }
+                    </div>
+            </aside>
+            
+            
 
-            <main class="page-main">
-                <div class="content">
-                    {onQuiz ? (
-                        <Quiz/>
-                    ) : (
-                    <>
-                    <video
-                        id="my-video"
-                        class="video-js"
-                        controls
-                        preload='metadata'
-                        width='800' 
-                        height="500"
-                        autoPlay
-                        poster="../../uploads/images/video-player.jpg"
-                        data-setup="{}"
-                        
-                    >
-                    <source src="https://firebasestorage.googleapis.com/v0/b/e-learning-for-the-blind-d7398.appspot.com/o/images%2F12.mp4?alt=media&token=863720a0-1dca-47f0-bef0-e088e9aa37e1" type="video/mp4"></source>
-                        
-                    </video></>
-                    )}
+                <main class="page-main">
+                    <div class="content">
+                        {onQuiz ? (
+                            <Quiz/>
+                        ) : (
+                        <>
+                        <video
+                            id="my-video"
+                            class="video-js"
+                            controls
+                            preload='metadata'
+                            width='800' 
+                            height="500"
+                            autoplay
+        
+                            poster="../../uploads/images/video-player.jpg"
+                            data-setup="{}"
+                            
+                        >
+                        <source src="https://firebasestorage.googleapis.com/v0/b/e-learning-for-the-blind-d7398.appspot.com/o/images%2F12.mp4?alt=media&token=863720a0-1dca-47f0-bef0-e088e9aa37e1" type="video/mp4"></source>
+                            
+                        </video></>
+                        )}
+        
+                    </div>
+                </main>
+        
+                {/* <summary class="page-details">
+                    <div class="content">
+                        <p>{Duration}</p>
+                    </div>
+                </summary> */}
+            
 
-                </div>
-            </main>
+            </div>
 
-            <summary class="page-details">
-                <div class="content">
-                    <p>{Duration}</p>
-                    
-                </div>
-                    
-            </summary>
-
-
-
+        </div>
+            
         </div>
         </Fragment>
     )

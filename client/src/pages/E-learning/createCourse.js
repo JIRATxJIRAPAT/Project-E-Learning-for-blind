@@ -6,6 +6,9 @@ import "../../css/createForm.css"
 import { ref, uploadBytes, getBytes, getDownloadURL,} from "firebase/storage";
 import { storage } from "../../../src/firebase";
 import {useNavigate} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import "../../css/course.css"
+import Navbar1 from '../../components/Navbar'
 
 function CreateCourse() {
     const [name, setName] = useState('')
@@ -79,27 +82,35 @@ function CreateCourse() {
 	}
     
     return(
-        <Form onSubmit={onSubmit} encType="multipart/form-data" >
-        <Form.Group className="mb-3" controlId="name">
-            <Form.Label tabIndex="0">Course Name</Form.Label>
-            <Form.Control type="text" placeholder="course name" onChange={(e) => setName(e.target.value)} />
-        </Form.Group>
-        <Form.Group controlId="formFile" className="mb-3">
-            <Form.Label >Default file input example</Form.Label>
-            <Form.Control type="file" accept=".jpg,.png" filename="testImage" onChange={(e) => setImageUpload(e.target.files[0])}/>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label >Description</Form.Label>
-            <Form.Control as="textarea" rows={3} onChange={(e) => setDescription(e.target.value)} />
-        </Form.Group>
-        <Form.Select aria-label="Default select example">
-            <option  >Open this select menu</option>
-            <option  tabIndex="0" value="1">One</option>
-            <option  tabIndex="0" value="2">Two</option>
-            <option  tabIndex="0" value="3">Three</option>
-        </Form.Select>
-        <Button variant="success" type="sumbit">submit</Button>
-    </Form>
+        <div>
+            <Navbar1/>
+            <div className='box_course'>
+                <div className='inner_box_course'>
+                    <Form onSubmit={onSubmit} encType="multipart/form-data" >
+                    <Form.Group className="mb-3" controlId="name">
+                        <Form.Label tabIndex="0">Course Name</Form.Label>
+                        <Form.Control type="text" placeholder="course name" onChange={(e) => setName(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group controlId="formFile" className="mb-3">
+                        <Form.Label >Default file input example</Form.Label>
+                        <Form.Control type="file" accept=".jpg,.png" filename="testImage" onChange={(e) => setImageUpload(e.target.files[0])}/>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                        <Form.Label >Description</Form.Label>
+                        <Form.Control as="textarea" rows={3} onChange={(e) => setDescription(e.target.value)} />
+                    </Form.Group>
+                    <Form.Select aria-label="Default select example">
+                        <option  >Open this select menu</option>
+                        <option  tabIndex="0" value="1">One</option>
+                        <option  tabIndex="0" value="2">Two</option>
+                        <option  tabIndex="0" value="3">Three</option>
+                    </Form.Select>
+                    <Button variant="success" type="sumbit">submit</Button>
+                    </Form>
+                </div>
+            </div>
+        </div>
+
     )
 }
 

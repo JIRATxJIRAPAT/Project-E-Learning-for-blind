@@ -3,7 +3,8 @@ import axios from 'axios'
 import Navbar1 from '../../components/Navbar';
 import TeacherProfile from './teacherProfile';
 import StudentProfile from './studentProfile';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
+import "../../css/Auth.css";
 
 
 
@@ -35,18 +36,21 @@ function Profile() {
     
     return(
       <div>
-        <Navbar1></Navbar1>
+        <Navbar1/>
+        <div className='box_auth'>
+          <div className='inner_box_auth'>
+            
+            {role === "student" && 
+            <StudentProfile enrolled={enrolled} />
+            }
+            {role === "teacher" &&
+            <TeacherProfile owned_courses={owned_course}/>
+            }
 
-        {role === "student" && 
-          <StudentProfile enrolled={enrolled} />
-        
+          </div>
 
-        }
+        </div>
 
-        {role === "teacher" &&
-
-        <TeacherProfile owned_courses={owned_course}/>
-        }
       </div>
     )
     

@@ -3,6 +3,8 @@ import axios from 'axios'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { Link, useParams } from 'react-router-dom'
+import "../../css/course.css"
+import Navbar1 from '../../components/Navbar'
 
 
 
@@ -37,15 +39,22 @@ const Chapter = () => {
     },[])
     */
     return(
-        <div className="d-grid gap-2">
-            <Button href={`/course/chapter/create/${id}`} variant="primary" size="lg">
-                Create New Chapter
-            </Button>
+        <div>
+            <Navbar1/>
+            <div className='box_course'>
+                <div className='inner_box_course'>
+                    <div className="d-grid gap-2">
+                        <Button href={`/course/chapter/create/${id}`} variant="primary" size="lg">
+                            Create New Chapter
+                        </Button>
 
-           <h2>course:{name}</h2>
-           
-           <div>Chapter: {chapters.map(chapter=>
-            <div>{chapter.title}:{chapter.id}</div>)}</div>
+                    <h2>Course : {name}</h2>
+                    
+                    <div>Chapter : {chapters.map(chapter=>
+                        <div>{chapter.title} : {chapter.id}</div>)}</div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

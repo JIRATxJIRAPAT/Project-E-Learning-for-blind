@@ -83,29 +83,43 @@ const AllAudioBook = () => {
 
 
     return(
-        <div>
-        <Navbar1></Navbar1>
-        <select onChange={(e) => filterItems(e.target.value)}>
-          <option value="">All</option>
-          <option value="Horror,Comedy">Horror,Comedy</option>
-          <option value="Horror">Horror</option>
-          <option value="books">Books</option>
-        </select>
-        <ul>
-          {filteredItems.map((item) => (
-            <AudioCard key={item.id} id={item._id} name={item.name} category={item.category} desc={item.desc} owner_name={item.owner_name}></AudioCard>
-          ))}
-        </ul>
+    <div>
+        
+
+        
       
 
         <Navbar1 />
         <div className='box'>
+            
+
             <div className='inner_box'>
-            {allAudio.map((audio,key) => CreateAudioCard(audio,key))}
+            
+            <section>
+                <select onChange={(e) => filterItems(e.target.value)}>
+                    <option value="">All</option>
+                    <option value="Horror,Comedy">Horror,Comedy</option>
+                    <option value="Horror">Horror</option>
+                    <option value="books">Books</option>
+                </select> 
+
+                <section>
+                    {filteredItems.map((item) => (
+                        <AudioCard key={item.id} id={item._id} name={item.name} category={item.category} 
+                            desc={item.desc} owner_name={item.owner_name}></AudioCard>
+                    ))}
+                </section>
+                
+            </section>
+            
+            <section>
+                {allAudio.map((audio,key) => CreateAudioCard(audio,key))}         
+            </section>
+
             </div>
-        
+
         </div>
-        </div>
+    </div>
        
         
     )

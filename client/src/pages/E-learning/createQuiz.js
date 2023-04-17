@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup';
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import "../../css/course.css"
+import Navbar1 from '../../components/Navbar'
 
 function CreateQuiz() {
     const [question, setQuestion] = useState('');
@@ -54,33 +56,40 @@ function CreateQuiz() {
     
     return(
     <div>
-        <Form onSubmit={onSubmit} encType="multipart/form-data">
-            <Form.Group className="mb-3" controlId="name">
-                <Form.Label>Question</Form.Label>
-                <Form.Control type="text" placeholder={`Question`} onChange={(e) => setQuestion(e.target.value)} />
-            </Form.Group>
-            
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Answer</Form.Label>
-                <Form.Control as="textarea" rows={3} placeholder={`Answer`} onChange={(e) => setAnswer(e.target.value)} />
-            </Form.Group>
-           
+        <Navbar1/>
+        <div className='box_course'>
+            <div className='inner_box_course'>
+                <Form onSubmit={onSubmit} encType="multipart/form-data">
+                    <Form.Group className="mb-3" controlId="name">
+                        <Form.Label>Question</Form.Label>
+                        <Form.Control type="text" placeholder={`Question`} onChange={(e) => setQuestion(e.target.value)} />
+                    </Form.Group>
+                    
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>Answer</Form.Label>
+                        <Form.Control as="textarea" rows={3} placeholder={`Answer`} onChange={(e) => setAnswer(e.target.value)} />
+                    </Form.Group>
+                
 
-            <InputGroup className="mb-3">
-            <InputGroup.Checkbox aria-label="Checkbox for following text input" onClick={(e) => setValue1(!isAns1)}/>
-                
-                <Form.Control aria-label="Text input with checkbox" onChange={(e) => setChoice(e.target.value)}/>
-            </InputGroup>
-            <InputGroup className="mb-3">
-            <InputGroup.Checkbox aria-label="Checkbox for following text input" onClick={(e) => setValue2(!isAns2)}/>
-                
-                <Form.Control aria-label="Text input with checkbox" onChange={(e) => setChoice2(e.target.value)}/>
-            </InputGroup>
-            
-            {isAns1 ? "True" : "False"}
-            {isAns2 ? "True" : "False"}
-            <Button variant="success" type="sumbit">submit</Button>
-        </Form>
+                    <InputGroup className="mb-3">
+                    <InputGroup.Checkbox aria-label="Checkbox for following text input" onClick={(e) => setValue1(!isAns1)}/>
+                        
+                        <Form.Control aria-label="Text input with checkbox" onChange={(e) => setChoice(e.target.value)}/>
+                    </InputGroup>
+                    <InputGroup className="mb-3">
+                    <InputGroup.Checkbox aria-label="Checkbox for following text input" onClick={(e) => setValue2(!isAns2)}/>
+                        
+                        <Form.Control aria-label="Text input with checkbox" onChange={(e) => setChoice2(e.target.value)}/>
+                    </InputGroup>
+                    
+                    {isAns1 ? "True" : "False"} : {isAns2 ? "True" : "False"}
+                    <br></br><br></br>
+                    <Button variant="success" type="sumbit">submit</Button>
+                </Form>
+
+            </div>
+        </div>
+        
 
     </div>
     )

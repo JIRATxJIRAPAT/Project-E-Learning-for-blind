@@ -13,6 +13,7 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
+import "../../css/audio.css";
 
 
 
@@ -97,13 +98,7 @@ const AudioBook = () => {
 
 
     function videoo(chapters) {
-        /*
-        console.log("chage")
-        var player = document.getElementById('video');
-        var mp4Vid = document.getElementById('src');
-    
-        mp4Vid.src = `http://localhost:5000${chapters.video}`;
-        */
+       
         console.log(`${chapters.video}`);
         var player = videojs('my-video');
         player.src(`${chapters.video}`);
@@ -120,56 +115,47 @@ const AudioBook = () => {
         
         <div>
             <Navbar1 />
-           <h2>course:{name}</h2>
-           <h2>category:{category}</h2>
-           <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
-                     Select Chapters
-            </Dropdown.Toggle>
+            <div className='box'>
+                <div className='inner_box'>
+                <h2>Course : {name}</h2>
+                <h2>Category : {category}</h2>
+                <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
+                    Select Chapters
+                </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-                {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}
-                {enrolled.map(course=>{
-                if(course.coursename === name && (`${course.status}` === "true")){
-                    //setNum(prev=>prev+1)
-                    console.log("statussssss",course.status)
-                    //return CreateQuestionList("false")
-                }else if(course.coursename === name  && (`${course.status}` === "false") ){
-                    //setNum(prev=>prev+1)
-                    //return CreateQuestionList("true")
-                }
+                <Dropdown.Menu>
+                    {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}
+                    {enrolled.map(course => {
+                    if(course.coursename === name && (`${course.status}` === "true")){
+                        //setNum(prev=>prev+1)
+                        console.log("statussssss",course.status)
+                        //return CreateQuestionList("false")
+                    }else if(course.coursename === name  && (`${course.status}` === "false") ){
+                        //setNum(prev=>prev+1)
+                        //return CreateQuestionList("true")
+                    }
                 
-           })}
-            </Dropdown.Menu>
-            </Dropdown>
+                    })}
+                </Dropdown.Menu>
+                </Dropdown>
 
-            <audio
-                id="my-video"
-                class="video-js"
-                controls
-                preload="auto"
-                width="640"
-                height="260"
+                <audio
+                    id="my-video"
+                    class="video-js"
+                    controls
+                    preload="auto"
+                    width="640"
+                    height="260">
 
-            >
-                
-                
-                <p class="vjs-no-js">
-                To view this video please enable JavaScript, and consider upgrading to a
-                web browser that
-                <a href="https://videojs.com/html5-video-support/" rel="noreferrer" target="_blank">supports HTML5 video</a>
-                </p>
-            </audio>
-
-        
-
-        
-
- 
-           
-
-           
-           
+                    <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a
+                    web browser that
+                    <a href="https://videojs.com/html5-video-support/" rel="noreferrer" target="_blank">supports HTML5 video</a>
+                    </p>
+                </audio>
+                </div>
+            </div>
         </div>
       
     )
