@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import UploadForm from '../../video_upload/components/UploadForm'
 
 function CreateChapter() {
@@ -10,27 +10,15 @@ function CreateChapter() {
 	const [img, setPic] = useState('')
     const [desc ,setDescription] = useState('')
     const {id} = useParams();
+
+    const navigate = useNavigate();
+
     async function onSubmit(event) {
 		event.preventDefault()
-        
-        
-        
+    
         console.log(img)
         console.log(desc)
-        /*
-        const response = await fetch('http://localhost:5000/api/create', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'image/png',
-			},
-			body: JSON.stringify({
-				name,
-				img,
-			}),
-		})
-        
-        const data = await response.json()
-		console.log(data)*/
+
         const formData = new FormData();
         formData.append("episodeName",epiname)
         

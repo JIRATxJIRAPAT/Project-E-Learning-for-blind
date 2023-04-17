@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
-import defaultImage from "./dsdsssssssssss.jpg";
+import defaultImage from "./default.jpg";
+import styles from "./radio.module.scss";
 
 export default function Radio() {
   const [stations, setStations] = useState();
-  const [stationFilter, setStationFilter] = useState("all");
+  const [stationFilter, setStationFilter] = useState("");
 
   useEffect(() => {
     setupApi(stationFilter).then((data) => {
@@ -20,9 +21,9 @@ export default function Radio() {
 
     const stations = await api
       .searchStations({
-        language: "english",
+        countryCode: 'TH',
         tag: stationFilter,
-        limit: 30,
+        limit: 40,
       })
       .then((data) => {
         return data;
@@ -50,8 +51,9 @@ export default function Radio() {
   };
 
   return (
-    <div className="radio">
-      <div className="filters">
+    <div className={styles.App}>
+    <div className={styles.radio}>
+      <div className={styles.filters}>
         {filters.map((filter) => (
           <span
             className={stationFilter === filter ? "selected" : ""}
@@ -61,23 +63,23 @@ export default function Radio() {
           </span>
         ))}
       </div>
-      <div className="stations">
+      <div className={styles.stations}>
         {stations &&
           stations.map((station, index) => {
             return (
-              <div className="station" key={index}>
-                <div className="stationName">
+              <div className={styles.station} key={index}>
+                <div className={styles.stationName}>
                   <img
-                    className="logo"
+                    className={styles.logo}
                     src={station.favicon}
                     alt="station logo"
                     onError={setDefaultSrc}
                   />
-                  <div className="name">{station.name}</div>
+                  <div className={styles.name} tabIndex={0}>{station.name}</div>
                 </div>
 
                 <AudioPlayer
-                  className="player"
+                  className={styles.player}
                   src={station.urlResolved}
                   showJumpControls={false}
                   layout="stacked"
@@ -89,6 +91,7 @@ export default function Radio() {
             );
           })}
       </div>
+    </div>
     </div>
   );
 }

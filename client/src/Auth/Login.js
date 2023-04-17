@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -29,14 +29,36 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+
+  const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+
+	async function loginUser(event) {
+		event.preventDefault()
+
+		const response = await fetch('http://localhost:5000/api/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				email,
+				password,
+			}),
+		})
+		
+		const data = await response.json()
+		console.log(data)
+		if (data.user) {
+			localStorage.setItem('token', data.user)
+			localStorage.setItem('role', data.role)
+			alert('Login successful')
+			window.location.href = '/'
+		} else {
+			alert('Please check your username and password')
+		}
+	}
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -56,7 +78,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5" tabIndex={0}>
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={loginUser} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -66,6 +88,7 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               placeholder="Email Address"
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -76,12 +99,10 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-			  placeholder="Password"
+			        placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+
             <Button
               type="submit"
               fullWidth

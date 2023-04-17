@@ -116,7 +116,7 @@ app.post("/api/create",(req,res) => {
         else{
             const newCourse = new Course({
                 name: req.body.name,
-                img: req.file.originalname,
+                img: req.body.img_url,
                 desc: req.body.desc,
                 owner_id: req.body.userid,
                 owner_name: req.body.username

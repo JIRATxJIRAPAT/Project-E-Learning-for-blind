@@ -3,6 +3,9 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import "../../css/createForm.css"
+import { ref, uploadBytes, getBytes, getDownloadURL,} from "firebase/storage";
+import { storage } from "../../../src/firebase";
+import {useNavigate} from 'react-router-dom'
 
 function CreateCourse() {
     const [name, setName] = useState('')
@@ -10,6 +13,10 @@ function CreateCourse() {
     const [desc ,setDescription] = useState('')
     const [username,setUsername] = useState('')
     const [userid,setUserId] = useState('')
+    const [imageUpload, setImageUpload] = useState(null);
+    const [url,setUrl] = useState("");
+
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -32,24 +39,43 @@ function CreateCourse() {
     async function onSubmit(event) {
 		event.preventDefault()
         
+        if (imageUpload == null) return;
+        const imageRef = ref(storage, `picture/${imageUpload.name}`);
+
+        await uploadBytes(imageRef, imageUpload).then(() => {
+            alert("Image Upload Success")
+        })
+
+        await getDownloadURL(imageRef).then((url) => {
+          setUrl(url)
+          console.log(url)
+        }).catch((err)=>{
+            console.log(err);
+        })
         
-        console.log(name)
-        console.log(img)
-        console.log(desc)
+
 
         const formData = new FormData();
         formData.append("name",name)
-        formData.append("testImage",img)
+        formData.append("img_url",`${url}`)
         formData.append("desc",desc)
         formData.append("username",username)
         formData.append("userid",userid)
 
+
+        console.log("xxxxxxxxxxxxxxxxxxxx",formData.get("img_url"))
+
 		
-		axios.post("http://localhost:5000/api/create",formData)
-        .then((res)=>console.log(res.data))
+		await axios.post("http://localhost:5000/api/create",formData)
+        .then((res)=>[
+            console.log(res.data),
+            navigate("/course")
+        ])
         .catch((err)=>{
             console.log(err);
         })
+
+
 	}
     
     return(
@@ -60,7 +86,7 @@ function CreateCourse() {
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
             <Form.Label >Default file input example</Form.Label>
-            <Form.Control type="file" filename="testImage" onChange={(e) => setPic(e.target.files[0])}/>
+            <Form.Control type="file" accept=".jpg,.png" filename="testImage" onChange={(e) => setImageUpload(e.target.files[0])}/>
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label >Description</Form.Label>

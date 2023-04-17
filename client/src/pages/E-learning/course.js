@@ -144,6 +144,7 @@ const Course = () => {
         console.log(`${chapters.video}`);
         var player = videojs('my-video');
         player.src(`${chapters.video}`);
+        player.autoplay()
        
     }
     function ChapterDropDown(chapters,key) {
@@ -276,8 +277,7 @@ const Course = () => {
                         preload='metadata'
                         width='800' 
                         height="500"
-                        autoplay
-
+                        autoPlay
                         poster="../../uploads/images/video-player.jpg"
                         data-setup="{}"
                         

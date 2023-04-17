@@ -15,14 +15,14 @@ import AllCourse from "./E-learning/allCourse";
 import Course from "./E-learning/course";
 import EditCourse from "./E-learning/editCourse";
 import Chapter from "./E-learning/chapter";
-import CreateChapter from "./E-learning/create_new_chapter";
+
 import CreateQuiz from "./E-learning/createQuiz";
 import UploadVideo from "../video_upload/test_upload";
 import Quiz from "./E-learning/quiz";
 import Profile from "./User/profile";
 import BasicExample from "./audioBook/createAudio";
 import AllAudioBook from "./audioBook/allAudio";
-import Firebase_upload from "./E-learning/upload";
+import CreateChapter from "./E-learning/upload";
 import Mp3Upload from "./audioBook/recorder";
 import Mp3_upload from "./audioBook/audiobook_form";
 import VideoJS from "./E-learning/video";
@@ -32,6 +32,8 @@ import Recorder from "./audioBook/recorder";
 import Quiz2 from "./E-learning/quiz2";
 
 import Radio from "../spotify_music/radio";
+import FM93 from "../RadioFM/fm93";
+import LandingPage from "./landing";
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -70,7 +72,7 @@ function AnimatedRoutes() {
             <Route path="/course/quiz/:id" element={<Quiz/>} />
             <Route path="/course/quiz2/:id" element={<Quiz2/>} />
             <Route path="/profile" element={<Profile/>} />
-            <Route path="/course/chapter/create/:id" element={<Firebase_upload />} />
+            <Route path="/course/chapter/create/:id" element={<CreateChapter />} />
             <Route path="/audiobook" element={<AllAudioBook />} />
             <Route path="/audiobook/:id" element={<AudioBook />} />
             <Route path="/audiobook/create" element={<BasicExample/>} />
@@ -83,6 +85,9 @@ function AnimatedRoutes() {
             <Route path="/tutorial" element={<Tutorial />} />
             <Route path="/uploadvdo" element={<UploadVideo />} />
             <Route path="/radio" element={<Radio />} />
+            <Route path="/radioFM" element={<FM93 />} />
+            <Route path="/landing" element={<LandingPage />} />
+            <Route exact path="/radio2.html" render={() => {window.location.href="http://localhost:3000/radio2.html"}} />
           </Routes>
         </AnimatePresence>
       </div>

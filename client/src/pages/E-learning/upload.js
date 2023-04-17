@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom'
 
 
 
-function Firebase_upload() {
+function CreateChapter() {
 
     const [imageUpload, setImageUpload] = useState(null);
     const [url,setUrl] = useState("");
@@ -32,17 +32,21 @@ function Firebase_upload() {
             console.log(err);
         })
 
-
-        const formData = new FormData();
-        formData.append("url",url)
-        formData.append("name", name);
-        formData.append("episodeName",epiname)
-        await axios.put(`http://localhost:5000/api/chapter/create/${id}`,formData)
-        .then((res)=>console.log(res.data))
-        .catch((err)=>{
-            console.log(err);
-        })
     };
+
+    useEffect(()=>{
+        if(url !== ""){
+            console.log("send api")
+            const formData = new FormData();
+            formData.append("url",url)
+            formData.append("episodeName",epiname)
+            axios.put(`http://localhost:5000/api/chapter/create/${id}`,formData)
+            .then((res)=>console.log(res.data))
+            .catch((err)=>{
+                console.log(err);
+            })
+        }
+    },[url])
 
 
   return (
@@ -51,13 +55,13 @@ function Firebase_upload() {
     <>
     <form onSubmit={uploadFile}>
         <div className="form-group">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">Chapter Name</label>
             <input
             type="text"
             name="name"
             id="name"
             className="form-control"
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setEpiName(e.target.value)}
             />
         </div>
         <div className="form-group">
@@ -74,16 +78,6 @@ function Firebase_upload() {
             }}
             />
         </div>
-        <div className="form-group">
-            <label htmlFor="name">Chapter Name</label>
-            <input
-            type="text"
-            name="name"
-            id="name"
-            className="form-control"
-            onChange={(e) => setEpiName(e.target.value)}
-            />
-        </div>
 
         <button type="submit" className="btn btn-primary mt-2">
             Submit
@@ -94,4 +88,4 @@ function Firebase_upload() {
   );
 }
 
-export default Firebase_upload;
+export default CreateChapter;

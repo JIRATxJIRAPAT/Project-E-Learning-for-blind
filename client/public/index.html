@@ -25,6 +25,20 @@
 
     <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
 
+    <!-- for landing page-->
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
+    <!-- FontAwesome JS-->
+	  <script defer src="assets/fontawesome/js/all.min.js"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
+    <!-- GitHub Button -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script> 
+
 
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -160,11 +174,12 @@
       }
       
       //console.log("lenght:",max)
-      
+      var player = videojs('my-video');
+      player.play()
       
       //console.log("placeholder",ex.placeholder)
       //document.getElementById("first").focus();
-      
+  
     });
     /*
     const text = document.getElementsByClassName("example")
@@ -186,7 +201,7 @@
         //console.log("word",quote[count])
         console.log(e.key)
         speechHandler(document.activeElement.textContent)
-       
+        
         var amIPending = window.speechSynthesis.pending;
         //console.log("pending",amIPending)
         count = count + 1;
@@ -241,7 +256,45 @@
 
 
   </script>
+
+  <script>
+    document.addEventListener("keydown",(e) => {
+
+      if (document.activeElement.tagName === 'BODY'){
+        if(e.key === '1'){
+            window.location.replace("http://localhost:3000/");
+        }
+        else if (e.key === '2') {
+            window.location.replace("http://localhost:3000/audiobook")
+        }
+        else if (e.key === '3') {
+            window.location.replace("http://localhost:3000/radio")
+        }
+        else if (e.key === '4') {
+            window.location.replace("http://localhost:3000/test3")
+        }
+        else if (e.key === '5') {
+            window.location.replace("http://localhost:3000/setting")
+        }
+      }
+
+
+    })
+
+
+
+  </script>
   
   <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+
+  <script>
+        
+  </script>
+  <!-- Javascript -->          
+  <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+
+
+
+
   </body>
 </html>
