@@ -56,7 +56,7 @@
     background-size:contain;
     height: 100%;
     width: 100%;
-    position:fixed;
+    position:static;
     background-attachment:fixed;
     border-radius: 5px; 
     border: 8px solid #63685a;

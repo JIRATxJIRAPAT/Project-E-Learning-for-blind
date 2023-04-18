@@ -13,6 +13,7 @@ function EditCourse() {
     const [epiname,setEpiName] = useState('');
     const [num,setNum] = useState('');
     const {id} = useParams();
+    const [role,setRole] = useState('')
 
     //test
     const [oldname, setOldCourseName] = useState('');
@@ -36,6 +37,9 @@ function EditCourse() {
           setOldChapters(res.data.chapters)
         ])
         .catch(error => console.log(error));
+
+        setRole(localStorage.getItem('role'))
+
       },[]);
 
     async function onSubmit(event) {
@@ -88,6 +92,11 @@ function EditCourse() {
 
             </div>
         </div>
+        {role !== "teacher" && 
+                <div className='box_course'>
+                    <div tabIndex={0} style={{fontSize:"30px"}}>{role} can't access this page</div>
+                </div>    
+        }   
 
     </div>
     )

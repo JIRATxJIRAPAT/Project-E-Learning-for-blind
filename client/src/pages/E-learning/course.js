@@ -18,7 +18,7 @@ import "../../css/course.css"
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 
-
+/*
 function CreateTabList(chapters,key){
     return(
         //<LeftTabsExample key={key} title={chapters.title} id={chapters.id} video={chapters.video}/>
@@ -44,7 +44,7 @@ function CreateTabList2(chapters,key){
     )
 }
 
-
+*/
 
 
 
@@ -70,6 +70,9 @@ const Course = () => {
     //page check
     const [onQuiz,setOnQuiz] = useState(false)
 
+    //Test
+    const [firstvid,setVid] = useState('')
+
     useEffect(() => {
       
       axios.get(`http://localhost:5000/api/course/${id}`)
@@ -80,7 +83,8 @@ const Course = () => {
         setVideos(res.data.video),
         setOwnerID(res.data.owner_id),
         setOwnerName(res.data.owner_name),
-        //console.log("course",res.data)
+        setVid(`${res.data.chapters[0].video}`),
+        console.log("firstVid",res.data.chapters[0].video)
       ])
       .catch(error => console.log(error));
 
@@ -89,6 +93,14 @@ const Course = () => {
       
     
     },[]);
+
+    useEffect(()=>{
+        if(firstvid !== ""){
+            var player = videojs('my-video');
+            player.src(`${firstvid}`);
+            player.autoplay()
+        }
+    },[firstvid])
 
     async function FetchData() {
         const tk = localStorage.getItem('token')
@@ -108,7 +120,7 @@ const Course = () => {
         console.log("email",res.data.user.email)
       ])
       .catch(error => console.log(error));
-      }
+    }
 
     async function Check(params) {
         const formData2 = new FormData();
@@ -131,6 +143,15 @@ const Course = () => {
           var duration = myVideo.duration;
           return duration; // duration in seconds
         };
+    }
+
+    function setFirstVideo(chapters){
+        console.log("id",chapters.id)
+        if (chapters.id === 1){
+            var player = videojs('my-video');
+            player.src(`${chapters.video}`);
+            player.autoplay()
+        }
     }
   
 
@@ -206,7 +227,8 @@ const Course = () => {
         })
     }
     
-
+    const url = firstvid
+    
     return(
         <Fragment>
 
@@ -218,13 +240,13 @@ const Course = () => {
 
             <div className='grid'>
 
-            <aside class="page-rightbar">
+                <aside class="page-rightbar">
                     <div class="content">
                     <Dropdown>
                         <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
                             Select Chapters
                         </Dropdown.Toggle>
-        
+
                         <Dropdown.Menu>
                             {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}
                             {enrolled.map(course=>{
@@ -239,7 +261,18 @@ const Course = () => {
                             })}
                         </Dropdown.Menu>
                     </Dropdown>
-                    
+                    {`${firstvid}`}
+                    {role === 'teacher' &&
+                        <div className="mb-4">
+                            <Button variant="danger" size="lg" href='/course/create'>
+                                Add Chapters
+                            </Button>
+                            <Button variant="danger" size="lg" href={`/course/edit/${id}`}>
+                                edit course
+                            </Button>
+                        </div>
+                    }
+                            
                         <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                         <br></br><br></br><br></br><br></br><br></br><br></br>     
                         {enrolled.map(course=>{
@@ -263,7 +296,7 @@ const Course = () => {
                             <Button onClick={()=>{Enroll()}} >Enroll</Button>
                         }
                     </div>
-            </aside>
+                </aside>
             
             
 
@@ -278,17 +311,19 @@ const Course = () => {
                             class="video-js"
                             controls
                             preload='metadata'
-                            width='800' 
-                            height="500"
+                            width='720' 
+                            height="480"
                             autoplay
         
                             poster="../../uploads/images/video-player.jpg"
                             data-setup="{}"
-                            
+
                         >
-                        <source src="https://firebasestorage.googleapis.com/v0/b/e-learning-for-the-blind-d7398.appspot.com/o/images%2F12.mp4?alt=media&token=863720a0-1dca-47f0-bef0-e088e9aa37e1" type="video/mp4"></source>
-                            
+                        <source src="" type='type/mp4' ></source>
+
                         </video></>
+
+            
                         )}
         
                     </div>
@@ -303,7 +338,7 @@ const Course = () => {
 
             </div>
 
-        </div>
+            </div>
             
         </div>
         </Fragment>

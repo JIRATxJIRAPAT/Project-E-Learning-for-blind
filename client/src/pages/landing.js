@@ -45,7 +45,7 @@ function LandingPage() {
                             
                             data-setup="{}"
                             style={{display: "block",margin: "0 auto"}}
-                            tabIndex={10}
+                            tabIndex={0}
                         >
                     
                             

@@ -18,6 +18,7 @@ function CreateCourse() {
     const [userid,setUserId] = useState('')
     const [imageUpload, setImageUpload] = useState(null);
     const [url,setUrl] = useState("");
+    const [role,setRole] = useState('')
 
     const navigate = useNavigate();
 
@@ -37,6 +38,8 @@ function CreateCourse() {
           console.log("navbar",res.data.user.name)
         ])
         .catch(error => console.log(error));
+
+        setRole(localStorage.getItem('role'))
     },[]);
 
     async function onSubmit(event) {
@@ -56,59 +59,67 @@ function CreateCourse() {
             console.log(err);
         })
         
-
-
-        const formData = new FormData();
-        formData.append("name",name)
-        formData.append("img_url",`${url}`)
-        formData.append("desc",desc)
-        formData.append("username",username)
-        formData.append("userid",userid)
-
-
-        console.log("xxxxxxxxxxxxxxxxxxxx",formData.get("img_url"))
-
-		
-		await axios.post("http://localhost:5000/api/create",formData)
-        .then((res)=>[
-            console.log(res.data),
-            navigate("/course")
-        ])
-        .catch((err)=>{
-            console.log(err);
-        })
-
-
 	}
+
+        useEffect(()=>{
+           
+            if(url !== ""){
+                const formData = new FormData();
+                formData.append("name",name)
+                formData.append("img_url",`${url}`)
+                formData.append("desc",desc)
+                formData.append("username",username)
+                formData.append("userid",userid)
+        
+    
+            
+                axios.post("http://localhost:5000/api/create",formData)
+                .then((res)=>[
+                    console.log(res.data),
+                    navigate("/course")
+                ])
+                .catch((err)=>{
+                    console.log(err);
+                })
+            }
+        },[url])
+
     
     return(
         <div>
             <Navbar1/>
-            <div className='box_course'>
-                <div className='inner_box_course'>
-                    <Form onSubmit={onSubmit} encType="multipart/form-data" >
-                    <Form.Group className="mb-3" controlId="name">
-                        <Form.Label tabIndex="0">Course Name</Form.Label>
-                        <Form.Control type="text" placeholder="course name" onChange={(e) => setName(e.target.value)} />
-                    </Form.Group>
-                    <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Label >Default file input example</Form.Label>
-                        <Form.Control type="file" accept=".jpg,.png" filename="testImage" onChange={(e) => setImageUpload(e.target.files[0])}/>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                        <Form.Label >Description</Form.Label>
-                        <Form.Control as="textarea" rows={3} onChange={(e) => setDescription(e.target.value)} />
-                    </Form.Group>
-                    <Form.Select aria-label="Default select example">
-                        <option  >Open this select menu</option>
-                        <option  tabIndex="0" value="1">One</option>
-                        <option  tabIndex="0" value="2">Two</option>
-                        <option  tabIndex="0" value="3">Three</option>
-                    </Form.Select>
-                    <Button variant="success" type="sumbit">submit</Button>
-                    </Form>
+            {role === "teacher" && 
+                <div className='box_course'>
+                    <div className='inner_box_course'>
+                        <Form onSubmit={onSubmit} encType="multipart/form-data" >
+                        <Form.Group className="mb-3" controlId="name">
+                            <Form.Label tabIndex={0}>Course Name</Form.Label>
+                            <Form.Control type="text" placeholder="course name" onChange={(e) => setName(e.target.value)} />
+                        </Form.Group>
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Label >Default file input example</Form.Label>
+                            <Form.Control type="file" accept=".jpg,.png" filename="testImage" onChange={(e) => setImageUpload(e.target.files[0])}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                            <Form.Label >Description</Form.Label>
+                            <Form.Control as="textarea" rows={3} onChange={(e) => setDescription(e.target.value)} />
+                        </Form.Group>
+                        <Form.Select aria-label="Default select example">
+                            <option  >Open this select menu</option>
+                            <option  tabIndex={0} value="1">One</option>
+                            <option  tabIndex={0} value="2">Two</option>
+                            <option  tabIndex={0} value="3">Three</option>
+                        </Form.Select>
+                        <Button variant="success" type="sumbit">submit</Button>
+                        </Form>
+                    </div>
                 </div>
-            </div>
+            }
+            {role !== "teacher" && 
+                <div className='box_course'>
+                    <div tabIndex={0} style={{fontSize:"30px"}}>{role} can't access this page</div>
+                </div>    
+            }   
         </div>
 
     )

@@ -65,7 +65,7 @@ function Navbar1() {
             
             Signed in as : {username}  
           </Navbar.Text>&nbsp;&nbsp;
-          <Button value="logout" className="example" onClick={logout} tabIndex="0" variant="contained" id="HP6">logout</Button>
+          <Button value="logout" className="example" onClick={logout} tabIndex={0} variant="contained" id="HP6">logout</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

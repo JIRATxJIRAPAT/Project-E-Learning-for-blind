@@ -5,11 +5,11 @@ import Navbar1 from '../../components/Navbar'
 import CourseCard from '../../components/CourseCard'
 import Card2 from '../../components/Card2'
 import "../../css/card2.css"
-<<<<<<< HEAD
+
 import Button from 'react-bootstrap/Button';
-=======
+
 import "../../css/course.css"
->>>>>>> 3e6c853d8b39387a1ebce8566975763f9dbc6c1a
+
 /*
 
         {courses.map((course,key) => (
@@ -52,19 +52,21 @@ const AllCourse = () => {
     return(
         <div>
             <Navbar1/>
-            {role === "teacher" && 
-                <>
-                <br></br>
-                <div className="mb-4">
-                    <Button variant="success" size="lg" href='/course/create'>
-                        Create New Course
-                    </Button>
-                </div>
-                </>
-            }
 
-            <div className='box_course_only'>
+
+            <div className='box_course_only'>            
+
                 <div className='inner_box_course'>
+                {role === "teacher" && 
+                    <>
+                        <br></br>
+                        <div className="mb-4">
+                            <Button variant="danger" size="lg" href='/course/create'>
+                                Create New Course
+                            </Button>
+                        </div>
+                    </>
+                }
                     <div className="container">
                         {courses.map((course,id) => CreateCourseCard(course,id))}
                     </div>

@@ -13,8 +13,8 @@ function CourseCard(props) {
           <Card style={{ width: '18rem' }} className='note' bg="light" text="dark" key={props._id}>
             <Card.Img variant="top" width="200" height="200" src={`${props.img}`} alt='course image' />
             <Card.Body >
-              <Card.Title tabIndex="0">{props.name}</Card.Title>
-              <Card.Text tabIndex="0">
+              <Card.Title tabIndex={0} style={{fontWeight:"bold"}}>{props.name}</Card.Title>
+              <Card.Text tabIndex={0}>
                 {props.desc}
               </Card.Text>
               

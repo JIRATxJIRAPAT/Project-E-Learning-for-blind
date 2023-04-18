@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup';
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import "../../css/course.css"
 import Navbar1 from '../../components/Navbar'
 
@@ -15,20 +15,16 @@ function CreateQuiz() {
     const [choice2Text,setChoice2] = useState('');
     const [isAns2,setValue2] = useState(false);
     const {id} = useParams();
+    const [role,setRole] = useState('')
 
-    /*
+    const navigate = useNavigate();
+    
     useEffect(() => {
-      
-        axios.get(`http://localhost:5000/api/course/${id}`)
-        .then(res => [
-          setOldCourseName(res.data.name),
-          setOldPic(res.data.img),
-          setOldDescription(res.data.desc),
-          setOldChapters(res.data.chapters)
-        ])
-        .catch(error => console.log(error));
-      },[]);
-    */
+      setRole(localStorage.getItem('role'))
+  
+    },[]);
+    
+    
 
     async function onSubmit(event) {
 		event.preventDefault()
@@ -47,11 +43,15 @@ function CreateQuiz() {
 		
         console.log(formData.req)
 		axios.put(`http://localhost:5000/api/create/quiz/${id}`,formData)
-        .then((res)=>console.log(res.data))
+        .then((res)=>[
+            console.log(res.data),
+            navigate("/course")
+        ])
         .catch((err)=>{
             console.log(err);
         })
         
+
 	}
     
     return(
@@ -67,28 +67,32 @@ function CreateQuiz() {
                     
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Answer</Form.Label>
-                        <Form.Control as="textarea" rows={3} placeholder={`Answer`} onChange={(e) => setAnswer(e.target.value)} />
+                        <Form.Control type="text" rows={3} placeholder={`Answer`} onChange={(e) => setAnswer(e.target.value)} />
                     </Form.Group>
                 
+                    <Form.Group className="mb-3" controlId="name">
+                        <Form.Label>Choice1</Form.Label>
+                        <Form.Control type="text" placeholder={`choice 1`} onChange={(e) => setChoice(e.target.value)} />
+                    </Form.Group>
 
-                    <InputGroup className="mb-3">
-                    <InputGroup.Checkbox aria-label="Checkbox for following text input" onClick={(e) => setValue1(!isAns1)}/>
-                        
-                        <Form.Control aria-label="Text input with checkbox" onChange={(e) => setChoice(e.target.value)}/>
-                    </InputGroup>
-                    <InputGroup className="mb-3">
-                    <InputGroup.Checkbox aria-label="Checkbox for following text input" onClick={(e) => setValue2(!isAns2)}/>
-                        
-                        <Form.Control aria-label="Text input with checkbox" onChange={(e) => setChoice2(e.target.value)}/>
-                    </InputGroup>
+                    <Form.Group className="mb-3" controlId="name">
+                        <Form.Label>Choice2</Form.Label>
+                        <Form.Control type="text" placeholder={`choice 2`} onChange={(e) => setChoice2(e.target.value)} />
+                    </Form.Group>
+                
+                
                     
-                    {isAns1 ? "True" : "False"} : {isAns2 ? "True" : "False"}
                     <br></br><br></br>
                     <Button variant="success" type="sumbit">submit</Button>
                 </Form>
 
             </div>
         </div>
+        {role !== "teacher" && 
+            <div className='box_course'>
+                <div tabIndex={0} style={{fontSize:"30px"}}>{role} can't access this page</div>
+            </div>    
+        }   
         
 
     </div>

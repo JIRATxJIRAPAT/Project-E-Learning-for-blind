@@ -92,33 +92,35 @@ const  Quiz = () => {
     }
 
     const NextQuestion = () => {
-      console.log(`active ${activeQuestion} < ${max}`)
-      if(activeQuestion===0){
-        axios.get(`http://localhost:5000/api/course/${id}`)
-        .then(res => [
-          console.log("3:setQuiz",activeQuestion),
-          setQuiz(res.data.quiz[activeQuestion]),
-          setMax(res.data.quiz.length),
-          setPassScore(res.data.pass_score),
-          setCourseName(res.data.name)
-        ])
-        .catch(error => console.log(error));
-      }
-      else if(activeQuestion<max){
+        console.log(`active ${activeQuestion} < ${max}`)
+        if(activeQuestion===0){
           axios.get(`http://localhost:5000/api/course/${id}`)
           .then(res => [
             console.log("3:setQuiz",activeQuestion),
             setQuiz(res.data.quiz[activeQuestion]),
-
+            setMax(res.data.quiz.length),
+            setPassScore(res.data.pass_score),
+            setCourseName(res.data.name)
           ])
           .catch(error => console.log(error));
-      }else{
-        setShowResult(true)
-      }
+        }
+        else if(activeQuestion<max){
+            axios.get(`http://localhost:5000/api/course/${id}`)
+            .then(res => [
+              console.log("3:setQuiz",activeQuestion),
+              setQuiz(res.data.quiz[activeQuestion]),
+
+            ])
+            .catch(error => console.log(error));
+        }else{
+          setShowResult(true)
+        }
     }
   
-    const onClickNext = () => {
-    
+    const onClickNext = (e) => {
+      
+      e.preventDefault()
+
       console.log("1:onclick",activeQuestion)
       if(selectedAnswer === `${quizs.answer}`){
         console.log("ถูก-------------------")
@@ -145,7 +147,7 @@ const  Quiz = () => {
           <div>
           <Form>
                                     
-            <h2 tabIndex="0">Question {activeQuestion+1} / {max} : {quizs.question}</h2>
+            <h2 tabIndex="0">Question {activeQuestion+1} of {max} :  {quizs.question}</h2>
             <Form.Check
               inline
               label={quizs.choice1}
@@ -189,6 +191,7 @@ const  Quiz = () => {
             <p>
               Wrong Answers:<span> {wrongAns}</span>
             </p>
+            <Button href='/course' variant='primary'>Back to HomePage</Button>
           </div>
       )}
       </div>

@@ -12,10 +12,6 @@ export default function TeacherTable(props) {
     ])
     .catch(error => console.log(error));
 
-
-
-
-
   return (
 
         <tr>
@@ -29,11 +25,11 @@ export default function TeacherTable(props) {
             </div>
           </td>
           <td>
-            <p className='fw-normal mb-1'>{number}</p>
+            <p className='fw-normal mb-1' tabIndex={0} style={{fontSize:"15px"}}>{number}</p>
           
           </td>
           <td>
-            <MDBBadge color='success' pill>
+            <MDBBadge color='success' pill tabIndex={0}>
               open
             </MDBBadge>
           </td>

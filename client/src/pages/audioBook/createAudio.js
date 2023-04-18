@@ -2,16 +2,12 @@ import React, { Fragment } from 'react';
 import axios from 'axios';
 import {
   MDBBtn,
-  MDBContainer,
   MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-  MDBTextArea,
-  MDBFile
 }
 from 'mdb-react-ui-kit';
+
+import Form from 'react-bootstrap/Form';
+
 import { useState,useEffect } from 'react';
 import MultipleSelectCheckmarks from './components/multiSelect';
 import Navbar1 from '../../components/Navbar';
@@ -22,6 +18,9 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
+
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 import "../../css/audio.css";
 
 const ITEM_HEIGHT = 48;
@@ -109,54 +108,20 @@ function BasicExample() {
     <div className='box'>
         <div className='inner_box'>
         <form onSubmit={onSubmit} encType="multipart/form-data">
-        <MDBContainer fluid>
 
-        <MDBRow className='d-flex justify-content-center align-items-center'>
-            <MDBCol lg='9' className='my-5'>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                      <Form.Label>Audiobook name</Form.Label>
+                      <Form.Control type="text" placeholder="enter name" size='lg'   onChange={(e) => setAudioBookName(e.target.value)}/>
+                    </Form.Group>
+                    <br></br>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                      <Form.Label>Descriptions</Form.Label>
+                      <Form.Control type="text" placeholder="enter description" size='lg' onChange={(e) => setDesc(e.target.value)}/>
+                    </Form.Group>
 
-            <h1 class="text-white mb-4">Apply for a job</h1>
-
-            <MDBCard>
-                <MDBCardBody className='px-4'>
-
-                <MDBRow className='align-items-center pt-4 pb-3'>
-
-                    <MDBCol md='3' className='ps-5'>
-                    <h6 className="mb-0">Full name</h6>
-                    </MDBCol>
-
-                    <MDBCol md='9' className='pe-5'>
-                    <MDBInput label="Full name" placeholder='Full name' size='lg' id='form1' type='text' onChange={(e) => setAudioBookName(e.target.value)}/>
-                    </MDBCol>
-
-                </MDBRow>
-
-                <MDBRow className='align-items-center pt-4 pb-3'>
-
-                    <MDBCol md='3' className='ps-5'>
-                    <h6 className="mb-0">Description</h6>
-                    </MDBCol>
-
-                    <MDBCol md='9' className='pe-5'>
-                    <MDBInput label='Description' placeholder='Description' size='lg' id='form1' type='text' onChange={(e) => setAudioBookName(e.target.value)}/>
-                    </MDBCol>
-
-                    </MDBRow>
-
-
-                <MDBRow className='align-items-center pt-4 pb-3'>
-
-                    <MDBCol md='3' className='ps-5'>
-                    <h6 className="mb-0">Message</h6>
-                    </MDBCol>
-
-                    <MDBCol md='9' className='pe-5'>
-                    <MDBTextArea label='Message' id='textAreaExample' rows={3} />
-                    </MDBCol>
-
-                </MDBRow>
+                    
                 
-                <MDBRow className='align-items-center pt-4 pb-3'>
+                <MDBRow className='align-items-start pt-4 pb-3'>
                     <div>
                     <FormControl sx={{ m: 1, width: 300 }}>
                         <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
@@ -186,13 +151,9 @@ function BasicExample() {
 
                 <MDBBtn className='my-4' size='lg' type="submit" >submit</MDBBtn>
 
-                </MDBCardBody>
-            </MDBCard>
+     
+   
 
-            </MDBCol>
-        </MDBRow>
-
-        </MDBContainer>
     </form>        
         </div>
     </div>
