@@ -2,6 +2,7 @@ import { useEffect,useState } from 'react'
 import axios from 'axios'
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 import TeacherTable from './teacherTable';
+import "../../css/table.css"
 
 
 function createTable(course,key){
@@ -17,7 +18,7 @@ function TeacherProfile(props,key) {
     return(
         <MDBTable align='middle'>
         <MDBTableHead>
-          <tr>
+          <tr className="tr">
             <th scope='col' tabIndex={0}>Course name</th>
             <th scope='col' tabIndex={0}>number of student</th>
             <th scope='col' tabIndex={0}>Status</th>

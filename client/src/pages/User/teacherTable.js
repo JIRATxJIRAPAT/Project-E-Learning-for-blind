@@ -1,6 +1,7 @@
 import { useEffect,useState } from 'react'
 import { MDBBadge, MDBBtn} from 'mdb-react-ui-kit';
 import axios from 'axios';
+import "../../css/table.css"
 
 export default function TeacherTable(props) {
     const [number,setNumber] = useState(0)
@@ -14,7 +15,7 @@ export default function TeacherTable(props) {
 
   return (
 
-        <tr>
+        <tr className="tr">
           <td>
             <div className='d-flex align-items-center'>
               

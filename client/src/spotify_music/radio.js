@@ -3,9 +3,9 @@ import { RadioBrowserApi } from "radio-browser-api";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import defaultImage from "./default.jpg";
-import styles from "./radio.module.css";
+import styles from "./radio.module.scss";
 
-export default function Radio() {
+export default function RadioFM() {
   const [stations, setStations] = useState();
   const [stationFilter, setStationFilter] = useState("");
 

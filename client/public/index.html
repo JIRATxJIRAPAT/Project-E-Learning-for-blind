@@ -69,7 +69,7 @@
     
     const msg = new SpeechSynthesisUtterance() 
     var slider = localStorage.getItem('pass_val');
-    var vol_int = localStorage.getItem('pass_val2');
+    var vol_int = localStorage.getItem('pass_val2');;// 0 ถึง1 เป็นระดับความดัง
     var int = 0;
     //console.log(msg.volume,'volume base')
     msg.volume = vol_int;
@@ -83,7 +83,7 @@
       }else if(localStorage.getItem("lang")==="thai"){
           msg.lang = 'th-TH'
       }
-      msg.volume = 1;                  // 0 ถึง1 เป็นระดับความดัง
+      //msg.volume = 1;                  // 0 ถึง1 เป็นระดับความดัง
       msg.rate = 1;                  // 0.1 ถึง 10 อัตราเร็วของการพูด
       msg.pitch = 2;                //0 ถึง 2 // ลักษณะระดับเสียงสูงต่ำ
       window.speechSynthesis.speak(msg)
@@ -116,7 +116,7 @@
     /*
     const hp_list = []
 
-      if(window.location.href == "http://localhost:3000/")
+      if(window.location.href == "https://e-learningforblind.netlify.app/")
 
         var hp1 = localStorage.getItem('homepage_pass_val1');
         var hp2 = localStorage.getItem('homepage_pass_val2');
@@ -158,7 +158,7 @@
 
     }*/ //ตรงนี้
 
-    if(window.location.href=="http://localhost:3000/landing"){
+    if(window.location.href=="https://e-learningforblind.netlify.app/landing"){
       
       if(localStorage.getItem("lang")==="english"){
         speechHandler(" Welcome to E-learning for the blind website Please watch Demo for Tutorial")
@@ -288,19 +288,19 @@
 
       if (document.activeElement.tagName !== 'INPUT'){
         if(e.key === '1'){
-            window.location.replace("http://localhost:3000/");
+            window.location.replace("https://e-learningforblind.netlify.app/");
         }
         else if (e.key === '2') {
-            window.location.replace("http://localhost:3000/audiobook")
+            window.location.replace("https://e-learningforblind.netlify.app/audiobook")
         }
         else if (e.key === '3') {
-            window.location.replace("http://localhost:3000/radio")
+            window.location.replace("https://e-learningforblind.netlify.app/radio")
         }
         else if (e.key === '4') {
-            window.location.replace("http://localhost:3000/test3")
+            window.location.replace("https://e-learningforblind.netlify.app/test3")
         }
         else if (e.key === '5') {
-            window.location.replace("http://localhost:3000/setting")
+            window.location.replace("https://e-learningforblind.netlify.app/setting")
         }
       }
 

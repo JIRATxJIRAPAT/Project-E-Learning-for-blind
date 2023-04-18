@@ -1,16 +1,20 @@
 {
     "english":{
+        "vol0":"Turn off volume",
         "vol1":"Set volume to Low",
         "vol2":"Set volume to Medium",
         "vol3":"Set volume to High",
-        "vol4":"Muted"
-        
+        "vol4":"Current Language : English",
+        "vol5":"Select Language"
+
     },
     "thai":{
+        "vol0":"ปิดเสียง",
         "vol1":"ปรับระดับเสียง เป็น เบา",
         "vol2":"ปรับระดับเสียง เป็น ปานกลาง",
         "vol3":"ปรับระดับเสียง เป็น ดัง",
-        "vol4":"ปิดเสียง"
+        "vol4":"ภาษาปัจจุบัน : ภาษาไทย",
+        "vol5":"กรุณาเลือกภาษา"
     }
 
 }

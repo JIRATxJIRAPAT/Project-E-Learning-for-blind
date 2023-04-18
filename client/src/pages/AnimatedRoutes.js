@@ -25,15 +25,15 @@ import AllAudioBook from "./audioBook/allAudio";
 import CreateChapter from "./E-learning/CreateChapter";
 import Mp3Upload from "./audioBook/recorder";
 import Mp3_upload from "./audioBook/audioCreateChapter";
-import VideoJS from "./E-learning/video";
+
 import VideoPlayer from "./E-learning/video";
 import AudioBook from "./audioBook/playAudio";
 import Recorder from "./audioBook/recorder";
 import Quiz2 from "./E-learning/quiz2";
 
-import Radio from "../spotify_music/radio";
 import FM93 from "../RadioFM/fm93";
 import LandingPage from "./landing";
+import RadioFM from "../spotify_music/radio";
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -83,10 +83,10 @@ function AnimatedRoutes() {
             <Route path="/audiobook/create/:id" element={<Mp3Upload/>} />
             <Route path="/tutorial" element={<Tutorial />} />
             <Route path="/uploadvdo" element={<UploadVideo />} />
-            <Route path="/radio" element={<Radio />} />
+            <Route path="/radio" element={<RadioFM />} />
             <Route path="/radioFM" element={<FM93 />} />
             <Route path="/landing" element={<LandingPage />} />
-            <Route exact path="/radio2.html" render={() => {window.location.href="http://e-learningforblind.netlify.app/radio2.html"}} />
+            
           </Routes>
         </AnimatePresence>
       </div>
