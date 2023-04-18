@@ -119,8 +119,8 @@ app.post("/api/create",(req,res) => {
                 img: req.body.img_url,
                 desc: req.body.desc,
                 owner_id: req.body.userid,
-                owner_name: req.body.username
-                
+                owner_name: req.body.username,
+                pass_score: req.body.pass_score
             });
             newCourse.save()
             .then(User.findById(req.body.userid)

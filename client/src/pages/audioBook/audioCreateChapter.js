@@ -29,9 +29,22 @@ function CreateAudioChapter() {
             setContent(Translation.thai)
         }
 
-      },[]);
-    console.log(localStorage.getItem("lang"))
-
+    },[]);
+    
+    useEffect(()=>{
+        
+        if(url !== ""){
+            
+            const formData = new FormData();
+            formData.append("url",url)
+            formData.append("episodeName",epiname)
+            axios.put(`http://localhost:5000/api/audiobook/chapter/create/${id}`,formData)
+            .then((res)=>console.log(res.data))
+            .catch((err)=>{
+                console.log(err);
+            })
+        }
+    },[url])
        
 
 
@@ -61,38 +74,38 @@ function CreateAudioChapter() {
     <div>
 
     <Navbar1/>  
-    <div className="box">
-        <form className="inner_box_create">
-        <div className="form-group" style={{width: '500px', alignItems: 'center', height: '50px'}}>
-            <label htmlFor="name" >{content.value2}</label>
-            <input
-            type="text"
-            name="name"
-            id="name"
-            className="form-control"
-            onChange={(e) => setEpiName(e.target.value)}
-            />
-        </div>
-        <br></br><br></br>
-        
-        <div className="form-group" style={{width: '500px', alignItems: 'center', height: '50px'}}>
-            <label htmlFor="videos">{content.value1}</label>
-            <input
-            type="file"
-            name="videos"
-            id="videos"
-            multiple
-            className="form-control"
-            accept=".mp3"
-            onChange={(e) => {
-                setImageUpload(e.target.files[0]);
-            }}
-            />
-        </div>
-        <br></br> 
-        <button type="submit" className="btn btn-success" >
-        {content.value3}
-        </button>
+    <div className="box" >
+        <form className="inner_box_create" onSubmit={uploadFile}>
+            <div className="form-group" style={{width: '500px', alignItems: 'center', height: '50px'}}>
+                <label htmlFor="name" >{content.value2}</label>
+                <input
+                type="text"
+                name="name"
+                id="name"
+                className="form-control"
+                onChange={(e) => setEpiName(e.target.value)}
+                />
+            </div>
+            <br></br><br></br>
+            
+            <div className="form-group" style={{width: '500px', alignItems: 'center', height: '50px'}}>
+                <label htmlFor="videos">{content.value1}</label>
+                <input
+                type="file"
+                name="videos"
+                id="videos"
+                multiple
+                className="form-control"
+                accept=".mp3"
+                onChange={(e) => {
+                    setImageUpload(e.target.files[0]);
+                }}
+                />
+            </div>
+            <br></br> 
+            <button type="submit" className="btn btn-success" >
+            {content.value3}
+            </button>
         </form>
         
     </div>

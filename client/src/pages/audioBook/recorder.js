@@ -8,6 +8,7 @@ import { render } from "react-dom";
 import vmsg from "vmsg";
 import Navbar1 from "../../components/Navbar";
 import "../../css/audio.css";
+import Button from "react-bootstrap/esm/Button";
 
 
 const recorder = new vmsg.Recorder({
@@ -53,9 +54,9 @@ class Recorder extends React.Component {
           <div className="box">
             <div className="inner_box_create">
                 <br></br><br></br><br></br><br></br>
-              <button disabled={isLoading} onClick={this.record}>
+              <Button variant="danger" disabled={isLoading} onClick={this.record}>
                 {isRecording ? "Stop" : "Record"}
-              </button>
+              </Button>
               <br></br><br></br>
               
               <ul style={{ listStyle: "none", padding: 0 }}>

@@ -148,6 +148,7 @@ const  Quiz = () => {
           <Form>
                                     
             <h2 tabIndex="0">Question {activeQuestion+1} of {max} :  {quizs.question}</h2>
+            <br></br>
             <Form.Check
               inline
               label={quizs.choice1}
@@ -170,11 +171,11 @@ const  Quiz = () => {
             />
               
           
-            
-          <br></br>
-          <button onClick={onClickNext}>{activeQuestion === max - 1? 'Finish' : 'Next'}</button>
+              <br></br>
+            <br></br>
+          <Button variant='primary' onClick={onClickNext}>{activeQuestion === max - 1? 'Finish' : 'Next'}</Button>
           </Form>
-          {activeQuestion}
+          
         </div>
         ) : (
           <div className="result">
@@ -191,6 +192,7 @@ const  Quiz = () => {
             <p>
               Wrong Answers:<span> {wrongAns}</span>
             </p>
+            <br></br>
             <Button href='/course' variant='primary'>Back to HomePage</Button>
           </div>
       )}

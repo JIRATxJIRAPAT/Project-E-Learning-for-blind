@@ -19,6 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 
+import {useNavigate} from 'react-router-dom'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import "../../css/audio.css";
@@ -43,9 +44,9 @@ const names = [
   'History'
 ];
 
-function BasicExample() {
+function CreateAudioBook() {
 
-
+    const navigate = useNavigate();
 
     const [audioBookName,setAudioBookName] = useState('')
     const [desc,setDesc] = useState('')
@@ -95,7 +96,10 @@ function BasicExample() {
 		
         
 		    axios.post(`http://localhost:5000/api/audiobook/create`,formData)
-          .then((res)=>console.log(res.data))
+          .then((res)=>[
+            console.log(res.data),
+            navigate("/audiobook")
+          ])
           .catch((err)=>{
               console.log(err);
         })
@@ -162,4 +166,4 @@ function BasicExample() {
   );
 }
 
-export default BasicExample;
+export default CreateAudioBook;

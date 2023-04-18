@@ -10,6 +10,26 @@ import { useParams } from 'react-router-dom'
 import "../../css/course.css"
 import Navbar1 from '../../components/Navbar'
 
+/*
+
+    <Form.Group controlId="formBasicSelect">
+    <Form.Label>Set pass score</Form.Label>
+        <Form.Control
+            as="select"
+            onChange={e => {
+                console.log("e.target.value", e.target.value);
+                setPassScore(parseInt(e.target.value));
+            }}
+        >
+            <option >Open this select menu</option>
+            <option value="1" tabIndex={0} placeholder="1">1</option>
+            <option value="CONSTANCY">2</option>
+            <option value="COMPLEMENT">3</option>
+        </Form.Control>
+    </Form.Group>
+
+*/
+
 function CreateCourse() {
     const [name, setName] = useState('')
 	const [img, setPic] = useState('')
@@ -19,7 +39,7 @@ function CreateCourse() {
     const [imageUpload, setImageUpload] = useState(null);
     const [url,setUrl] = useState("");
     const [role,setRole] = useState('')
-
+    const [pass_score,setPassScore] = useState(0)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -70,7 +90,7 @@ function CreateCourse() {
                 formData.append("desc",desc)
                 formData.append("username",username)
                 formData.append("userid",userid)
-        
+                formData.append("pass_score",pass_score)
     
             
                 axios.post("http://localhost:5000/api/create",formData)
@@ -93,23 +113,23 @@ function CreateCourse() {
                     <div className='inner_box_course'>
                         <Form onSubmit={onSubmit} encType="multipart/form-data" >
                         <Form.Group className="mb-3" controlId="name">
-                            <Form.Label tabIndex={0}>Course Name</Form.Label>
-                            <Form.Control type="text" placeholder="course name" onChange={(e) => setName(e.target.value)} />
+                            <Form.Label >Course Name</Form.Label>
+                            <Form.Control type="text" placeholder="enter course name" onChange={(e) => setName(e.target.value)} />
                         </Form.Group>
                         <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label >Default file input example</Form.Label>
-                            <Form.Control type="file" accept=".jpg,.png" filename="testImage" onChange={(e) => setImageUpload(e.target.files[0])}/>
+                            <Form.Control type="file" accept=".jpg,.png" placeholder="press enter to put files" filename="testImage" onChange={(e) => setImageUpload(e.target.files[0])}/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label >Description</Form.Label>
-                            <Form.Control as="textarea" rows={3} onChange={(e) => setDescription(e.target.value)} />
+                            <Form.Control type="text" placeholder="enter Description" rows={3} onChange={(e) => setDescription(e.target.value)} />
                         </Form.Group>
-                        <Form.Select aria-label="Default select example">
-                            <option  >Open this select menu</option>
-                            <option  tabIndex={0} value="1">One</option>
-                            <option  tabIndex={0} value="2">Two</option>
-                            <option  tabIndex={0} value="3">Three</option>
-                        </Form.Select>
+
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                            <Form.Label >Set pass score for quiz</Form.Label>
+                            <Form.Control type="number" placeholder="enter pass score for quiz" onChange={(e) => setPassScore(parseInt(e.target.value))} />
+                        </Form.Group>
+
                         <Button variant="success" type="sumbit">submit</Button>
                         </Form>
                     </div>

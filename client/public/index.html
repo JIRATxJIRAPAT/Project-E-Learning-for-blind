@@ -232,6 +232,17 @@
       }if(e.key === "Tab"  && document.activeElement.tagName === "VIDEO"){
         speechHandler("press space to play video")
       }
+      if((e.key === "ArrowUp" || e.key === "ArrowDown") && (document.activeElement.tagName === "option")){
+        console.log("count3:",document.activeElement.tagName)
+       // console.log("Index tab:",document.activeElement.innerHTML)
+        //console.log("word",quote[count])
+        speechHandler(document.activeElement.placeholder)
+        count = count + 1;
+       // console.log("count after:",count)
+        //console.log(document.hasFocus())
+        console.log("-----------------------------")
+        
+      }
       
 
 
@@ -258,7 +269,7 @@
   <script>
     document.addEventListener("keydown",(e) => {
 
-      if (document.activeElement.tagName === 'BODY'){
+      if (document.activeElement.tagName !== 'INPUT'){
         if(e.key === '1'){
             window.location.replace("http://localhost:3000/");
         }

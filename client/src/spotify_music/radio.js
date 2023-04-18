@@ -3,7 +3,7 @@ import { RadioBrowserApi } from "radio-browser-api";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import defaultImage from "./default.jpg";
-import styles from "./radio.module.scss";
+import styles from "./radio.module.css";
 
 export default function Radio() {
   const [stations, setStations] = useState();

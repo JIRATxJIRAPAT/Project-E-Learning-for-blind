@@ -1,6 +1,6 @@
 import { useEffect, useState,useRef, Fragment } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Navbar1 from '../../components/Navbar'
 import Quiz from './quiz'
 import Button from 'react-bootstrap/Button'
@@ -72,6 +72,8 @@ const Course = () => {
 
     //Test
     const [firstvid,setVid] = useState('')
+
+    const navigate = useNavigate()
 
     useEffect(() => {
       
@@ -188,7 +190,7 @@ const Course = () => {
     }
 
     function HandleQuiz() {
-        setOnQuiz(true)
+        navigate(`/course/quiz/${id}`)
     }
 
     
@@ -253,21 +255,25 @@ const Course = () => {
                                 if(course.coursename === name && (`${course.status}` === "true")){
                                     //setNum(prev=>prev+1)
                                     console.log("statussssss",course.status)
-                                    return CreateQuestionList("false")
-                                }else if(course.coursename === name  && (`${course.status}` === "false") ){
-                                    //setNum(prev=>prev+1)
                                     return CreateQuestionList("true")
+                                }if(course.coursename === name  && (`${course.status}` === "false") ){
+                                    //setNum(prev=>prev+1)
+                                    return CreateQuestionList("false")
                                 }
                             })}
                         </Dropdown.Menu>
                     </Dropdown>
-                    {`${firstvid}`}
+                    
                     {role === 'teacher' &&
                         <div className="mb-4">
+                            <br></br>
+                            <br></br>
                             <Button variant="danger" size="lg" href='/course/create'>
                                 Add Chapters
                             </Button>
-                            <Button variant="danger" size="lg" href={`/course/edit/${id}`}>
+                            <br></br>
+                            <br></br>
+                            <Button variant="warning" size="lg" href={`/course/edit/${id}`}>
                                 edit course
                             </Button>
                         </div>
@@ -275,7 +281,7 @@ const Course = () => {
                             
                         <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                         <br></br><br></br><br></br><br></br><br></br><br></br>     
-                        {enrolled.map(course=>{
+                        {/*enrolled.map(course=>{
                         if(course.coursename === name && (`${course.status}` === "true")){
                             //setNum(prev=>prev+1)
                             console.log("statussssss",course.status)
@@ -285,14 +291,14 @@ const Course = () => {
                             //return CreateQuestionList("true")
                         }
                         
-                        })}
+                        })*/}
         
                                 
                         {`${enrollStatus}`=== "true" &&
                             //<Button onClick={()=>{Enroll()}} disabled >enroll</Button>
                             <></>
                         }
-                        {`${enrollStatus}`=== "false" &&
+                        {(`${enrollStatus}`=== "false" && role === "student") &&
                             <Button onClick={()=>{Enroll()}} >Enroll</Button>
                         }
                     </div>

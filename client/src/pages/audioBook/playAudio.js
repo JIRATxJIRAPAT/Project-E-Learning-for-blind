@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import Navbar1 from '../../components/Navbar'
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown';
-
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ChaptersList from '../../components/ChaptersList'
 import QuestionList from '../../components/QuestionList'
 import LeftTabsExample from '../../components/ChapterList2'
@@ -21,39 +21,6 @@ import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 
 
-function CreateTabList(chapters,key){
-    return(
-        //<LeftTabsExample key={key} title={chapters.title} id={chapters.id} video={chapters.video}/>
-        <Nav.Item >
-            <Nav.Link tabIndex={0} eventKey={`${chapters.id}`} >Tab {`${chapters.id}`}</Nav.Link>
-        </Nav.Item>
-    )
-}
-function CreateTabList2(chapters,key){
-    return(
-        //<LeftTabsExample key={key} title={chapters.title} id={chapters.id} video={chapters.video}/>
-        <Tab.Pane eventKey={`${chapters.id}`}>
-                <video
-                    preload="auto"
-                    width="320"
-                    height="240"
-                    controls
-                >
-                <source src={`http://localhost:5000${chapters.video}`} />
-                
-            </video>
-        </Tab.Pane>
-    )
-}
-
-function CreateQuestionList(props){
-    return(
-        //<QuestionList status={props}/>
-        <Dropdown.Item onClick={""}>{props}</Dropdown.Item>
-    )
-}
-
-
 
 const AudioBook = () => {
     const [name, setAudioBookName] = useState('')
@@ -67,12 +34,10 @@ const AudioBook = () => {
 
     const [num,setNum] = useState(0)
     //user
-    const [email,setEmail] = useState('')
+
     const [userid,setUserID] = useState('')
     const [username,setUsername] = useState('')
-    const [enrolled,setEnrolled] = useState([])
-    const [role,setRole] = useState("")
-    const [enrollStatus,setEnrollStatus] = useState(false)
+
 
     useEffect(() => {
       
@@ -84,16 +49,30 @@ const AudioBook = () => {
         setCategory(res.data.category),
         setOwnerID(res.data.owner_id),
         setOwnerName(res.data.owner_name),
+        FetchData()
         //console.log("course",res.data)
       ])
       .catch(error => console.log(error));
+      
 
- 
-      
-      
-    
     },[]);
 
+
+    async function FetchData() {
+        const tk = localStorage.getItem('token')
+        await axios.get(`http://localhost:5000/api/getUser/`,{
+        headers:  {
+                    "X-Auth-Token":tk,
+                    "content-type": "application/json"
+                  }
+      })
+      .then(res => [
+        setUsername(res.data.user.name),
+        setUserID(res.data.user._id),
+        console.log("get user",res.data.user._id)
+      ])
+      .catch(error => console.log(error));
+    }
 
 
 
@@ -119,28 +98,30 @@ const AudioBook = () => {
                 <div className='inner_box'>
                 <h2>Course : {name}</h2>
                 <h2>Category : {category}</h2>
-                <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
-                    Select Chapters
-                </Dropdown.Toggle>
+                <ButtonGroup>
+                    <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
+                            Select Chapters
+                        </Dropdown.Toggle>
 
-                <Dropdown.Menu>
-                    {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}
-                    {enrolled.map(course => {
-                    if(course.coursename === name && (`${course.status}` === "true")){
-                        //setNum(prev=>prev+1)
-                        console.log("statussssss",course.status)
-                        //return CreateQuestionList("false")
-                    }else if(course.coursename === name  && (`${course.status}` === "false") ){
-                        //setNum(prev=>prev+1)
-                        //return CreateQuestionList("true")
+                        <Dropdown.Menu>
+                            {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}    
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    {(owner_id === userid) &&
+                        <>
+                            <Button variant="danger" size="lg" href='/' >Edit </Button>
+                            <Button variant="primary" size="lg" href={`/audiobook/chapter/create/${id}`}>Add Chapter </Button>
+                        </>
+
                     }
-                
-                    })}
-                </Dropdown.Menu>
-                </Dropdown>
-
+                </ButtonGroup>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
                 <audio
+
                     id="my-video"
                     class="video-js"
                     controls
