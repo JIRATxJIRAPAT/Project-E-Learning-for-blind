@@ -9,7 +9,9 @@
       name="description"
       content="Web site created using create-react-app"
     />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -208,7 +210,7 @@
     document.body.addEventListener("keyup", (e) => {
       //console.log(e.key)
       //if(e.key === "Tab" && count < max )
-      if(e.key === "Tab"  && document.activeElement !== document.body  && (document.activeElement.tagName !== "INPUT") ){
+      if(e.key === "Tab"  && document.activeElement !== document.body ){
         console.log("count1:",document.activeElement.tagName)
         //console.log("Index tab:",document.activeElement.textContent)
         //console.log("word",quote[count])
