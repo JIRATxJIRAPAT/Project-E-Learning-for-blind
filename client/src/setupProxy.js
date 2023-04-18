@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'http://https://e-learning-backends.onrender.com',
+      target: 'https://e-learning-backends.onrender.com',
       changeOrigin: true,
     })
   );

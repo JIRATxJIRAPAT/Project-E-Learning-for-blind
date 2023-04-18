@@ -38,7 +38,7 @@ function CreateAudioChapter() {
             const formData = new FormData();
             formData.append("url",url)
             formData.append("episodeName",epiname)
-            axios.put(`http://https://e-learning-backends.onrender.com/api/audiobook/chapter/create/${id}`,formData)
+            axios.put(`https://e-learning-backends.onrender.com/api/audiobook/chapter/create/${id}`,formData)
             .then((res)=>console.log(res.data))
             .catch((err)=>{
                 console.log(err);

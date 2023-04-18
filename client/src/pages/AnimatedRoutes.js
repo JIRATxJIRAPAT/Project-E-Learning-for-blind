@@ -43,7 +43,7 @@ function AnimatedRoutes() {
     /*
     useEffect(() => {
       
-      axios.get("http://https://e-learning-backends.onrender.com/api/course/")
+      axios.get("https://e-learning-backends.onrender.com/api/course/")
       .then(res => setCourse(res.data))
       .catch(error => console.log(error));
     });

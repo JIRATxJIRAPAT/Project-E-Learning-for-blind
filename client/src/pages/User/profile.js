@@ -18,7 +18,7 @@ function Profile() {
     useEffect(() => {
         const tk = localStorage.getItem('token')
       
-        axios.get(`http://https://e-learning-backends.onrender.com/api/getUser/`,{
+        axios.get(`https://e-learning-backends.onrender.com/api/getUser/`,{
           headers:  {
                       "X-Auth-Token":tk,
                       "content-type": "application/json"

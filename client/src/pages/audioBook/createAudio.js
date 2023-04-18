@@ -69,7 +69,7 @@ function CreateAudioBook() {
         const tk = localStorage.getItem('token')
     
     
-        axios.get(`http://https://e-learning-backends.onrender.com/api/getUser/`,{
+        axios.get(`https://e-learning-backends.onrender.com/api/getUser/`,{
           headers:  {
                       "X-Auth-Token":tk,
                       "content-type": "application/json"
@@ -95,7 +95,7 @@ function CreateAudioBook() {
        
 		
         
-		    axios.post(`http://https://e-learning-backends.onrender.com/api/audiobook/create`,formData)
+		    axios.post(`https://e-learning-backends.onrender.com/api/audiobook/create`,formData)
           .then((res)=>[
             console.log(res.data),
             navigate("/audiobook")

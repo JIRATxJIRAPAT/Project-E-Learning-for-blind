@@ -42,7 +42,7 @@ function CreateQuiz() {
        
 		
         console.log(formData.req)
-		axios.put(`http://https://e-learning-backends.onrender.com/api/create/quiz/${id}`,formData)
+		axios.put(`https://e-learning-backends.onrender.com/api/create/quiz/${id}`,formData)
         .then((res)=>[
             console.log(res.data),
             navigate("/course")

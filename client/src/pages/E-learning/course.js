@@ -32,7 +32,7 @@ function CreateTabList2(chapters,key){
                     height="240"
                     controls
                 >
-                <source src={`http://https://e-learning-backends.onrender.com${chapters.video}`} />
+                <source src={`https://e-learning-backends.onrender.com${chapters.video}`} />
                 
             </video>
         </Tab.Pane>
@@ -72,7 +72,7 @@ const Course = () => {
 
     useEffect(() => {
       
-      axios.get(`http://https://e-learning-backends.onrender.com/api/course/${id}`)
+      axios.get(`https://e-learning-backends.onrender.com/api/course/${id}`)
       .then(res => [
         setCourseName(res.data.name),
         setChapters(res.data.chapters),
@@ -101,7 +101,7 @@ const Course = () => {
 
     async function FetchData() {
         const tk = localStorage.getItem('token')
-        await axios.get(`http://https://e-learning-backends.onrender.com/api/getUser/`,{
+        await axios.get(`https://e-learning-backends.onrender.com/api/getUser/`,{
         headers:  {
                     "X-Auth-Token":tk,
                     "content-type": "application/json"
@@ -126,7 +126,7 @@ const Course = () => {
         //formData2.append("id",id)
         console.log("check email",params)
         console.log("form",formData2.get("email"))
-        await axios.put(`http://https://e-learning-backends.onrender.com/api/enroll/check/${id}`,formData2)
+        await axios.put(`https://e-learning-backends.onrender.com/api/enroll/check/${id}`,formData2)
         .then(res => [
         setEnrollStatus(res.data),
         console.log("res.data",res.data)
@@ -158,7 +158,7 @@ const Course = () => {
         var player = document.getElementById('video');
         var mp4Vid = document.getElementById('src');
     
-        mp4Vid.src = `http://https://e-learning-backends.onrender.com${chapters.video}`;
+        mp4Vid.src = `https://e-learning-backends.onrender.com${chapters.video}`;
         */
         console.log(`${chapters.video}`);
         var player = videojs('my-video');
@@ -217,7 +217,7 @@ const Course = () => {
         formData.append("userid",userid)
         formData.append("owner_id",owner_id)
         formData.append("owner_name",owner_name)
-        await axios.put(`http://https://e-learning-backends.onrender.com/api/enroll/${id}`,formData)
+        await axios.put(`https://e-learning-backends.onrender.com/api/enroll/${id}`,formData)
         .then((res)=>console.log(res.data))
         .catch((err)=>{
             console.log(err);

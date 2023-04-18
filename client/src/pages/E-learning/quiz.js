@@ -33,7 +33,7 @@ const  Quiz = () => {
       //Get user
       const tk = localStorage.getItem('token')
       
-      axios.get(`http://https://e-learning-backends.onrender.com/api/getUser/`,{
+      axios.get(`https://e-learning-backends.onrender.com/api/getUser/`,{
         headers:  {
                     "X-Auth-Token":tk,
                     "content-type": "application/json"
@@ -84,7 +84,7 @@ const  Quiz = () => {
           console.log("final Score",score)
           console.log("Status",email)
           
-          axios.put(`http://https://e-learning-backends.onrender.com/api/quiz/submit`,formData)
+          axios.put(`https://e-learning-backends.onrender.com/api/quiz/submit`,formData)
           .then((res)=>console.log(res.data))
           .catch((err)=>{
               console.log(err);
@@ -94,7 +94,7 @@ const  Quiz = () => {
     const NextQuestion = () => {
         console.log(`active ${activeQuestion} < ${max}`)
         if(activeQuestion===0){
-          axios.get(`http://https://e-learning-backends.onrender.com/api/course/${id}`)
+          axios.get(`https://e-learning-backends.onrender.com/api/course/${id}`)
           .then(res => [
             console.log("3:setQuiz",activeQuestion),
             setQuiz(res.data.quiz[activeQuestion]),
@@ -105,7 +105,7 @@ const  Quiz = () => {
           .catch(error => console.log(error));
         }
         else if(activeQuestion<max){
-            axios.get(`http://https://e-learning-backends.onrender.com/api/course/${id}`)
+            axios.get(`https://e-learning-backends.onrender.com/api/course/${id}`)
             .then(res => [
               console.log("3:setQuiz",activeQuestion),
               setQuiz(res.data.quiz[activeQuestion]),

@@ -46,7 +46,7 @@ function CreateCourse() {
 
         const tk = localStorage.getItem('token')
     
-        axios.get(`http://https://e-learning-backends.onrender.com/api/getUser/`,{
+        axios.get(`https://e-learning-backends.onrender.com/api/getUser/`,{
           headers:  {
                       "X-Auth-Token":tk,
                       "content-type": "application/json"
@@ -93,7 +93,7 @@ function CreateCourse() {
                 formData.append("pass_score",pass_score)
     
             
-                axios.post("http://https://e-learning-backends.onrender.com/api/create",formData)
+                axios.post("https://e-learning-backends.onrender.com/api/create",formData)
                 .then((res)=>[
                     console.log(res.data),
                     navigate("/course")
