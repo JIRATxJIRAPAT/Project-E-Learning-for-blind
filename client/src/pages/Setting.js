@@ -4,10 +4,15 @@ import Translation from './Dataset/Data_setting.json';
 import  { BottomNavigation, BottomNavigationAction} from "@mui/material"
 import CastForEducationIcon from '@mui/icons-material/CastForEducation';
 import axios from "axios";
+import Navbar1 from "../components/Navbar";
+import "../css/Auth.css"
+import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
 
 function Setting() {
 
       const [ourText, setOurText] = useState("")
+      const navigate = useNavigate()
 
       const [language,setLanguage]=useState("english")
       const [content,setContent]=useState({})
@@ -19,7 +24,15 @@ function Setting() {
               setContent(Translation.thai)
               localStorage.setItem("lang",language)
           }
-      })    
+      }) 
+      useEffect(() => {
+        if(language==="english"){
+            navigate('/setting')
+        }
+        else if(language==="thai"){
+            navigate('/setting')
+        }
+      },[language]);   
 
     
     
@@ -68,30 +81,29 @@ function Setting() {
     }
 
     const myfirstelement = (
-    <div id="test" class="slidecontainer" style={{background:"orange",height:10000}}>
-    <h1>setting</h1>        
-        <button onClick={passVol_1} type="button" id="t1">{content.vol1}</button>
-        <button onClick={passVol_2} type="button" id="t2">{content.vol2}</button>
-        <button onClick={passVol_3} type="button" id="t3">{content.vol3}</button>
-        <input type="range" min="1" max="100" value="70" id="myRange" class="slider" onChange={passVal}/>
-
-
-        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-        <select value={language} onChange={(e)=>{setLanguage(e.target.value)}}>
-                <option>english</option>
-                <option>thai</option>
+    <div>
+        <Navbar1/>
+        <div className="box_auth">
+            <div className="inner_box_auth">
+                <h1>Setting</h1>        
+                <Button onClick={passVol_1} type="button" id="t1">{content.vol1}</Button><br></br><br></br>
+                <Button onClick={passVol_2} type="button" id="t2">{content.vol2}</Button><br></br><br></br>
+                <Button onClick={passVol_3} type="button" id="t3">{content.vol3}</Button><br></br><br></br>
                 
-            </select>
-            
-            <h2>{content.vol1}</h2>
-            <span>{content.vol2}</span>
-            <span>{content.vol3}</span>
-            
+                <br></br><br></br><br></br><br></br><br></br><br></br>
+                Select Language<br></br>
+                <select value={language} onChange={(e)=>{setLanguage(e.target.value)}}>
+                        <option>english</option>
+                        <option>thai</option>
+                        
+                </select>
+                    
+                    <h2>{content.vol4}</h2>
 
-         
-
-
+            </div>
+        </div>
         
+ 
     </div>
 
    

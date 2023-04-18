@@ -19,8 +19,8 @@ export default function AudioCard(props) {
         <MDBCardText tabIndex={0}>
           {props.desc}
         </MDBCardText>
-        <MDBCardLink href={`/audiobook/${props.id}`}>Card link</MDBCardLink>
-        <MDBCardLink href='#'>Another link</MDBCardLink>
+        <MDBCardLink href={`/audiobook/${props.id}`}>Audio Link</MDBCardLink>
+        {/* <MDBCardLink href='#'>Another link</MDBCardLink> */}
       </MDBCardBody>
     </MDBCard>
   );
