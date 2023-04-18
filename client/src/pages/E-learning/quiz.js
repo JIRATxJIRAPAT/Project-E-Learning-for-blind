@@ -141,7 +141,7 @@ const  Quiz = () => {
       <div>
         <Navbar1/>
         <div className='box_course'>
-          <div className='inner_box_course'>
+          <div className='inner_box_course2'>
 
         {!showResult ? (
           <div>

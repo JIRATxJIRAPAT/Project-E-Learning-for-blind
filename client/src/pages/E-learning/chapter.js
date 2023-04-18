@@ -42,7 +42,7 @@ const Chapter = () => {
         <div>
             <Navbar1/>
             <div className='box_course'>
-                <div className='inner_box_course'>
+                <div className='inner_box_course2'>
                     <div className="d-grid gap-2">
                         <Button href={`/course/chapter/create/${id}`} variant="primary" size="lg">
                             Create New Chapter
