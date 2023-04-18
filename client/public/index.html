@@ -77,7 +77,12 @@
 
     const speechHandler = (txt) => {
       msg.text = txt
-      msg.voice = speechSynthesis.getVoices().filter(voice => voice.lang === 'en-US')[0];
+      //msg.voice = speechSynthesis.getVoices().filter(voice => voice.lang === 'th-TH')[0];
+      if(localStorage.getItem("lang")==="english"){
+          msg.lang = 'en-US'
+      }else if(localStorage.getItem("lang")==="thai"){
+          msg.lang = 'th-TH'
+      }
       msg.volume = 1;                  // 0 ถึง1 เป็นระดับความดัง
       msg.rate = 1;                  // 0.1 ถึง 10 อัตราเร็วของการพูด
       msg.pitch = 2;                //0 ถึง 2 // ลักษณะระดับเสียงสูงต่ำ
@@ -152,8 +157,16 @@
 
     }*/ //ตรงนี้
 
-    
-    
+    if(window.location.href=="http://localhost:3000/landing"){
+      
+      if(localStorage.getItem("lang")==="english"){
+        speechHandler(" Welcome to E-learning for the blind website Please watch Demo for Tutorial")
+      }
+      else{
+        speechHandler(" ยินดีต้อนรับสู่เว็บไซต์ E-learning เพื่อผู้พิการทางสายตา ท่านสามารถกดปุ่ม Demo เพื่อรับชมคลิปสาธิตการใช้งาน")
+      }
+    }
+
     const quote = [];
     let count = 0;
     let max = 0;
@@ -251,6 +264,8 @@
     function myStopFunction() {
       window.speechSynthesis.cancel()
     }
+
+    
 
 
   </script>

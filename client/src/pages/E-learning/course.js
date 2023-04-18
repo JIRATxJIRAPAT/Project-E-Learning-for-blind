@@ -261,7 +261,7 @@ const Course = () => {
                             })}
                         </Dropdown.Menu>
                     </Dropdown>
-                    {`${firstvid}`}
+                    
                     {role === 'teacher' &&
                         <div className="mb-4">
                             <Button variant="danger" size="lg" href='/course/create'>
