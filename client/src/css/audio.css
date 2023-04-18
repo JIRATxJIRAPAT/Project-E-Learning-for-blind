@@ -37,7 +37,8 @@
 }
 .inner_box{
     
-    max-width: 1000px;
+    max-width: 2000px;
+    width:1400px;
     position:static;
     display: block;
     top: 50%;
