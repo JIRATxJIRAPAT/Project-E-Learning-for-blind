@@ -1,14 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 import Button from 'react-bootstrap/Button';
+import Translation from './Dataset/Data_setting.json';
 function LandingPage() {
+
+    const [language,setLanguage]=useState("english")
+    const [content,setContent]=useState({})
 
     useEffect(() => {
         var player = videojs('my-video');
         player.src(`https://firebasestorage.googleapis.com/v0/b/e-learning-for-the-blind-d7398.appspot.com/o/images%2F4_5_6210612633_%E0%B8%88%E0%B8%B4%E0%B8%A3%E0%B8%B1%E0%B8%8F%E0%B8%90%E0%B9%8C.mp4?alt=media&token=87ac22d5-e21f-42e8-bff6-705995656855`);
         player.autoplay('true')
 
+    
+        if(language==="english"){
+            setContent(Translation.english)
+            localStorage.setItem("lang",language)
+        }else if(language==="thai"){
+            setContent(Translation.thai)
+            localStorage.setItem("lang",language)
+        }
+         
         
     },[])
 
@@ -30,7 +43,7 @@ function LandingPage() {
                     Play Demo
                 </Button>
                 
-                <a class="btn btn-cta-primary" href="http://localhost:3000/" >Enter site</a>
+                <a class="btn btn-cta-primary" href="http://e-learningforblind.netlify.app/course" >Enter site</a>
                 </div>
             </p>
             <div className="container text-center">

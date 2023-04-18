@@ -43,7 +43,7 @@ function AnimatedRoutes() {
     /*
     useEffect(() => {
       
-      axios.get("http://localhost:5000/api/course/")
+      axios.get("http://https://e-learning-backends.onrender.com/api/course/")
       .then(res => setCourse(res.data))
       .catch(error => console.log(error));
     });
@@ -58,7 +58,7 @@ function AnimatedRoutes() {
             <Route path="/test" element={<Test />} />
             <Route path="/test2" element={<Test2 />} />
             <Route path="/test3" element={<Test3 />} />
-            <Route path="/" element={<AllCourse/>} />
+            <Route path="/" element={<LandingPage/>} />
             <Route path="/setting" element={<Setting/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login/>} />
@@ -86,7 +86,7 @@ function AnimatedRoutes() {
             <Route path="/radio" element={<Radio />} />
             <Route path="/radioFM" element={<FM93 />} />
             <Route path="/landing" element={<LandingPage />} />
-            <Route exact path="/radio2.html" render={() => {window.location.href="http://localhost:3000/radio2.html"}} />
+            <Route exact path="/radio2.html" render={() => {window.location.href="http://e-learningforblind.netlify.app/radio2.html"}} />
           </Routes>
         </AnimatePresence>
       </div>

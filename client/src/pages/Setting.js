@@ -1,9 +1,6 @@
 import { useState,useEffect} from "react"
 import React from 'react';
 import Translation from './Dataset/Data_setting.json';
-import  { BottomNavigation, BottomNavigationAction} from "@mui/material"
-import CastForEducationIcon from '@mui/icons-material/CastForEducation';
-import axios from "axios";
 import Navbar1 from "../components/Navbar";
 import "../css/Auth.css"
 import Button from 'react-bootstrap/Button';
@@ -16,6 +13,7 @@ function Setting() {
 
       const [language,setLanguage]=useState("english")
       const [content,setContent]=useState({})
+      
       useEffect(()=>{
           if(language==="english"){
               setContent(Translation.english)
@@ -24,7 +22,9 @@ function Setting() {
               setContent(Translation.thai)
               localStorage.setItem("lang",language)
           }
-      }) 
+      },[]) 
+
+
       useEffect(() => {
         if(language==="english"){
             navigate('/setting')
@@ -56,29 +56,15 @@ function Setting() {
         localStorage.setItem('pass_val2',pass_val2)
         return false;
       }
-      useEffect(() => {
-        document.addEventListener('keydown',detectKeyDown,true)},[])
-    
-    const detectKeyDown = (e) => {
-        if(e.key === '1'){
-            window.location.replace("http://localhost:3000/");
-        }
-        else if (e.key === '2') {
-            window.location.replace("http://localhost:3000/audiobook")
-        }
-        else if (e.key === '3') {
-            window.location.replace("http://localhost:3000/music")
-        }
-        else if (e.key === '4') {
-            window.location.replace("http://localhost:3000/test3")
-        }
-        else if (e.key === '5') {
-            window.location.replace("http://localhost:3000/setting")
-        }
+      function passVol_4(){
+        var pass_val2 = 0.0;
+        localStorage.setItem('pass_val2',pass_val2)
+        return false;
+      }
 
     
 
-    }
+    
 
     const myfirstelement = (
     <div>
@@ -89,7 +75,7 @@ function Setting() {
                 <Button onClick={passVol_1} type="button" id="t1">{content.vol1}</Button><br></br><br></br>
                 <Button onClick={passVol_2} type="button" id="t2">{content.vol2}</Button><br></br><br></br>
                 <Button onClick={passVol_3} type="button" id="t3">{content.vol3}</Button><br></br><br></br>
-                
+                <Button onClick={passVol_4} type="button" id="t3">{content.vol4}</Button><br></br><br></br>
                 <br></br><br></br><br></br><br></br><br></br><br></br>
                 Select Language<br></br>
                 <select value={language} onChange={(e)=>{setLanguage(e.target.value)}}>

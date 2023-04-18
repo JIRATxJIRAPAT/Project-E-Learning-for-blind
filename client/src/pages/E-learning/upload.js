@@ -39,7 +39,7 @@ function Firebase_upload() {
         formData.append("url",url)
         formData.append("name", name);
         formData.append("episodeName",epiname)
-        await axios.put(`http://localhost:5000/api/chapter/create/${id}`,formData)
+        await axios.put(`http://https://e-learning-backends.onrender.com/api/chapter/create/${id}`,formData)
         .then((res)=>console.log(res.data))
         .catch((err)=>{
             console.log(err);

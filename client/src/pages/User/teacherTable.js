@@ -5,7 +5,7 @@ import axios from 'axios';
 export default function TeacherTable(props) {
     const [number,setNumber] = useState(0)
 
-    axios.get(`http://localhost:5000/api/course/${props.id}`)
+    axios.get(`http://https://e-learning-backends.onrender.com/api/course/${props.id}`)
     .then(res => [
         setNumber(res.data.students.length),
         console.log("course",res.data)

@@ -17,7 +17,7 @@ const Chapter = () => {
 
     useEffect(() => {
       
-      axios.get(`http://localhost:5000/api/course/${id}`)
+      axios.get(`http://https://e-learning-backends.onrender.com/api/course/${id}`)
       .then(res => [
         setCourseName(res.data.name),
         setPic(res.data.img),

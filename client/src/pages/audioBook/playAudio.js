@@ -41,7 +41,7 @@ const AudioBook = () => {
 
     useEffect(() => {
       
-      axios.get(`http://localhost:5000/api/audiobook/${id}`)
+      axios.get(`http://https://e-learning-backends.onrender.com/api/audiobook/${id}`)
       .then(res => [
         setAudioBookName(res.data.name),
         setChapters(res.data.chapters),
@@ -60,7 +60,7 @@ const AudioBook = () => {
 
     async function FetchData() {
         const tk = localStorage.getItem('token')
-        await axios.get(`http://localhost:5000/api/getUser/`,{
+        await axios.get(`http://https://e-learning-backends.onrender.com/api/getUser/`,{
         headers:  {
                     "X-Auth-Token":tk,
                     "content-type": "application/json"

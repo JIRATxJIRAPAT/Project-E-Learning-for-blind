@@ -29,7 +29,7 @@ function EditCourse() {
 
     useEffect(() => {
       
-        axios.get(`http://localhost:5000/api/course/${id}`)
+        axios.get(`http://https://e-learning-backends.onrender.com/api/course/${id}`)
         .then(res => [
           setOldCourseName(res.data.name),
           setOldPic(res.data.img),
@@ -57,7 +57,7 @@ function EditCourse() {
         formData.append("episodeName",epiname)
 		
         console.log(formData)
-		axios.put(`http://localhost:5000/api/course/edit/${id}`,formData)
+		axios.put(`http://https://e-learning-backends.onrender.com/api/course/edit/${id}`,formData)
         .then((res)=>console.log(res.data))
         .catch((err)=>{
             console.log(err);

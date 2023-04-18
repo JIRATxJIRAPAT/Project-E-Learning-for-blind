@@ -31,7 +31,7 @@ export default function Table(props) {
           </td>
           <td tabIndex={0}>{`${props.score}`}</td>
           <td>
-            <MDBBtn color='success' rounded size='nm' href={`http://localhost:3000/course/${props.id}`}>
+            <MDBBtn color='success' rounded size='nm' href={`http://e-learningforblind.netlify.app/course/${props.id}`}>
               View
             </MDBBtn>
           </td>

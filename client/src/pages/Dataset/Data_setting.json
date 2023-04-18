@@ -3,14 +3,14 @@
         "vol1":"Set volume to Low",
         "vol2":"Set volume to Medium",
         "vol3":"Set volume to High",
-        "vol4":"Current Language : English"
+        "vol4":"Muted"
         
     },
     "thai":{
         "vol1":"ปรับระดับเสียง เป็น เบา",
         "vol2":"ปรับระดับเสียง เป็น ปานกลาง",
         "vol3":"ปรับระดับเสียง เป็น ดัง",
-        "vol4":"ภาษาปัจจุบัน : ภาษาไทย"
+        "vol4":"ปิดเสียง"
     }
 
 }

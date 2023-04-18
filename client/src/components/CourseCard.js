@@ -1,8 +1,6 @@
 import { Fragment } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import "../../src/css/card2.css"
 import { Link } from 'react-router-dom'
 
@@ -18,9 +16,9 @@ function CourseCard(props) {
                 {props.desc}
               </Card.Text>
               
-              <Link to={{pathname:`/course/${props._id}`}}>
-                <Button variant="primary">View</Button>
-              </Link>
+             
+              <Button variant="primary" href={`/course/${props._id}`}>View</Button>
+              
             </Card.Body>
           </Card>
 

@@ -40,7 +40,7 @@ function Navbar1() {
     const tk = localStorage.getItem('token')
 
 
-    axios.get(`http://localhost:5000/api/getUser/`,{
+    axios.get(`http://https://e-learning-backends.onrender.com/api/getUser/`,{
       headers:  {
                   "X-Auth-Token":tk,
                   "content-type": "application/json"
@@ -56,7 +56,7 @@ function Navbar1() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="#home" className='example' id="first">{content.value1}</Navbar.Brand>
+        <Navbar.Brand href="/course" className='example' id="first">{content.value1}</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

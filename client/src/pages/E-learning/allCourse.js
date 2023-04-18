@@ -41,7 +41,7 @@ const AllCourse = () => {
     
     useEffect(() => {
       
-      axios.get("http://localhost:5000/api/course/")
+      axios.get("http://https://e-learning-backends.onrender.com/api/course/")
       .then(res => setCourse(res.data))
       .catch(error => console.log(error));
     

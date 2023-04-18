@@ -25,7 +25,7 @@ function ChaptersList(props,key) {
                 height="240"
                 controls
               >
-                <source src={`http://localhost:5000${props.video}`} />
+                <source src={`http://https://e-learning-backends.onrender.com${props.video}`} />
                 
             </video>
               

@@ -25,19 +25,19 @@ function Test3() {
 
     const detectKeyDown = (e) => {
       if(e.key === '1'){
-          window.location.replace("http://localhost:3000/");
+          window.location.replace("http://e-learningforblind.netlify.app/");
       }
       else if (e.key === '2') {
-          window.location.replace("http://localhost:3000/audiobook")
+          window.location.replace("http://e-learningforblind.netlify.app/audiobook")
       }
       else if (e.key === '3') {
-          window.location.replace("http://localhost:3000/music")
+          window.location.replace("http://e-learningforblind.netlify.app/music")
       }
       else if (e.key === '4') {
-          window.location.replace("http://localhost:3000/test3")
+          window.location.replace("http://e-learningforblind.netlify.app/test3")
       }
       else if (e.key === '5') {
-        window.location.replace("http://localhost:3000/setting")
+        window.location.replace("http://e-learningforblind.netlify.app/setting")
       }
 
     }
