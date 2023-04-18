@@ -5,6 +5,8 @@ import { v4 } from "uuid";
 import { getDatabase, set } from "firebase/database";
 import axios from "axios";
 import { useParams } from 'react-router-dom'
+import "../../css/course.css"
+import Navbar1 from '../../components/Navbar'
 
 
 
@@ -48,48 +50,54 @@ function Firebase_upload() {
   return (
 
 
-    <>
-    <form onSubmit={uploadFile}>
-        <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input
-            type="text"
-            name="name"
-            id="name"
-            className="form-control"
-            onChange={(e) => setName(e.target.value)}
-            />
-        </div>
-        <div className="form-group">
-            <label htmlFor="videos">Upload Videos</label>
-            <input
-            type="file"
-            name="videos"
-            id="videos"
-            multiple
-            className="form-control"
-            accept=".mp4, .mkv"
-            onChange={(e) => {
-                setImageUpload(e.target.files[0]);
-            }}
-            />
-        </div>
-        <div className="form-group">
-            <label htmlFor="name">Chapter Name</label>
-            <input
-            type="text"
-            name="name"
-            id="name"
-            className="form-control"
-            onChange={(e) => setEpiName(e.target.value)}
-            />
-        </div>
+    <div>
+        <Navbar1/>
+        <div className="box_course">
+            <div className="inner_box_course2">
+                <form onSubmit={uploadFile}>
+                <div className="form-group">
+                    <label htmlFor="name">Name</label>
+                    <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    className="form-control"
+                    onChange={(e) => setName(e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="videos">Upload Videos</label>
+                    <input
+                    type="file"
+                    name="videos"
+                    id="videos"
+                    multiple
+                    className="form-control"
+                    accept=".mp4, .mkv"
+                    onChange={(e) => {
+                        setImageUpload(e.target.files[0]);
+                    }}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="name">Chapter Name</label>
+                    <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    className="form-control"
+                    onChange={(e) => setEpiName(e.target.value)}
+                    />
+                </div>
 
-        <button type="submit" className="btn btn-primary mt-2">
-            Submit
-        </button>
-        </form>
-    </>
+                <button type="submit" className="btn btn-primary mt-2">
+                    Submit
+                </button>
+                </form>
+            </div>
+        </div>
+    
+    </div>
 
   );
 }
