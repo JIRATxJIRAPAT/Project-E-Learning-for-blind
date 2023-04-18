@@ -49,18 +49,21 @@ class Recorder extends React.Component {
       const { isLoading, isRecording, recordings } = this.state;
       return (
         <React.Fragment>
+          <Navbar1/>
           <div className="box">
-            <div className="inner_box">
+            <div className="inner_box_create">
                 <br></br><br></br><br></br><br></br>
               <button disabled={isLoading} onClick={this.record}>
                 {isRecording ? "Stop" : "Record"}
               </button>
+              <br></br><br></br>
               
               <ul style={{ listStyle: "none", padding: 0 }}>
-              <br></br><br></br>
+              
                 {recordings.map(url => (
                   <li key={url}>
                     <audio src={url} controls />
+                    <br></br><br></br>
                     Please download record file to upload
                     {console.log(url)}
                   </li>

@@ -62,9 +62,7 @@ function Mp3_upload() {
 
     <Navbar1/>  
     <div className="box">
-        
-
-        <form className="inner_box">
+        <form className="inner_box_create">
         <div className="form-group" style={{width: '500px', alignItems: 'center', height: '50px'}}>
             <label htmlFor="name" >{content.value2}</label>
             <input
