@@ -25,7 +25,6 @@ class Recorder extends React.Component {
 
     record = async () => {
       this.setState({ isLoading: true });
-   
       if (this.state.isRecording) {
         const blob = await recorder.stopRecording();
         this.setState({
@@ -33,12 +32,14 @@ class Recorder extends React.Component {
           isRecording: false,
           recordings: this.state.recordings.concat(URL.createObjectURL(blob))
         });
+        
       } else {
         try {
           await recorder.initAudio();
           await recorder.initWorker();
           recorder.startRecording();
           this.setState({ isLoading: false, isRecording: true });
+          document.getElementById("btn").focus();
         } catch (e) {
           console.error(e);
           this.setState({ isLoading: false });
@@ -54,9 +55,12 @@ class Recorder extends React.Component {
           <div className="box">
             <div className="inner_box_create">
                 <br></br><br></br><br></br><br></br>
-              <Button variant="danger" disabled={isLoading} onClick={this.record}>
-                {isRecording ? "Stop" : "Record"}
-              </Button>
+              <main id="main-content">
+                <h2 id='btn' tabIndex={0}>Press record button and press tab and enter again to stop.</h2>
+                <Button id='btn2' variant="danger" disabled={isLoading} onClick={this.record} >
+                  {isRecording ? "Stop" : "Record"}
+                </Button>
+              </main>
               <br></br><br></br>
               
               <ul style={{ listStyle: "none", padding: 0 }}>

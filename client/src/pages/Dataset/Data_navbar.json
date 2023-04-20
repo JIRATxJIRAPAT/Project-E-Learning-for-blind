@@ -8,7 +8,8 @@
         "value6":"Radio",
         "value7":"Help Center",
         "value8":"Signed in as",
-        "value9":"Logout"
+        "value9":"Logout",
+        "value10":"Login"
     },
     "thai":{
         "value1":"การเรียนอิเล็กทรอนิกส์สำหรับคนตาบอด",
@@ -18,8 +19,9 @@
         "value5":"หนังสือเสียง",
         "value6":"วิทยุ",
         "value7":"ศูนย์ช่วยเหลือ",
-        "value8":"เข้าสู่ระบบของบัญชี",
-        "value9":"ออกจากระบบ"
+        "value8":"ผู้ใช้",
+        "value9":"ออกจากระบบ",
+        "value10":"เข้าสู่ระบบ"
     }
 
 }

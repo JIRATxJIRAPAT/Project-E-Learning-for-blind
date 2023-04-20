@@ -70,31 +70,34 @@ function EditCourse() {
         <Navbar1/>
         <div className='box_course'>
             <div className='inner_box_course'>
+                <main id="main-content">
+                    <Form onSubmit={onSubmit} encType="multipart/form-data">
+                        <Form.Group className="mb-3" controlId="name">
+                            <Form.Label>Course setName</Form.Label>
+                            <Form.Control type="text" placeholder={`old: ${oldname}`} onChange={(e) => setCourseName(e.target.value)} />
+                        </Form.Group>
+                        
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control as="textarea" rows={3} placeholder={`old: ${olddesc}`} onChange={(e) => setDescription(e.target.value)} />
+                        </Form.Group>
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Label>Default file input example</Form.Label>
+                            <Form.Control type="file" filename="testImage" onChange={(e) => setPic(e.target.files[0])}/>
+                        </Form.Group>
 
-                <Form onSubmit={onSubmit} encType="multipart/form-data">
-                    <Form.Group className="mb-3" controlId="name">
-                        <Form.Label>Course setName</Form.Label>
-                        <Form.Control type="text" placeholder={`old: ${oldname}`} onChange={(e) => setCourseName(e.target.value)} />
-                    </Form.Group>
-                    
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control as="textarea" rows={3} placeholder={`old: ${olddesc}`} onChange={(e) => setDescription(e.target.value)} />
-                    </Form.Group>
-                    <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Label>Default file input example</Form.Label>
-                        <Form.Control type="file" filename="testImage" onChange={(e) => setPic(e.target.files[0])}/>
-                    </Form.Group>
 
-
-                    <Button variant="success" type="sumbit">submit</Button>
-                </Form>
-
+                        <Button variant="success" type="sumbit">submit</Button>
+                    </Form>
+                </main>
             </div>
         </div>
         {role !== "teacher" && 
                 <div className='box_course'>
-                    <div tabIndex={0} style={{fontSize:"30px"}}>{role} can't access this page</div>
+                    <main id="main-content">
+                        <div tabIndex={0} style={{fontSize:"30px"}}>{role} can't access this page</div>
+                    </main>
+                        
                 </div>    
         }   
 

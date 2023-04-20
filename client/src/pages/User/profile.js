@@ -39,14 +39,14 @@ function Profile() {
         <Navbar1/>
         <div className='box_auth'>
           <div className='inner_box_auth'>
-            
-            {role === "student" && 
-            <StudentProfile enrolled={enrolled} />
-            }
-            {role === "teacher" &&
-            <TeacherProfile owned_courses={owned_course}/>
-            }
-
+            <main id="main-content">
+              {role === "student" && 
+              <StudentProfile enrolled={enrolled} />
+              }
+              {role === "teacher" &&
+              <TeacherProfile owned_courses={owned_course}/>
+              }
+            </main>
           </div>
 
         </div>

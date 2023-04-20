@@ -32,7 +32,8 @@ function CreateChapter() {
 	}
     
     return(
-    <div>
+    
+    <main id="main-content">
         <Form onSubmit={onSubmit} encType="multipart/form-data">
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Chapter Name</Form.Label>
@@ -42,8 +43,8 @@ function CreateChapter() {
             
             <Button variant="success" type="sumbit">submit</Button>
         </Form>
-
-    </div>
+    </main>
+    
     )
 }
 

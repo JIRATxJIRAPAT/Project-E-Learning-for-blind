@@ -48,16 +48,17 @@ function StudentProfile(props,key) {
     return(
    
         <MDBTable align='middle' responsive>
-            <caption >Enrolled Course</caption>
+            {/*<caption >Enrolled Course</caption>*/}
             <MDBTableHead>
-                
-            <tr className="tr">
-                <th scope='col' tabIndex={0}>Course name</th>
-                
-                <th scope='col' tabIndex={0}>Status</th>
-                <th scope='col' tabIndex={0}>Score</th>
-                <th scope='col' tabIndex={0}>Actions</th>
-            </tr>
+            
+                <tr className="tr">
+                    <th scope='col' tabIndex={0}>Course name</th>
+                    
+                    <th scope='col' tabIndex={0}>Status</th>
+                    <th scope='col' tabIndex={0}>Score</th>
+                    <th scope='col' tabIndex={0}>Actions</th>
+                </tr>
+            
             </MDBTableHead>
             <MDBTableBody>
                 {props.enrolled.map((course,key) => {

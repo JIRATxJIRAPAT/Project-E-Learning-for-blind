@@ -111,6 +111,7 @@ function CreateAudioBook() {
     <Navbar1/>
     <div className='box'>
         <div className='inner_box'>
+        <main id="main-content">
         <form onSubmit={onSubmit} encType="multipart/form-data">
 
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -158,8 +159,9 @@ function CreateAudioBook() {
      
    
 
-    </form>        
-        </div>
+          </form>
+        </main>       
+      </div>
     </div>
 
     </Fragment>

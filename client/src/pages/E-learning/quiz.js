@@ -129,7 +129,13 @@ const  Quiz = () => {
         console.log("ผิด----------------------")
         setWrongAns((prev)=>prev+1)
       }
-      
+      //set state
+      document.getElementById("logout").focus();
+      var box2 = document.getElementById("inline-radio-2")
+      box2.checked = false
+      var box1 = document.getElementById("inline-radio-1")
+      box1.checked = false
+
       setSelectedAnswer("")
       setActiveQuestion(prev=>prev+1)
     }
@@ -142,61 +148,62 @@ const  Quiz = () => {
         <Navbar1/>
         <div className='box_course'>
           <div className='inner_box_course2'>
-
-        {!showResult ? (
-          <div>
-          <Form>
-                                    
-            <h2 tabIndex="0">Question {activeQuestion+1} of {max} :  {quizs.question}</h2>
-            <br></br>
-            <Form.Check
-              inline
-              label={quizs.choice1}
-              name="group1"
-              type='radio'
-              id={`inline-radio-1`}
+            <main id="main-content">
+            {!showResult ? (
+              <div >
+              <Form>
+                           
+                <h2 id='question' tabIndex="0" style={{fontWeight:"bold"}}>Question {activeQuestion+1} of {max} :  {quizs.question}</h2>
+                <br></br>
+                <Form.Check
+                  inline
+                  label={quizs.choice1}
+                  name="group1"
+                  type='radio'
+                  id={`inline-radio-1`}
+                  
+                  placeholder={`choice one ${quizs.choice1}`}
+                  onClick={(e) => setSelectedAnswer(`${quizs.choice1}`)}
+                />
+                <Form.Check
+                  inline
+                  label={quizs.choice2}
+                  name="group1"
+                  type='radio'
+                  id={`inline-radio-2`}
+                  
+                  placeholder={`choice two ${quizs.choice2}`}
+                  onClick={(e) => setSelectedAnswer(`${quizs.choice2}`)}
+                />
+                  
               
-              placeholder={quizs.choice1}
-              onClick={(e) => setSelectedAnswer(`${quizs.choice1}`)}
-            />
-            <Form.Check
-              inline
-              label={quizs.choice2}
-              name="group1"
-              type='radio'
-              id={`inline-radio-2`}
+                  <br></br>
+                <br></br>
+              <Button variant='primary' onClick={onClickNext}>{activeQuestion === max - 1? 'Finish' : 'Next'}</Button>
+              </Form>
               
-              placeholder={`choice two ${quizs.choice2}`}
-              onClick={(e) => setSelectedAnswer(`${quizs.choice2}`)}
-            />
-              
-          
-              <br></br>
-            <br></br>
-          <Button variant='primary' onClick={onClickNext}>{activeQuestion === max - 1? 'Finish' : 'Next'}</Button>
-          </Form>
-          
+            </div>
+            ) : (
+              <div className="result">
+                <h3 tabIndex={0}>Result</h3>
+                <p tabIndex={0}>
+                  Total Question: <span>{max}</span>
+                </p>
+                <p tabIndex={0}>
+                  Total Score:<span> {score}</span>
+                </p>
+                <p tabIndex={0}>
+                  Correct Answers:<span> {correctAns}</span>
+                </p>
+                <p tabIndex={0}>
+                  Wrong Answers:<span> {wrongAns}</span>
+                </p>
+                <br></br>
+                <Button href='/course' variant='primary'>Back to HomePage</Button>
+              </div>
+            )}
+          </main>
         </div>
-        ) : (
-          <div className="result">
-            <h3>Result</h3>
-            <p>
-              Total Question: <span>{max}</span>
-            </p>
-            <p>
-              Total Score:<span> {score}</span>
-            </p>
-            <p>
-              Correct Answers:<span> {correctAns}</span>
-            </p>
-            <p>
-              Wrong Answers:<span> {wrongAns}</span>
-            </p>
-            <br></br>
-            <Button href='/course' variant='primary'>Back to HomePage</Button>
-          </div>
-      )}
-      </div>
       </div>
     </div>
 )

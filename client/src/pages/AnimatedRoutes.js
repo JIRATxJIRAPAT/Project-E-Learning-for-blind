@@ -58,6 +58,7 @@ function AnimatedRoutes() {
             <Route path="/test" element={<Test />} />
             <Route path="/test2" element={<Test2 />} />
             <Route path="/test3" element={<Test3 />} />
+            
             <Route path="/" element={<LandingPage/>} />
             <Route path="/setting" element={<Setting/>} />
             <Route path="/register" element={<Register/>} />
@@ -78,10 +79,10 @@ function AnimatedRoutes() {
             <Route path="/audiobook/create" element={<BasicExample/>} />
             <Route path="/audiobook/record" element={<Recorder/>} />
             <Route path="/audiobook/chapter/create/:id" element={<Mp3_upload/>} />
-            <Route path="/video" element={<VideoPlayer/>} />
+
             {/* <Route path="/audiobook/create" element={<BasicExample/>} /> */}
             <Route path="/audiobook/create/:id" element={<Mp3Upload/>} />
-            <Route path="/tutorial" element={<Tutorial />} />
+          
             <Route path="/uploadvdo" element={<UploadVideo />} />
             <Route path="/radio" element={<RadioFM />} />
             <Route path="/radioFM" element={<FM93 />} />

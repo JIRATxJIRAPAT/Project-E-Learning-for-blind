@@ -111,6 +111,7 @@ function CreateCourse() {
             {role === "teacher" && 
                 <div className='box_course'>
                     <div className='inner_box_course'>
+                        <main id="main-content">
                         <Form onSubmit={onSubmit} encType="multipart/form-data" >
                         <Form.Group className="mb-3" controlId="name">
                             <Form.Label >Course Name</Form.Label>
@@ -132,6 +133,7 @@ function CreateCourse() {
 
                         <Button variant="success" type="sumbit">submit</Button>
                         </Form>
+                        </main>
                     </div>
                 </div>
             }

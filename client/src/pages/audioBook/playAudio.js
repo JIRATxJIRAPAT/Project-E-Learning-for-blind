@@ -5,14 +5,8 @@ import Navbar1 from '../../components/Navbar'
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import ChaptersList from '../../components/ChaptersList'
-import QuestionList from '../../components/QuestionList'
-import LeftTabsExample from '../../components/ChapterList2'
 
-import Col from 'react-bootstrap/Col';
-import Nav from 'react-bootstrap/Nav';
-import Row from 'react-bootstrap/Row';
-import Tab from 'react-bootstrap/Tab';
+
 import "../../css/audio.css";
 
 
@@ -31,13 +25,12 @@ const AudioBook = () => {
     const {id} = useParams();
     const [owner_id,setOwnerID] = useState('')
     const [owner_name,setOwnerName] = useState('')
+    const [firstvid,setVid] = useState('')
 
-    const [num,setNum] = useState(0)
     //user
-
     const [userid,setUserID] = useState('')
     const [username,setUsername] = useState('')
-
+    const [title,setTitle] = useState('')
 
     useEffect(() => {
       
@@ -49,6 +42,8 @@ const AudioBook = () => {
         setCategory(res.data.category),
         setOwnerID(res.data.owner_id),
         setOwnerName(res.data.owner_name),
+        setVid(`${res.data.chapters[0].video}`),
+        setTitle(`${res.data.chapters[0].title}`),
         FetchData()
         //console.log("course",res.data)
       ])
@@ -56,6 +51,14 @@ const AudioBook = () => {
       
 
     },[]);
+
+    useEffect(()=>{
+        if(firstvid !== ""){
+            var player = videojs('my-video');
+            player.src(`${firstvid}`);
+            player.autoplay()
+        }
+    },[firstvid])
 
 
     async function FetchData() {
@@ -81,8 +84,10 @@ const AudioBook = () => {
         console.log(`${chapters.video}`);
         var player = videojs('my-video');
         player.src(`${chapters.video}`);
+        setTitle(chapters.title)
        
     }
+
     function ChapterDropDown(chapters,key) {
         return (
             <Dropdown.Item onClick={()=>{videoo(chapters)}}>{chapters.title}</Dropdown.Item>
@@ -96,30 +101,32 @@ const AudioBook = () => {
             <Navbar1 />
             <div className='box'>
                 <div className='inner_box'>
-                <h2>Course : {name}</h2>
-                <h2>Category : {category}</h2>
-                <ButtonGroup>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
-                            Select Chapters
-                        </Dropdown.Toggle>
+                <main id="main-content">
+                    <h2 tabIndex={0}>{name}</h2>
+                    <h2 tabIndex={0}>Category : {category}</h2>
+                    <ButtonGroup>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
+                                Select Chapters
+                            </Dropdown.Toggle>
 
-                        <Dropdown.Menu>
-                            {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}    
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    {(owner_id === userid) &&
-                        <>
-                            <Button variant="danger" size="lg" href='/' >Edit </Button>
-                            <Button variant="primary" size="lg" href={`/audiobook/chapter/create/${id}`}>Add Chapter </Button>
-                        </>
+                            <Dropdown.Menu>
+                                {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}    
+                            </Dropdown.Menu>
+                        </Dropdown>
+                        {(owner_id === userid) &&
+                            <>
+                                <Button variant="danger" size="lg" href='/' >Edit </Button>
+                                <Button variant="primary" size="lg" href={`/audiobook/chapter/create/${id}`}>Add Chapter </Button>
+                            </>
 
-                    }
-                </ButtonGroup>
+                        }
+                    </ButtonGroup>
+                </main>
                 <br></br>
                 <br></br>
-                <br></br>
-                <br></br>
+
+                <h2 tabIndex={0} > <span>Now playing : {title}</span></h2>
                 <audio
 
                     id="my-video"

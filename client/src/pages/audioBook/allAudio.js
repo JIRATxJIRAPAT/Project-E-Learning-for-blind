@@ -1,10 +1,8 @@
 import { useEffect, useState,useMemo } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 import Navbar1 from '../../components/Navbar'
-
-import Card2 from '../../components/Card2'
 import AudioCard from './components/AudioCard'
+
 import "../../css/audio.css";
 /*
 
@@ -95,26 +93,30 @@ const AllAudioBook = () => {
 
             <div className='inner_box'>
             
-            <section>
-                <select onChange={(e) => filterItems(e.target.value)}>
-                    <option value="">All</option>
-                    <option value="Horror,Comedy">Horror,Comedy</option>
-                    <option value="Horror">Horror</option>
-                    <option value="books">Books</option>
-                </select> 
+                <main id="main-content">
+                    <section>
+                        <select onChange={(e) => filterItems(e.target.value)}>
+                            <option value="">All</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Novel">Novel</option>
+                            <option value="Tales">Tales</option>
+                            <option value="History">History</option>
+                        
+                        </select> 
 
-                <section>
-                    {filteredItems.map((item) => (
-                        <AudioCard key={item.id} id={item._id} name={item.name} category={item.category} 
-                            desc={item.desc} owner_name={item.owner_name}></AudioCard>
-                    ))}
-                </section>
-                
-            </section>
-            
-            {/* <section>
-                {allAudio.map((audio,key) => CreateAudioCard(audio,key))}         
-            </section> */}
+                        <section>
+                            {filteredItems.map((item) => (
+                                <AudioCard key={item.id} id={item._id} name={item.name} category={item.category} 
+                                    desc={item.desc} owner_name={item.owner_name}></AudioCard>
+                            ))}
+                        </section>
+                        
+                    </section>
+                </main>
+                    {/* <section>
+                        {allAudio.map((audio,key) => CreateAudioCard(audio,key))}         
+                    </section> */}
 
             </div>
 

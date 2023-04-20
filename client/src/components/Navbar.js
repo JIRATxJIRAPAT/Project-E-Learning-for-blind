@@ -1,12 +1,13 @@
-import { useState,useEffect } from 'react';
+import { useState,useEffect, Fragment } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import axios from 'axios'
-import Button from '@mui/material/Button';
+import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import Translation from '../pages/Dataset/Data_navbar.json';
+import '../css/skip.css'
 
 
 
@@ -54,36 +55,46 @@ function Navbar1() {
   },[]);
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
-      <Container>
-        <Navbar.Brand href="/course" className='example' id="first">{content.value1}</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/course" className='example'>{content.value2}</Nav.Link>
-            <Nav.Link href="/profile" className='example'>{content.value3}</Nav.Link>
-            <NavDropdown title={content.value4} id="basic-nav-dropdown" className='example'>
-              <NavDropdown.Item href="/audiobook" className='example'>{content.value5}</NavDropdown.Item>
-              <NavDropdown.Item href="/radio"className='example'>
-              {content.value6}
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2"className='example'>
-              {content.value7}
-              </NavDropdown.Item>
-            </NavDropdown>
+    <header>
+
+      <Navbar bg="dark" variant="dark" expand="lg">
+        <a className='skip-nav-link' href='#main-content' id='skip'>Skip to content</a>
+        <Container>
+          <Navbar.Brand href="/course" className='example' id="first">{content.value1}</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/course" className='example'>{content.value2}</Nav.Link>
+              <Nav.Link href="/profile" className='example'>{content.value3}</Nav.Link>
+              <NavDropdown title={content.value4} id="basic-nav-dropdown" className='example'>
+                <NavDropdown.Item href="/audiobook" className='example'>{content.value5}</NavDropdown.Item>
+                <NavDropdown.Item href="/radio"className='example'>
+                {content.value6}
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2"className='example'>
+                {content.value7}
+                </NavDropdown.Item>
+              </NavDropdown>
+              
+            </Nav>
+          </Navbar.Collapse>
+          
+          <Navbar.Collapse className="justify-content-end">
+            <Navbar.Text className='example'>
+              
+            {content.value8} : {username}  
+            </Navbar.Text>&nbsp;&nbsp;
+            {username !== "" &&
+              <Button value="logout" className="example" onClick={logout} tabIndex={0} variant="danger" id="logout">{content.value9}</Button>
+            }
+            {username === "" &&
+              <Button value="login" className="example" href="/login" tabIndex={0} variant="success" id="login">{content.value10}</Button>
+            }
             
-          </Nav>
-        </Navbar.Collapse>
-        
-        <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text className='example'>
-            
-          {content.value8} : {username}  
-          </Navbar.Text>&nbsp;&nbsp;
-          <Button value="logout" className="example" onClick={logout} tabIndex={0} variant="contained" id="HP6">{content.value9}</Button>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </header>
   );
 }
 

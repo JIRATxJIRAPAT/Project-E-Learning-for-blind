@@ -75,39 +75,40 @@ function CreateAudioChapter() {
 
     <Navbar1/>  
     <div className="box" >
-        <form className="inner_box_create" onSubmit={uploadFile}>
-            <div className="form-group" style={{width: '500px', alignItems: 'center', height: '50px'}}>
-                <label htmlFor="name" >{content.value2}</label>
-                <input
-                type="text"
-                name="name"
-                id="name"
-                className="form-control"
-                onChange={(e) => setEpiName(e.target.value)}
-                />
-            </div>
-            <br></br><br></br>
-            
-            <div className="form-group" style={{width: '500px', alignItems: 'center', height: '50px'}}>
-                <label htmlFor="videos">{content.value1}</label>
-                <input
-                type="file"
-                name="videos"
-                id="videos"
-                multiple
-                className="form-control"
-                accept=".mp3"
-                onChange={(e) => {
-                    setImageUpload(e.target.files[0]);
-                }}
-                />
-            </div>
-            <br></br> 
-            <button type="submit" className="btn btn-success" >
-            {content.value3}
-            </button>
-        </form>
-        
+        <main id="main-content">
+            <form className="inner_box_create" onSubmit={uploadFile}>
+                <div className="form-group" style={{width: '500px', alignItems: 'center', height: '50px'}}>
+                    <label htmlFor="name" >{content.value2}</label>
+                    <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    className="form-control"
+                    onChange={(e) => setEpiName(e.target.value)}
+                    />
+                </div>
+                <br></br><br></br>
+                
+                <div className="form-group" style={{width: '500px', alignItems: 'center', height: '50px'}}>
+                    <label htmlFor="videos">{content.value1}</label>
+                    <input
+                    type="file"
+                    name="videos"
+                    id="videos"
+                    multiple
+                    className="form-control"
+                    accept=".mp3"
+                    onChange={(e) => {
+                        setImageUpload(e.target.files[0]);
+                    }}
+                    />
+                </div>
+                <br></br> 
+                <button type="submit" className="btn btn-success" >
+                {content.value3}
+                </button>
+            </form>
+        </main>
     </div>
     </div>
     

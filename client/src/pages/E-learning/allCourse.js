@@ -53,24 +53,25 @@ const AllCourse = () => {
         <div>
             <Navbar1/>
 
-
+            
             <div className='box_course_only'>            
 
                 <div className='inner_box_course'>
-                {role === "teacher" && 
-                    <>
-                        <br></br>
-                        <div className="mb-4">
-                            <Button variant="danger" size="lg" href='/course/create'>
-                                Create New Course
-                            </Button>
-                        </div>
-                    </>
-                }
-                    <div className="container">
-                        {courses.map((course,id) => CreateCourseCard(course,id))}
-                    </div>
-
+                    <main id="main-content">
+                        {role === "teacher" && 
+                            <>
+                                <br></br>
+                                <div className="mb-4">
+                                    <Button variant="danger" size="lg" href='/course/create'>
+                                        Create New Course
+                                    </Button>
+                                </div>
+                            </>
+                        }
+                            <div className="container">
+                                {courses.map((course,id) => CreateCourseCard(course,id))}
+                            </div>
+                    </main>
                 </div>
             </div>
 

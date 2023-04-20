@@ -65,8 +65,9 @@ const Course = () => {
     //page check
     const [onQuiz,setOnQuiz] = useState(false)
 
-    //Test
+    //first video
     const [firstvid,setVid] = useState('')
+    const [title,setTitle] = useState('')
 
     const navigate = useNavigate()
 
@@ -81,6 +82,7 @@ const Course = () => {
         setOwnerID(res.data.owner_id),
         setOwnerName(res.data.owner_name),
         setVid(`${res.data.chapters[0].video}`),
+        setTitle(`${res.data.chapters[0].title}`),
         console.log("firstVid",res.data.chapters[0].video)
       ])
       .catch(error => console.log(error));
@@ -164,6 +166,7 @@ const Course = () => {
         var player = videojs('my-video');
         player.src(`${chapters.video}`);
         player.autoplay()
+        setTitle(chapters.title)
        
     }
     function ChapterDropDown(chapters,key) {
@@ -234,111 +237,111 @@ const Course = () => {
         <div className='box_course_play'>
 
             <div className='inner_box_course'>
+            <main id="main-content">
+                <div className='grid'>
+                <h2 tabIndex={0} style={{background:"blue",color:'white'}}>Current Lesson : {title}</h2>
+                    <aside class="page-rightbar">
+                        <div class="content">
+                        <Dropdown>
+                            <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
+                                Select Chapters
+                            </Dropdown.Toggle>
 
-            <div className='grid'>
-
-                <aside class="page-rightbar">
-                    <div class="content">
-                    <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
-                            Select Chapters
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu>
-                            {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}
-                            {enrolled.map(course=>{
-                                if(course.coursename === name && (`${course.status}` === "true")){
-                                    //setNum(prev=>prev+1)
-                                    console.log("statussssss",course.status)
-                                    return CreateQuestionList("true")
-                                }if(course.coursename === name  && (`${course.status}` === "false") ){
-                                    //setNum(prev=>prev+1)
-                                    return CreateQuestionList("false")
-                                }
-                            })}
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    
-                    {role === 'teacher' &&
-                        <div className="mb-4">
-                            <br></br>
-                            <br></br>
-                            <Button variant="danger" size="lg" href='/course/create'>
-                                Add Chapters
-                            </Button>
-                            <br></br>
-                            <br></br>
-                            <Button variant="warning" size="lg" href={`/course/edit/${id}`}>
-                                edit course
-                            </Button>
-                        </div>
-                    }
-                            
-                        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-                        <br></br><br></br><br></br><br></br><br></br><br></br>     
-                        {/*enrolled.map(course=>{
-                        if(course.coursename === name && (`${course.status}` === "true")){
-                            //setNum(prev=>prev+1)
-                            console.log("statussssss",course.status)
-                            //return CreateQuestionList("false")
-                        }else if(course.coursename === name  && (`${course.status}` === "false") ){
-                            //setNum(prev=>prev+1)
-                            //return CreateQuestionList("true")
-                        }
+                            <Dropdown.Menu>
+                                {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}
+                                {enrolled.map(course=>{
+                                    if(course.coursename === name && (`${course.status}` === "true")){
+                                        //setNum(prev=>prev+1)
+                                        console.log("statussssss",course.status)
+                                        return CreateQuestionList("true")
+                                    }if(course.coursename === name  && (`${course.status}` === "false") ){
+                                        //setNum(prev=>prev+1)
+                                        return CreateQuestionList("false")
+                                    }
+                                })}
+                            </Dropdown.Menu>
+                        </Dropdown>
                         
-                        })*/}
-        
+                        {role === 'teacher' &&
+                            <div className="mb-4">
+                                <br></br>
+                                <br></br>
+                                <Button variant="danger" size="lg" href='/course/create'>
+                                    Add Chapters
+                                </Button>
+                                <br></br>
+                                <br></br>
+                                <Button variant="warning" size="lg" href={`/course/edit/${id}`}>
+                                    edit course
+                                </Button>
+                            </div>
+                        }
                                 
-                        {`${enrollStatus}`=== "true" &&
-                            //<Button onClick={()=>{Enroll()}} disabled >enroll</Button>
-                            <></>
-                        }
-                        {(`${enrollStatus}`=== "false" && role === "student") &&
-                            <Button onClick={()=>{Enroll()}} >Enroll</Button>
-                        }
-                    </div>
-                </aside>
+                            <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                            <br></br><br></br><br></br><br></br><br></br><br></br>     
+                            {/*enrolled.map(course=>{
+                            if(course.coursename === name && (`${course.status}` === "true")){
+                                //setNum(prev=>prev+1)
+                                console.log("statussssss",course.status)
+                                //return CreateQuestionList("false")
+                            }else if(course.coursename === name  && (`${course.status}` === "false") ){
+                                //setNum(prev=>prev+1)
+                                //return CreateQuestionList("true")
+                            }
+                            
+                            })*/}
             
+                                    
+                            {`${enrollStatus}`=== "true" &&
+                                //<Button onClick={()=>{Enroll()}} disabled >enroll</Button>
+                                <></>
+                            }
+                            {(`${enrollStatus}`=== "false" && role === "student") &&
+                                <Button onClick={()=>{Enroll()}} >Enroll</Button>
+                            }
+                        </div>
+                    </aside>
+                
+                    
+
+                    <main class="page-main">
+                        <div class="content">
+                            {onQuiz ? (
+                                <Quiz/>
+                            ) : (
+                            <>
+                            <video
+                                id="my-video"
+                                class="video-js"
+                                controls
+                                preload='metadata'
+                                width='720' 
+                                height="480"
+                                autoplay
             
+                                poster="../../uploads/images/video-player.jpg"
+                                data-setup="{}"
 
-                <main class="page-main">
-                    <div class="content">
-                        {onQuiz ? (
-                            <Quiz/>
-                        ) : (
-                        <>
-                        <video
-                            id="my-video"
-                            class="video-js"
-                            controls
-                            preload='metadata'
-                            width='720' 
-                            height="480"
-                            autoplay
-        
-                            poster="../../uploads/images/video-player.jpg"
-                            data-setup="{}"
+                            >
+                            
 
-                        >
-                        <source src="" type='type/mp4' ></source>
+                            </video></>
 
-                        </video></>
-
+                
+                            )}
             
-                        )}
-        
-                    </div>
-                </main>
-        
-                {/* <summary class="page-details">
-                    <div class="content">
-                        <p>{Duration}</p>
-                    </div>
-                </summary> */}
+                        </div>
+                    </main>
             
+                    {/* <summary class="page-details">
+                        <div class="content">
+                            <p>{Duration}</p>
+                        </div>
+                    </summary> */}
+                
 
-            </div>
-
+                </div>
+            </main>
             </div>
             
         </div>

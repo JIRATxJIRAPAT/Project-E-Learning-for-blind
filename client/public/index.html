@@ -73,9 +73,14 @@
     var slider = localStorage.getItem('pass_val');
     var vol_int = localStorage.getItem('pass_val2');;// 0 ถึง1 เป็นระดับความดัง
     var int = 0;
-    //console.log(msg.volume,'volume base')
     msg.volume = vol_int;
-    console.log(msg.volume,'volume')
+    console.log(msg.volume,'volume now')
+
+    
+  
+  
+    //console.log(msg.volume,'volume base')
+
 
     const speechHandler = (txt) => {
       msg.text = txt
@@ -177,22 +182,20 @@
 
     window.addEventListener('load', (event) => {
       
-      const text = document.getElementsByClassName("example")
-      //const topic = document.getElementsByClassName("topic")[0].innerHTML
-      //call.push(topic)      
+      const text = document.getElementsByClassName("example")   
 
       max = text.length
       for (let i = 0; i < text.length; i++) {
         quote.push(text[i].innerHTML);
-        //quote.push(text[i].placeholder);
-        //localStorage.setItem(`word ${i}`,text[i].innerHTML)
-        //console.log(quote)
+
       }
       
-      //console.log("lenght:",max)
+      if( localStorage.getItem("lang") === "undefined"){
+        localStorage.setItem("lang","english")
+      }
+    
 
-      //console.log("placeholder",ex.placeholder)
-      //document.getElementById("first").focus();
+
       
 
     });
@@ -226,7 +229,7 @@
         
       }
      if(e.key === "Tab" && (document.activeElement.tagName === "INPUT")){
-        console.log("count2:",document.activeElement.innerHTML)
+        console.log("count2:",document.activeElement.tagName)
         //console.log("Index tab:",document.activeElement.placeholder)
         //console.log("word",quote[count])
         speechHandler(document.activeElement.placeholder)
@@ -316,7 +319,11 @@
   <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
 
   <script>
-        
+        var question = document.getElementById("skip")
+        question.addEventListener("focus",(e)=>{
+          console.log("question")
+          speechHandler(question.innerHTML)
+        })
   </script>
   <!-- Javascript -->          
   <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 

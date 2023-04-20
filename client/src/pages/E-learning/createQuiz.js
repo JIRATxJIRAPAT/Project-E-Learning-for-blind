@@ -59,33 +59,34 @@ function CreateQuiz() {
         <Navbar1/>
         <div className='box_course'>
             <div className='inner_box_course'>
-                <Form onSubmit={onSubmit} encType="multipart/form-data">
-                    <Form.Group className="mb-3" controlId="name">
-                        <Form.Label>Question</Form.Label>
-                        <Form.Control type="text" placeholder={`Question`} onChange={(e) => setQuestion(e.target.value)} />
-                    </Form.Group>
+                <main id="main-content">
+                    <Form onSubmit={onSubmit} encType="multipart/form-data">
+                        <Form.Group className="mb-3" controlId="name">
+                            <Form.Label>Question</Form.Label>
+                            <Form.Control type="text" placeholder={`Question`} onChange={(e) => setQuestion(e.target.value)} />
+                        </Form.Group>
+                        
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                            <Form.Label>Answer</Form.Label>
+                            <Form.Control type="text" rows={3} placeholder={`Answer`} onChange={(e) => setAnswer(e.target.value)} />
+                        </Form.Group>
                     
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Answer</Form.Label>
-                        <Form.Control type="text" rows={3} placeholder={`Answer`} onChange={(e) => setAnswer(e.target.value)} />
-                    </Form.Group>
-                
-                    <Form.Group className="mb-3" controlId="name">
-                        <Form.Label>Choice1</Form.Label>
-                        <Form.Control type="text" placeholder={`choice 1`} onChange={(e) => setChoice(e.target.value)} />
-                    </Form.Group>
+                        <Form.Group className="mb-3" controlId="name">
+                            <Form.Label>Choice1</Form.Label>
+                            <Form.Control type="text" placeholder={`choice 1`} onChange={(e) => setChoice(e.target.value)} />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="name">
-                        <Form.Label>Choice2</Form.Label>
-                        <Form.Control type="text" placeholder={`choice 2`} onChange={(e) => setChoice2(e.target.value)} />
-                    </Form.Group>
-                
-                
+                        <Form.Group className="mb-3" controlId="name">
+                            <Form.Label>Choice2</Form.Label>
+                            <Form.Control type="text" placeholder={`choice 2`} onChange={(e) => setChoice2(e.target.value)} />
+                        </Form.Group>
                     
-                    <br></br><br></br>
-                    <Button variant="success" type="sumbit">submit</Button>
-                </Form>
-
+                    
+                        
+                        <br></br><br></br>
+                        <Button variant="success" type="sumbit">submit</Button>
+                    </Form>
+                </main>
             </div>
         </div>
         {role !== "teacher" && 
