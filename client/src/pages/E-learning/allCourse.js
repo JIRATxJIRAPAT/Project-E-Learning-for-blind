@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+
 import Navbar1 from '../../components/Navbar'
 import CourseCard from '../../components/CourseCard'
-import Card2 from '../../components/Card2'
+
 import "../../css/card2.css"
 
 import Button from 'react-bootstrap/Button';
