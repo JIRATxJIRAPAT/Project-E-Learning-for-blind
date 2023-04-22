@@ -11,6 +11,10 @@ import Navbar1 from "../../components/Navbar";
 
 function CreateChapter() {
 
+    useEffect(() => {
+        document.title = 'Create Chapter page';
+      }, []);
+
     const [imageUpload, setImageUpload] = useState(null);
     const [url,setUrl] = useState("");
     const {id} = useParams();
@@ -18,9 +22,12 @@ function CreateChapter() {
     const [epiname,setEpiName] = useState('');
     const [role,setRole] = useState('')
     
+    
+
     const uploadFile = async(e) => {
         e.preventDefault()
-        if (imageUpload == null) return;
+        
+        if (imageUpload === null) return;
         const imageRef = ref(storage, `images/${imageUpload.name}`);
 
         await uploadBytes(imageRef, imageUpload).then(() => {
@@ -52,6 +59,30 @@ function CreateChapter() {
     },[url])
 
 
+    const msg2 = new SpeechSynthesisUtterance() 
+    function check_file(){
+
+        if(imageUpload==null){
+
+            console.log("sssssxxxx",epiname,epiname.value,imageUpload)
+            if(epiname === ""){
+                msg2.text = "please Enter File and chapter name"
+            }else{
+                msg2.text = "please Enter File"
+            }
+            window.speechSynthesis.speak(msg2)
+        }else{
+            if(epiname === ""){
+                msg2.text = "please Enter chapter name"
+            }else{
+                msg2.text = "upload success"
+            }
+            window.speechSynthesis.speak(msg2)
+        }
+        
+    }
+
+
   return (
     <Fragment>
         <Navbar1/>
@@ -79,16 +110,18 @@ function CreateChapter() {
                         name="videos"
                         id="videos"
                         multiple
+                        required
                         className="form-control"
                         accept=".mp4, .mkv"
+                        placeholder="upload file"
                         onChange={(e) => {
                             setImageUpload(e.target.files[0]);
                         }}
-                        placeholder="upload file"
+                        
                         />
                     </div>
                     <br></br>
-                    <button type="submit" className="btn btn-primary mt-2">
+                    <button type="submit" onClick={() => check_file()} className="btn btn-primary mt-2">
                         Submit
                     </button>
             </form>

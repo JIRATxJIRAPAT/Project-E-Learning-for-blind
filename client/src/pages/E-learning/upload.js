@@ -12,6 +12,10 @@ import Navbar1 from '../../components/Navbar'
 
 function Firebase_upload() {
 
+    useEffect(() => {
+        document.title = 'Upload page';
+      }, []);
+
     const [imageUpload, setImageUpload] = useState(null);
     const [url,setUrl] = useState("");
     const {id} = useParams();

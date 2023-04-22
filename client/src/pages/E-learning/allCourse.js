@@ -36,6 +36,10 @@ function CreateCourseCard(course,key){
 
 const AllCourse = () => {
 
+    useEffect(() => {
+        document.title = 'All Course page';
+      }, []);
+
     const [courses,setCourse] = useState([])
     const [role,setRole] = useState('')
     

@@ -172,7 +172,7 @@ app.put("/api/course/edit/:id",(req,res)=>{
             Course.findById(req.params.id)
             .then(course => {
                 course.name = req.body.name;
-                course.img = req.file.originalname;
+                course.img = req.body.img; /////
                 course.desc = req.body.desc;
                 //course.episodes.name = req.body.episodeName;
                 course.pass_score = 2;
@@ -478,6 +478,28 @@ app.get("/api/audiobook/:id",(req,res)=>{
     AudioBook.findById(req.params.id)
     .then(course => res.json(course))
     .catch((err)=> res.status(400).json(`Error: ${err}`))
+})
+
+app.put("/api/audiobook/edit/:id",(req,res)=>{
+    upload(req,res,(err)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            
+            AudioBook.findById(req.params.id)
+            .then(audiobook => {
+                audiobook.name = req.body.name;
+                audiobook.desc = req.body.desc;
+
+                audiobook
+                    .save()
+                    .then(() => res.json("Data update completed!!"))
+                    .catch(err => res.status(400).json(`Error: ${err}`))
+            })
+            .catch((err)=> res.status(400).json(`Error: ${err}`))
+        }
+    })
 })
 
 

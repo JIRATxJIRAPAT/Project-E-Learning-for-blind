@@ -71,7 +71,7 @@ function Navbar1() {
                 <NavDropdown.Item href="/radio"className='example'>
                 {content.value6}
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2"className='example'>
+                <NavDropdown.Item href="/helpcenter"className='example'>
                 {content.value7}
                 </NavDropdown.Item>
               </NavDropdown>

@@ -9,12 +9,16 @@ import vmsg from "vmsg";
 import Navbar1 from "../../components/Navbar";
 import "../../css/audio.css";
 import Button from "react-bootstrap/esm/Button";
+import DocumentTitle from "react-document-title"
+
+
 
 
 const recorder = new vmsg.Recorder({
     wasmURL: "https://unpkg.com/vmsg@0.3.0/vmsg.wasm"
+
   });
-   
+
 class Recorder extends React.Component {
 
     state = {
@@ -45,11 +49,14 @@ class Recorder extends React.Component {
           this.setState({ isLoading: false });
         }
       }
-
+      
+      
 };
     render() {
       const { isLoading, isRecording, recordings } = this.state;
+      
       return (
+        <DocumentTitle title="Audio Record">
         <React.Fragment>
           <Navbar1/>
           <div className="box">
@@ -71,6 +78,8 @@ class Recorder extends React.Component {
                     <br></br><br></br>
                     Please download record file to upload
                     {console.log(url)}
+                    <br></br><br></br>
+                    <Button variant="success" size="lg" href="/audiobook" >Return to AudioPage </Button>
                   </li>
                 ))}
               </ul>
@@ -79,6 +88,7 @@ class Recorder extends React.Component {
           
           </div>
         </React.Fragment>
+        </DocumentTitle>
       );
     }
   }

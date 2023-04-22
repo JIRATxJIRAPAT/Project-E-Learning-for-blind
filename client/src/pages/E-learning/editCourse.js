@@ -5,8 +5,15 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import "../../css/course.css"
 import Navbar1 from '../../components/Navbar'
+import { ref, uploadBytes, getBytes, getDownloadURL,} from "firebase/storage";
+import { storage } from "../../../src/firebase";
 
 function EditCourse() {
+
+    useEffect(() => {
+        document.title = 'Edit Course page';
+      }, []);
+
     const [name, setCourseName] = useState('');
 	const [img, setPic] = useState('');
     const [desc ,setDescription] = useState('');
@@ -14,6 +21,8 @@ function EditCourse() {
     const [num,setNum] = useState('');
     const {id} = useParams();
     const [role,setRole] = useState('')
+    const [url,setUrl] = useState("");
+    const [imageUpload, setImageUpload] = useState(null);
 
     //test
     const [oldname, setOldCourseName] = useState('');
@@ -42,14 +51,10 @@ function EditCourse() {
 
       },[]);
 
-    async function onSubmit(event) {
-		event.preventDefault()
-        
-        
-        console.log(name)
-        console.log(img)
-        console.log(desc)
-     
+    
+
+    /*async function onSubmit(event) {
+
         const formData = new FormData();
         formData.append("name",name)
         formData.append("testImage",img)
@@ -62,7 +67,75 @@ function EditCourse() {
         .catch((err)=>{
             console.log(err);
         })
+	}*/
+
+    async function onSubmit(event) {
+		event.preventDefault()
+        
+        if (imageUpload == null) {window.speechSynthesis.speak(msg2)};
+        const imageRef = ref(storage, `picture/${imageUpload.name}`);
+
+        await uploadBytes(imageRef, imageUpload).then(() => {
+            alert("Image Upload Success")
+        })
+
+        await getDownloadURL(imageRef).then((url) => {
+          setUrl(url)
+          console.log(url)
+        }).catch((err)=>{
+            console.log(err);
+        })
+        
 	}
+
+    useEffect(()=>{
+           
+        const formData = new FormData();
+        formData.append("name",name)
+        formData.append("img",`${url}`)
+        formData.append("desc",desc)
+        formData.append("episodeName",epiname)
+		
+        console.log(formData)
+		axios.put(`https://e-learning-backends.onrender.com/api/course/edit/${id}`,formData)
+        .then((res)=>console.log(res.data))
+        .catch((err)=>{
+            console.log(err);
+        })
+        
+    },[url])
+
+        const msg2 = new SpeechSynthesisUtterance() 
+        const msg3 = new SpeechSynthesisUtterance() 
+        msg3.text = "Please enter"
+        const msg4 = new SpeechSynthesisUtterance()
+        msg4.text = "Upload Success"
+        function check_file(){
+    
+            var txt1 = "Course name"
+            var txt2 = "Description"
+            var txt3 = "Files"
+
+            console.log(name,"name")
+            console.log(desc,"desc")
+            console.log(imageUpload,"img")
+
+            if(name===""){
+                msg2.text += txt1
+            }
+            if(desc===""){
+                msg2.text += txt2
+            }
+            if(imageUpload==null){
+                msg2.text += txt3
+            }
+            if(msg2.text===""){
+                window.speechSynthesis.speak(msg4)
+            }else{
+                window.speechSynthesis.speak(msg3)
+                window.speechSynthesis.speak(msg2)
+            }
+        }
     
     return(
     <div>
@@ -71,7 +144,7 @@ function EditCourse() {
         <div className='box_course'>
             <div className='inner_box_course'>
                 <main id="main-content">
-                    <Form onSubmit={onSubmit} encType="multipart/form-data">
+                    <Form onSubmit={onSubmit} encType="multipart/form-data" >
                         <Form.Group className="mb-3" controlId="name">
                             <Form.Label>Course setName</Form.Label>
                             <Form.Control type="text" placeholder={`old: ${oldname}`} onChange={(e) => setCourseName(e.target.value)} />
@@ -83,11 +156,11 @@ function EditCourse() {
                         </Form.Group>
                         <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label>Default file input example</Form.Label>
-                            <Form.Control type="file" filename="testImage" onChange={(e) => setPic(e.target.files[0])}/>
+                            <Form.Control type="file" required filename="testImage" placeholder="please enter files" onChange={(e) => setImageUpload(e.target.files[0])}/>
                         </Form.Group>
 
 
-                        <Button variant="success" type="sumbit">submit</Button>
+                        <Button variant="success" onClick={() => check_file()}  type="sumbit">submit</Button>
                     </Form>
                 </main>
             </div>

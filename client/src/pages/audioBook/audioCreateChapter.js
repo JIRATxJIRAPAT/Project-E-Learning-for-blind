@@ -7,11 +7,16 @@ import { useParams } from 'react-router-dom'
 import Translation from "../Dataset/Data_upload_form.json"
 import "../../css/audio.css";
 import Navbar1 from '../../components/Navbar'
+import Button from 'react-bootstrap/Button'
 
 
 
 
 function CreateAudioChapter() {
+
+    useEffect(() => {
+        document.title = 'Upload Audio page';
+      }, []);
 
     const [imageUpload, setImageUpload] = useState(null);
     const [url,setUrl] = useState("");
@@ -70,6 +75,29 @@ function CreateAudioChapter() {
         
     };
 
+    const msg2 = new SpeechSynthesisUtterance() 
+    function check_file(){
+
+        if(imageUpload==null){
+
+            console.log("sssssxxxx",epiname,epiname.value,imageUpload)
+            if(epiname === ""){
+                msg2.text = "please Enter File and title name"
+            }else{
+                msg2.text = "please Enter File"
+            }
+            window.speechSynthesis.speak(msg2)
+        }else{
+            if(epiname === ""){
+                msg2.text = "please Enter title name"
+            }else{
+                msg2.text = "upload success"
+            }
+            window.speechSynthesis.speak(msg2)
+        }
+        
+    }
+
   return (
     <div>
 
@@ -83,6 +111,7 @@ function CreateAudioChapter() {
                     type="text"
                     name="name"
                     id="name"
+                    placeholder="title"
                     className="form-control"
                     onChange={(e) => setEpiName(e.target.value)}
                     />
@@ -96,6 +125,8 @@ function CreateAudioChapter() {
                     name="videos"
                     id="videos"
                     multiple
+                    placeholder="please enter files"
+                    required
                     className="form-control"
                     accept=".mp3"
                     onChange={(e) => {
@@ -104,9 +135,14 @@ function CreateAudioChapter() {
                     />
                 </div>
                 <br></br> 
-                <button type="submit" className="btn btn-success" >
+                <button type="submit" onClick={() => check_file()} className="btn btn-success" >
                 {content.value3}
                 </button>
+
+                <br></br><br></br><br></br><br></br><br></br>
+                <div>
+                <Button variant="danger" size="md" href={`/audiobook/record/`} >Record Audio</Button>
+                </div>
             </form>
         </main>
     </div>

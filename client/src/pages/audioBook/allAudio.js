@@ -36,6 +36,11 @@ function CreateAudioCard(audio,key){
 
 
 const AllAudioBook = () => {
+
+    useEffect(() => {
+        document.title = 'All AudioBook page';
+      }, []);
+
     //Data
     const [allAudio,setAllAudio] = useState([])
     const [items, setItem] = useState([]);

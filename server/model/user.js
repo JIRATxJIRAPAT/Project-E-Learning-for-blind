@@ -16,7 +16,7 @@ const followerSchema = new mongoose.Schema({
 });
 
 const owned_course = new mongoose.Schema({
-    course_id: {type: String,require: true,unique:true},
+    course_id: {type: String,require: true},
     coursename: {type: String}, 
 })
 

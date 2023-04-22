@@ -8,6 +8,11 @@ import "../../css/course.css"
 import Navbar1 from '../../components/Navbar'
 
 function CreateQuiz() {
+
+    useEffect(() => {
+        document.title = 'Create Quiz page';
+      }, []);
+
     const [question, setQuestion] = useState('');
     const [answer,setAnswer] = useState('');
     const [choiceText,setChoice] = useState('');
@@ -53,6 +58,45 @@ function CreateQuiz() {
         
 
 	}
+
+        const msg2 = new SpeechSynthesisUtterance() 
+        const msg3 = new SpeechSynthesisUtterance() 
+        msg3.text = "Please enter"
+        const msg4 = new SpeechSynthesisUtterance()
+        msg4.text = "Upload Success"
+        function check_file(){
+    
+            var txt1 = "Question"
+            var txt2 = "Answer"
+            var txt3 = "Choice one"
+            var txt4 = "Choice two"
+
+            console.log(question,"qst")
+            console.log(answer,"ans")
+            console.log(choiceText,"ch1")
+            console.log(choice2Text,"ch2")
+
+            if(question===""){
+                msg2.text += txt1
+            }
+            if(answer===""){
+                msg2.text += txt2
+            }
+            if(choiceText===""){
+                msg2.text += txt3
+            }
+            if(choice2Text===""){
+                msg2.text += txt4
+            }
+            
+            if(msg2.text===""){
+                window.speechSynthesis.speak(msg4)
+            }else{
+                window.speechSynthesis.speak(msg3)
+                window.speechSynthesis.speak(msg2)
+            }
+        }
+
     
     return(
     <div>
@@ -63,10 +107,10 @@ function CreateQuiz() {
                     <Form onSubmit={onSubmit} encType="multipart/form-data">
                         <Form.Group className="mb-3" controlId="name">
                             <Form.Label>Question</Form.Label>
-                            <Form.Control type="text" placeholder={`Question`} onChange={(e) => setQuestion(e.target.value)} />
+                            <Form.Control type="text" required placeholder={`Question`} onChange={(e) => setQuestion(e.target.value)} />
                         </Form.Group>
                         
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                        <Form.Group className="mb-3" controlId="name">
                             <Form.Label>Answer</Form.Label>
                             <Form.Control type="text" rows={3} placeholder={`Answer`} onChange={(e) => setAnswer(e.target.value)} />
                         </Form.Group>
@@ -84,7 +128,7 @@ function CreateQuiz() {
                     
                         
                         <br></br><br></br>
-                        <Button variant="success" type="sumbit">submit</Button>
+                        <Button variant="success" type="sumbit" onClick={() => check_file()} >submit</Button>
                     </Form>
                 </main>
             </div>

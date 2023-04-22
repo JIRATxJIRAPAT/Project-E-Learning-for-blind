@@ -34,6 +34,10 @@ import Quiz2 from "./E-learning/quiz2";
 import FM93 from "../RadioFM/fm93";
 import LandingPage from "./landing";
 import RadioFM from "../spotify_music/radio";
+import HelpCenter from "./help_center";
+import HelpCenterVideo from "./help_center_video";
+import EditAudioBook from "./audioBook/editAudioBook";
+import CourseDetail from "./E-learning/course_detail";
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -79,6 +83,7 @@ function AnimatedRoutes() {
             <Route path="/audiobook/create" element={<BasicExample/>} />
             <Route path="/audiobook/record" element={<Recorder/>} />
             <Route path="/audiobook/chapter/create/:id" element={<Mp3_upload/>} />
+            <Route path="/audiobook/edit/:id" element={<EditAudioBook/>} />
 
             {/* <Route path="/audiobook/create" element={<BasicExample/>} /> */}
             <Route path="/audiobook/create/:id" element={<Mp3Upload/>} />
@@ -87,6 +92,9 @@ function AnimatedRoutes() {
             <Route path="/radio" element={<RadioFM />} />
             <Route path="/radioFM" element={<FM93 />} />
             <Route path="/landing" element={<LandingPage />} />
+            <Route path="/helpcenter" element={<HelpCenter />} />
+            <Route path="/helpcenter/video" element={<HelpCenterVideo />} />
+            <Route path="/course/detail/:id" element={<CourseDetail />} />
             
           </Routes>
         </AnimatePresence>
