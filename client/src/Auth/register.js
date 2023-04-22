@@ -4,8 +4,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -39,20 +37,12 @@ export default function SignUp() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const data = new FormData(event.currentTarget);
-		console.log({
-		email: data.get('email'),
-		password: data.get('password'),
-		});
-	};
 	
 	async function registerUser(event) {
 
 		event.preventDefault()
 
-		const response = await fetch('https://e-learning-backends.onrender.com/api/register', {
+		const response = await fetch('http://localhost:5000/api/register', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
