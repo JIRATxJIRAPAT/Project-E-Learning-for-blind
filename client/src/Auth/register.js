@@ -1,9 +1,11 @@
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -13,7 +15,6 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "../css/Auth.css"
 import Navbar1 from "../components/Navbar"
-import { FormGroup } from '@mui/material';
 
 function Copyright(props) {
   return (
@@ -31,19 +32,14 @@ const theme = createTheme();
 
 export default function SignUp() {
 
-  useEffect(() => {
-    document.title = 'Register page';
-  }, []);
-
 	const navigate = useNavigate()
 
 	const [name, setName] = useState('')
 	const [lastname, setLastName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-  const [role, setRole] = useState('')
 
-	
+
 	async function registerUser(event) {
 
 		event.preventDefault()
@@ -57,7 +53,7 @@ export default function SignUp() {
 				name,
 				email,
 				password,
-				role
+				role:"student"
 			}),
 		})
 
@@ -73,11 +69,9 @@ export default function SignUp() {
       <Navbar1/>
       <div className='box_auth'>
         <div className='inner_box_auth'>
-          
         <ThemeProvider theme={theme}>
           <Container component="main" maxWidth="xs">
             <CssBaseline />
-            
             <Box
               sx={{
                 marginTop: 8,
@@ -148,42 +142,12 @@ export default function SignUp() {
                     
                   </Grid>
                 </Grid>
-
-                <br></br>
-                Select Role
-
-                {/* <FormGroup>
-                  <FormControlLabel control={()=>{setRole("teacher")}} label="teacher" />
-                  <FormControlLabel control={()=>{setRole("student")}} label="student" />
-                </FormGroup> */}
-
-                {/* <Checkbox
-                  label="teacher"
-                  checked=""
-                  onChange={()=>{setRole("teacher")}}
-                  inputProps={{ 'aria-label': 'controlled' }}
-                />
-
-                <Checkbox 
-                  label="student"
-                  unchecked
-                  onChange={()=>{setRole("student")}}
-                  inputProps={{ 'aria-label': 'controlled' }}
-                /> */}
-                <FormGroup>
-                  <FormControlLabel placeholder='teacher' control={<Checkbox />} onClick={()=>{setRole("teacher")}} label="teacher" />
-                  <FormControlLabel placeholder='student' control={<Checkbox />} onClick={()=>{setRole("student")}} label="student" />
-                </FormGroup>
-
-                {console.log("xxxxxxaaaaaxxxx",role)}
-
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-
                   Sign Up
                 </Button>
                 <Grid container justifyContent="flex-end">
@@ -195,12 +159,9 @@ export default function SignUp() {
                 </Grid>
               </Box>
             </Box>
-            
-              
             <Copyright sx={{ mt: 5 }} />
           </Container>
         </ThemeProvider>
-        
 
         </div>
       </div>
