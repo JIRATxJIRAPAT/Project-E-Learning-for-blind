@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {RadioBrowserApi} from "../radio-browser-api"
+import {RadioBrowserApi} from "radio-browser"
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import defaultImage from "./default.jpg";
