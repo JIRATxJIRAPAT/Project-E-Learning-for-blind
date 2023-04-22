@@ -55,7 +55,7 @@ export class RadioBrowserApi {
      }
     const response = await fetch(
       // this should be https when the above issue is resolved
-      'http://all.api.radio-browser.info/json/servers',
+      'https://de1.api.radio-browser.info/json/servers',
       config
     )
     if (response.ok) {
