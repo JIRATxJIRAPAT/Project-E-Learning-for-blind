@@ -31,6 +31,11 @@ import Navbar1 from '../../components/Navbar'
 */
 
 function CreateCourse() {
+
+    useEffect(() => {
+        document.title = 'Create Course page';
+      }, []);
+
     const [name, setName] = useState('')
 	const [img, setPic] = useState('')
     const [desc ,setDescription] = useState('')
@@ -61,6 +66,8 @@ function CreateCourse() {
 
         setRole(localStorage.getItem('role'))
     },[]);
+
+    
 
     async function onSubmit(event) {
 		event.preventDefault()
@@ -104,6 +111,43 @@ function CreateCourse() {
             }
         },[url])
 
+        const msg2 = new SpeechSynthesisUtterance() 
+        const msg3 = new SpeechSynthesisUtterance() 
+        msg3.text = "Please enter"
+        const msg4 = new SpeechSynthesisUtterance()
+        msg4.text = "Upload Success"
+        function check_file(){
+    
+            var txt1 = "Course name"
+            var txt2 = "Files"
+            var txt3 = "Description"
+            var txt4 = "Pass score"
+
+            console.log(name,"name")
+            console.log(desc,"desc")
+            console.log(pass_score,"pass")
+
+            if(name===""){
+                msg2.text += txt1
+            }
+            if(imageUpload==null){
+                msg2.text += txt2
+            }
+            if(desc===""){
+                msg2.text += txt3
+            }
+            if(pass_score===0){
+                msg2.text += txt4
+            }
+            
+            if(msg2.text===""){
+                window.speechSynthesis.speak(msg4)
+            }else{
+                window.speechSynthesis.speak(msg3)
+                window.speechSynthesis.speak(msg2)
+            }
+        }
+
     
     return(
         <div>
@@ -119,7 +163,7 @@ function CreateCourse() {
                         </Form.Group>
                         <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label >Default file input example</Form.Label>
-                            <Form.Control type="file" accept=".jpg,.png" placeholder="press enter to put files" filename="testImage" onChange={(e) => setImageUpload(e.target.files[0])}/>
+                            <Form.Control type="file" required accept=".jpg,.png" placeholder="press enter to put files" filename="testImage" onChange={(e) => setImageUpload(e.target.files[0])}/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label >Description</Form.Label>
@@ -131,7 +175,7 @@ function CreateCourse() {
                             <Form.Control type="number" placeholder="enter pass score for quiz" onChange={(e) => setPassScore(parseInt(e.target.value))} />
                         </Form.Group>
 
-                        <Button variant="success" type="sumbit">submit</Button>
+                        <Button variant="success" onClick={() => check_file()} type="sumbit">submit</Button>
                         </Form>
                         </main>
                     </div>

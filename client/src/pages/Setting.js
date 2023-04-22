@@ -14,6 +14,10 @@ import Translation2 from '../pages/Dataset/Data_navbar.json';
 
 function Setting() {
 
+    useEffect(() => {
+        document.title = 'Setting page';
+      }, []);
+
     const navigate = useNavigate()
     
     const [language,setLanguage]=useState("")

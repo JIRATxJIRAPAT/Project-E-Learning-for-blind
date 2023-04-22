@@ -5,14 +5,18 @@
     width: 240px;
     margin: 16px;
     float: left;
-    height: 400px;
+    max-height: 1000px;
+    height: 500px;
     font-size: medium;
+    font-weight: bold;
+    position: fixed;
+    background: rgba(81, 178, 210, 0.507);
   }
 
   .rectangle {
     width: 24rem;
     height: 14rem;
-    background: rgb(0, 119, 128);
+    background: rgb(43, 126, 137);
   }
 
   .container {
@@ -26,4 +30,8 @@
   .card {
     width: 150px; /*or whatever size card you want*/
     border: 5px solid red;
+  }
+
+  .body_color {
+    background-color: rgba(72, 19, 110, 0.507);
   }

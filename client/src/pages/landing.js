@@ -5,6 +5,10 @@ import Button from 'react-bootstrap/Button';
 import Translation from './Dataset/Data_setting.json';
 function LandingPage() {
 
+    useEffect(() => {
+        document.title = 'Home page';
+      }, []);
+
     const [language,setLanguage]=useState("english")
     const [content,setContent]=useState({})
 

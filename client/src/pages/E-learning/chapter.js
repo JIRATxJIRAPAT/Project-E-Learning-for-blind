@@ -9,6 +9,11 @@ import Navbar1 from '../../components/Navbar'
 
 
 const Chapter = () => {
+
+    useEffect(() => {
+        document.title = 'Chapter page';
+      }, []);
+
     const [name, setCourseName] = useState('')
 	const [img, setPic] = useState('')
     const [desc,setDescription] = useState('')

@@ -46,11 +46,15 @@ const names = [
 
 function CreateAudioBook() {
 
+    useEffect(() => {
+      document.title = 'Create Audio page';
+    }, []);
+
     const navigate = useNavigate();
 
     const [audioBookName,setAudioBookName] = useState('')
     const [desc,setDesc] = useState('')
-    const [personName, setPersonName] = useState([]);
+    const [category, setCategory] = useState([]);
     const [username, setUsername] = useState('')
     const [userid,setUserID] = useState('')
 
@@ -58,7 +62,7 @@ function CreateAudioBook() {
       const {
         target: { value },
       } = event;
-      setPersonName(
+      setCategory(
         // On autofill we get a stringified value.
         typeof value === 'string' ? value.split(',') : value,
       );
@@ -89,7 +93,7 @@ function CreateAudioBook() {
         const formData = new FormData();
         formData.append("audioBookName",audioBookName)
         formData.append("desc",desc)
-        formData.append("category",personName.toString())
+        formData.append("category",category.toString())
         formData.append("username",username)        
         formData.append("userid",userid)
        
@@ -104,6 +108,39 @@ function CreateAudioBook() {
               console.log(err);
         })
     }
+
+        const msg2 = new SpeechSynthesisUtterance() 
+        const msg3 = new SpeechSynthesisUtterance() 
+        msg3.text = "Please enter"
+        const msg4 = new SpeechSynthesisUtterance()
+        msg4.text = "Upload Success"
+        function check_file(){
+    
+            var txt1 = "Audio name"
+            var txt2 = "Description"
+            var txt3 = "category"
+
+            console.log(audioBookName,"audio")
+            console.log(desc,"desc")
+            console.log(category,category.value,category.toString(), "cate")
+
+            if(audioBookName===""){
+                msg2.text += txt1
+            }
+            if(desc===""){
+                msg2.text += txt2
+            }
+            if(category.toString()===""){
+                msg2.text += txt3
+            }      
+            if(msg2.text===""){
+              console.log(msg2.text,"dsfdsf")
+                window.speechSynthesis.speak(msg4)
+            }else{
+                window.speechSynthesis.speak(msg3)
+                window.speechSynthesis.speak(msg2)
+            }
+        }
 
 
   return (
@@ -120,7 +157,7 @@ function CreateAudioBook() {
                     </Form.Group>
                     <br></br>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                      <Form.Label>Descriptions</Form.Label>
+                      <Form.Label >Descriptions</Form.Label>
                       <Form.Control type="text" placeholder="enter description" size='lg' onChange={(e) => setDesc(e.target.value)}/>
                     </Form.Group>
 
@@ -134,16 +171,17 @@ function CreateAudioBook() {
                         labelId="demo-multiple-checkbox-label"
                         id="demo-multiple-checkbox"
                         multiple
-                        value={personName}
+                        value={category}
                         onChange={handleChange}
                         input={<OutlinedInput label="Tag" />}
                         renderValue={(selected) => selected.join(', ')}
                         MenuProps={MenuProps}
+                        required
                         
                         >
                         {names.map((name) => (
                             <MenuItem key={name} value={name}>
-                            <Checkbox checked={personName.indexOf(name) > -1} />
+                            <Checkbox checked={category.indexOf(name) > -1} />
                             <ListItemText primary={name} />
                             </MenuItem>
                         ))}
@@ -154,7 +192,7 @@ function CreateAudioBook() {
 
                 <hr className="mx-n3" />
 
-                <MDBBtn className='my-4' size='lg' type="submit" >submit</MDBBtn>
+                <MDBBtn className='my-4' size='lg' type="submit" onClick={() => check_file()} >submit</MDBBtn>
 
      
    

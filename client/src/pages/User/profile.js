@@ -10,6 +10,11 @@ import "../../css/Auth.css";
 
 
 function Profile() {
+
+    useEffect(() => {
+      document.title = 'Profile page';
+    }, []);
+
     const [username,setUserName] = useState("")
     const [enrolled,setEnrolled] = useState([])
     const [role,setRole] = useState('')

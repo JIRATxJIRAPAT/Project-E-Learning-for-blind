@@ -17,6 +17,11 @@ import 'video.js/dist/video-js.css';
 
 
 const AudioBook = () => {
+
+    useEffect(() => {
+        document.title = 'Play Audio page';
+      }, []);
+
     const [name, setAudioBookName] = useState('')
 
     const [chapters,setChapters] = useState([])
@@ -116,7 +121,7 @@ const AudioBook = () => {
                         </Dropdown>
                         {(owner_id === userid) &&
                             <>
-                                <Button variant="danger" size="lg" href='/' >Edit </Button>
+                                <Button variant="danger" size="lg" href={`/audiobook/edit/${id}`} >Edit </Button>
                                 <Button variant="primary" size="lg" href={`/audiobook/chapter/create/${id}`}>Add Chapter </Button>
                             </>
 

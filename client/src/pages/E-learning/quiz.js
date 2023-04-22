@@ -10,6 +10,10 @@ import "../../css/course.css"
 
 const  Quiz = () => {
 
+    useEffect(() => {
+      document.title = 'Quiz page';
+    }, []);
+
     const [quizs, setQuiz] = useState([]);
 
     const [coursename,setCourseName] = useState("");

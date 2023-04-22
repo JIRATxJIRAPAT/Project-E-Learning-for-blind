@@ -12,7 +12,7 @@ const categorySchema = new mongoose.Schema({
 })
 
 var audiobookSchema = new mongoose.Schema({
-    name: {type: String,require: true,unique: true},
+    name: {type: String,require: true},
     img: {type: String},
     desc: {type: String,require: true},
     chapters: [chapterSchema],
