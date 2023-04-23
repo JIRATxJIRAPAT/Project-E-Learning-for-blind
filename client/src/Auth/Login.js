@@ -70,6 +70,7 @@ export default function SignIn() {
       <Navbar1/>
       <div className='box_auth'>
         <div className='inner_box_auth'>
+          <main id="main-content">
         <ThemeProvider theme={theme}>
           <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -84,7 +85,7 @@ export default function SignIn() {
               <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                 <LockOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h5" tabIndex={0}>
+              <Typography component="h1" variant="h5" tabIndex={0} >
                 Sign in
               </Typography>
               <Box component="form" onSubmit={loginUser} noValidate sx={{ mt: 1 }}>
@@ -93,10 +94,10 @@ export default function SignIn() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
                   name="email"
                   autoComplete="email"
                   placeholder="Email Address"
+                  aria-label='email form'
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField
@@ -104,11 +105,11 @@ export default function SignIn() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
                   type="password"
                   id="password"
                   autoComplete="current-password"
                   placeholder="Password"
+                  aria-label='password form'
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 
@@ -122,12 +123,12 @@ export default function SignIn() {
                 </Button>
                 <Grid container>
                   <Grid item xs>
-                    <Link href="#" variant="body2">
+                    {/* <Link href="#" variant="body2">
                       Forgot password?
-                    </Link>
+                    </Link> */}
                   </Grid>
                   <Grid item>
-                    <Link href="#" variant="body2">
+                    <Link href="/register" variant="body2">
                       Don't have an account? Sign Up
                     </Link>
                   </Grid>
@@ -137,6 +138,7 @@ export default function SignIn() {
           </Container>
           <Copyright sx={{ mt: 8, mb: 4 }} />
         </ThemeProvider>
+        </main>
 
         </div>
       </div>

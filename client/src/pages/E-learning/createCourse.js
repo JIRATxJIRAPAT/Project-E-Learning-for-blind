@@ -159,23 +159,23 @@ function CreateCourse() {
                         <Form onSubmit={onSubmit} encType="multipart/form-data" >
                         <Form.Group className="mb-3" controlId="name">
                             <Form.Label >Course Name</Form.Label>
-                            <Form.Control type="text" placeholder="enter course name" onChange={(e) => setName(e.target.value)} />
+                            <Form.Control aria-label='course name' type="text" placeholder="enter course name" onChange={(e) => setName(e.target.value)} />
                         </Form.Group>
                         <Form.Group controlId="formFile" className="mb-3">
-                            <Form.Label >Default file input example</Form.Label>
-                            <Form.Control type="file" required accept=".jpg,.png" placeholder="press enter to put files" filename="testImage" onChange={(e) => setImageUpload(e.target.files[0])}/>
+                            <Form.Label >Upload Image File</Form.Label>
+                            <Form.Control aria-label='upload image' type="file" required accept=".jpg,.png" placeholder="upload image file" filename="testImage" onChange={(e) => setImageUpload(e.target.files[0])}/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label >Description</Form.Label>
-                            <Form.Control type="text" placeholder="enter Description" rows={3} onChange={(e) => setDescription(e.target.value)} />
+                            <Form.Control aria-label='description' type="text" placeholder="enter Description" rows={3} onChange={(e) => setDescription(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label >Set pass score for quiz</Form.Label>
-                            <Form.Control type="number" placeholder="enter pass score for quiz" onChange={(e) => setPassScore(parseInt(e.target.value))} />
+                            <Form.Control aria-label='pass score' type="number" placeholder="enter pass score for quiz" onChange={(e) => setPassScore(parseInt(e.target.value))} />
                         </Form.Group>
 
-                        <Button variant="success" onClick={() => check_file()} type="sumbit">submit</Button>
+                        <Button aria-label='submit' variant="success" onClick={() => check_file()} type="sumbit">submit</Button>
                         </Form>
                         </main>
                     </div>

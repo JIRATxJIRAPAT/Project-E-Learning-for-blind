@@ -1,13 +1,13 @@
 {
     "english":{
-        "value1":"Upload Videos",
+        "value1":"Upload Audio",
         "value2":"Title",
         "value3":"Submit",
         "value4":"Record",
         "value5":"Stop"     
     },
     "thai":{
-        "value1":"อัพโหลดวิดีโอ",
+        "value1":"อัพโหลดหนังสือเสียง",
         "value2":"หัวเรื่อง",
         "value3":"ยืนยัน",
         "value4":"บันทึกเสียง",

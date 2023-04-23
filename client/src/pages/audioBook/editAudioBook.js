@@ -71,12 +71,12 @@ function EditAudioBook() {
                     <Form onSubmit={onSubmit} encType="multipart/form-data" >
                         <Form.Group className="mb-3" controlId="name">
                             <Form.Label>AudioBook setName</Form.Label>
-                            <Form.Control type="text" placeholder="AudioBook name" onChange={(e) => setCourseName(e.target.value)} />
+                            <Form.Control aria-label='enter audiobook name' type="text" placeholder="AudioBook name" onChange={(e) => setCourseName(e.target.value)} />
                         </Form.Group>
                         
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Description</Form.Label>
-                            <Form.Control as="textarea" rows={3} placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
+                            <Form.Control aria-label='enter description' as="textarea" rows={3} placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
                         </Form.Group>
                         <Button variant="success" onClick={() => check_file()}  type="sumbit">submit</Button>
                     </Form>

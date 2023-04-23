@@ -17,7 +17,7 @@ function CourseCard(props) {
               </Card.Text>
               
              
-              <Button variant="primary" href={`/course/${props._id}`}>View</Button>
+              <Button variant="primary" href={`/course/detail/${props._id}`}>View</Button>
               
             </Card.Body>
           </Card>

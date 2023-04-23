@@ -98,6 +98,7 @@ function CreateChapter() {
                         name="name"
                         id="name"
                         className="form-control"
+                        aria-label='chapter name'
                         placeholder="enter chapter name"
                         onChange={(e) => setEpiName(e.target.value)}
                         />
@@ -113,7 +114,8 @@ function CreateChapter() {
                         required
                         className="form-control"
                         accept=".mp4, .mkv"
-                        placeholder="upload file"
+                        aria-label='upload video'
+                        placeholder="upload video"
                         onChange={(e) => {
                             setImageUpload(e.target.files[0]);
                         }}
