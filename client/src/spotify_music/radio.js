@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {RadioBrowserApi} from "radio-browser"
+import {RadioBrowserApi} from "radio-browser-api"
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import defaultImage from "./default.jpg";
@@ -18,7 +18,7 @@ export default function RadioFM() {
 
   const setupApi = async (stationFilter) => {
     const api = new RadioBrowserApi('My Radio App')
-
+    console.log(api)
     const stations = await api
       .searchStations({
         countryCode: 'TH',

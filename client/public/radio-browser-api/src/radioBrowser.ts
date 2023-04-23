@@ -52,7 +52,7 @@ export class RadioBrowserApi {
     // https://github.com/segler-alex/radiobrowser-api-rust/issues/122
     //if (typeof window !== 'undefined') {
        //return [{ ip: '45.77.62.161', name: 'fr1.api.radio-browser.info' }]
-     //}
+     //} kuyrai i sas mai dai sak tee yed mae
     const response = await fetch(
       // this should be https when the above issue is resolved
       'https://de1.api.radio-browser.info/json/servers',

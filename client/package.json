@@ -23,6 +23,7 @@
     "mdb-react-ui-kit": "^6.0.0",
     "node-sass": "^8.0.0",
     "radio-browser": "file:public/radio-browser-api",
+    "radio-browser-api": "^6.0.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.3",
     "react-document-title": "^2.0.3",
