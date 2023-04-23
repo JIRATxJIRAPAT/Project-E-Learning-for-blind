@@ -58,6 +58,7 @@ function Firebase_upload() {
         <Navbar1/>
         <div className="box_course">
             <div className="inner_box_course2">
+                <main id="main-content">
                 <form onSubmit={uploadFile}>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
@@ -98,6 +99,7 @@ function Firebase_upload() {
                     Submit
                 </button>
                 </form>
+                </main>
             </div>
         </div>
     

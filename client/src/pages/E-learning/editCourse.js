@@ -147,20 +147,20 @@ function EditCourse() {
                     <Form onSubmit={onSubmit} encType="multipart/form-data" >
                         <Form.Group className="mb-3" controlId="name">
                             <Form.Label>Course setName</Form.Label>
-                            <Form.Control type="text" placeholder={`old: ${oldname}`} onChange={(e) => setCourseName(e.target.value)} />
+                            <Form.Control aria-label='course name' type="text" placeholder={`old: ${oldname}`} onChange={(e) => setCourseName(e.target.value)} />
                         </Form.Group>
                         
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Description</Form.Label>
-                            <Form.Control as="textarea" rows={3} placeholder={`old: ${olddesc}`} onChange={(e) => setDescription(e.target.value)} />
+                            <Form.Control aria-label='description' as="textarea" rows={3} placeholder={`old: ${olddesc}`} onChange={(e) => setDescription(e.target.value)} />
                         </Form.Group>
                         <Form.Group controlId="formFile" className="mb-3">
-                            <Form.Label>Default file input example</Form.Label>
-                            <Form.Control type="file" required filename="testImage" placeholder="please enter files" onChange={(e) => setImageUpload(e.target.files[0])}/>
+                            <Form.Label>Upload Image File</Form.Label>
+                            <Form.Control aria-label='upload image' type="file" required filename="testImage" placeholder="enter image file" onChange={(e) => setImageUpload(e.target.files[0])}/>
                         </Form.Group>
 
 
-                        <Button variant="success" onClick={() => check_file()}  type="sumbit">submit</Button>
+                        <Button aria-label='submit' variant="success" onClick={() => check_file()}  type="sumbit">submit</Button>
                     </Form>
                 </main>
             </div>

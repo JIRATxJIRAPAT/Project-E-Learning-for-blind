@@ -111,8 +111,9 @@ function CreateAudioChapter() {
                     type="text"
                     name="name"
                     id="name"
-                    placeholder="title"
+                    placeholder="enter title"
                     className="form-control"
+                    aria-label='title name'
                     onChange={(e) => setEpiName(e.target.value)}
                     />
                 </div>
@@ -125,7 +126,8 @@ function CreateAudioChapter() {
                     name="videos"
                     id="videos"
                     multiple
-                    placeholder="please enter files"
+                    aria-label='upload audio'
+                    placeholder="upload audio form"
                     required
                     className="form-control"
                     accept=".mp3"
@@ -140,7 +142,9 @@ function CreateAudioChapter() {
                 </button>
 
                 <br></br><br></br><br></br><br></br><br></br>
+                Go to Record Audio<br></br>
                 <div>
+                <label aria-label='record audio'></label>
                 <Button variant="danger" size="md" href={`/audiobook/record/`} >Record Audio</Button>
                 </div>
             </form>

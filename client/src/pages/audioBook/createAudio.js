@@ -152,13 +152,13 @@ function CreateAudioBook() {
         <form onSubmit={onSubmit} encType="multipart/form-data">
 
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                      <Form.Label>Audiobook name</Form.Label>
-                      <Form.Control type="text" placeholder="enter name" size='lg'   onChange={(e) => setAudioBookName(e.target.value)}/>
+                      <Form.Label >Audiobook name</Form.Label>
+                      <Form.Control aria-label='audiobook name' type="text" placeholder="enter audio name" size='lg'   onChange={(e) => setAudioBookName(e.target.value)}/>
                     </Form.Group>
                     <br></br>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
                       <Form.Label >Descriptions</Form.Label>
-                      <Form.Control type="text" placeholder="enter description" size='lg' onChange={(e) => setDesc(e.target.value)}/>
+                      <Form.Control aria-label='description' type="text" placeholder="enter description" size='lg' onChange={(e) => setDesc(e.target.value)}/>
                     </Form.Group>
 
                     
@@ -166,7 +166,7 @@ function CreateAudioBook() {
                 <MDBRow className='align-items-start pt-4 pb-3'>
                     <div>
                     <FormControl sx={{ m: 1, width: 300 }}>
-                        <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+                        <InputLabel id="demo-multiple-checkbox-label" aria-label='Tag'>Tag</InputLabel>
                         <Select
                         labelId="demo-multiple-checkbox-label"
                         id="demo-multiple-checkbox"

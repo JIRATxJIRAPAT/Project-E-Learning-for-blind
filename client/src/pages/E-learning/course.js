@@ -245,7 +245,7 @@ const Course = () => {
                 <div className='inner_box_course'>
                 <main id="main-content">
                     <div className='grid'>
-                    <Button variant='primary' tabIndex={0} style={{/*background:"blue",*/color:'white',fontWeight:'bold'}}>Current Lesson : {title}</Button>
+                    <h2 tabIndex={0} style={{background:"blue",color:'white',fontWeight:'bold'}}>Current Lesson : {title}</h2>
                         <aside class="page-rightbar">
                             <div class="content">
                             <Dropdown>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -15,6 +15,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "../css/Auth.css"
 import Navbar1 from "../components/Navbar"
+import { FormGroup } from '@mui/material';
 
 
 
@@ -22,12 +23,18 @@ const theme = createTheme();
 
 export default function SignUp() {
 
+  useEffect(() => {
+    document.title = 'Register page';
+  }, []);
+
 	const navigate = useNavigate()
 
 	const [name, setName] = useState('')
 	const [lastname, setLastName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+  const [role, setRole] = useState('')
+  
 
 
 	async function registerUser(event) {
@@ -43,7 +50,7 @@ export default function SignUp() {
 				name,
 				email,
 				password,
-				role:"student"
+				role
 			}),
 		})
 
@@ -59,6 +66,7 @@ export default function SignUp() {
       <Navbar1/>
       <div className='box_auth'>
         <div className='inner_box_auth'>
+        <main id="main-content">
         <ThemeProvider theme={theme}>
           <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -73,7 +81,7 @@ export default function SignUp() {
               <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                 <LockOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h4" style={{color:"black"}}>
+              <Typography component="h1" variant="h4" style={{color:"black"}} aria-label='sign up'>
                 Sign up
               </Typography>
               <Box component="form" noValidate onSubmit={registerUser} sx={{ mt: 3 }}>
@@ -85,7 +93,7 @@ export default function SignUp() {
                       required
                       fullWidth
                       id="firstName"
-                      label="First Name"
+                      aria-label="First Name"
                       autoFocus
               onChange={(e) => setName(e.target.value)}
               placeholder='First Name'
@@ -96,7 +104,7 @@ export default function SignUp() {
                       required
                       fullWidth
                       id="lastName"
-                      label="Last Name"
+                      aria-label="Last Name"
                       name="lastName"
                       autoComplete="family-name"
               onChange={(e) => setLastName(e.target.value)}
@@ -108,7 +116,7 @@ export default function SignUp() {
                       required
                       fullWidth
                       id="email"
-                      label="Email Address"
+                      aria-label="Email Address"
                       name="email"
                       autoComplete="email"
               onChange={(e) => setEmail(e.target.value)}
@@ -120,7 +128,7 @@ export default function SignUp() {
                       required
                       fullWidth
                       name="password"
-                      label="Password"
+                      aria-label="Password"
                       type="password"
                       id="password"
                       autoComplete="new-password"
@@ -132,10 +140,18 @@ export default function SignUp() {
                     
                   </Grid>
                 </Grid>
+
+                <br></br>
+                Select Role &nbsp;&nbsp;    
+                  <FormControlLabel  placeholder="teacher" label="teacher" control={<Checkbox />} onClick={()=>{setRole("teacher")}} />
+                  <FormControlLabel  placeholder="student" label="student" control={<Checkbox />} onClick={()=>{setRole("student")}} />
+                
+                  {console.log("xxxxxxaaaaaxxxx",role)}
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
+                  aria-label="sign up"
                   sx={{ mt: 3, mb: 2 }}
                 >
                   Sign Up
@@ -152,6 +168,7 @@ export default function SignUp() {
            
           </Container>
         </ThemeProvider>
+        </main>
 
         </div>
       </div>

@@ -46,6 +46,7 @@ function HelpCenterVideo() {
             <Navbar1/>
             <div className='box_video'>
                 <div className='inner_box_video'>
+                <main id="main-content">
                 <br></br>
                 <Button variant="success">คลิปสอนการดาวน์โหลดและติดตั้ง</Button>
                 <br></br>
@@ -79,6 +80,7 @@ function HelpCenterVideo() {
                             
                         >
                 </video>
+                </main>
                 </div>
             </div>
         </div>

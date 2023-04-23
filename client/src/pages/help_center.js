@@ -30,6 +30,7 @@ function HelpCenter() {
             <Navbar1/>
             <div className='box_hct'>
                 <div className='inner_box_hct'>
+                    <main id="main-content">
 
                     <Card style={{ width: '18rem' }} className='note' bg="light" text="dark">
                     <Card.Img variant="top" width="200" height="200" src={`https://www.thaifranchisecenter.com/links/images/web_link_707.gif`} 
@@ -71,7 +72,7 @@ function HelpCenter() {
                     </Card>
 
 
-
+                    </main>
                 </div>
             </div>
 

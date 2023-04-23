@@ -60,6 +60,7 @@ export default function SignIn() {
       <Navbar1/>
       <div className='box_auth'>
         <div className='inner_box_auth'>
+          <main id="main-content">
         <ThemeProvider theme={theme}>
           <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -74,7 +75,7 @@ export default function SignIn() {
               <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                 <LockOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h4" tabIndex={0} style={{color:"black"}}>
+              <Typography component="h1" variant="h4" tabIndex={0} style={{color:"black"}} aria-label='sign in'>
                 Sign in
               </Typography>
               <Box component="form" onSubmit={loginUser} noValidate sx={{ mt: 1 }}>
@@ -83,10 +84,10 @@ export default function SignIn() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
                   name="email"
                   autoComplete="email"
                   placeholder="Email Address"
+                  aria-label='email form'
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField
@@ -94,11 +95,11 @@ export default function SignIn() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
                   type="password"
                   id="password"
                   autoComplete="current-password"
                   placeholder="Password"
+                  aria-label='password form'
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 
@@ -123,6 +124,7 @@ export default function SignIn() {
           </Container>
        
         </ThemeProvider>
+        </main>
 
         </div>
       </div>

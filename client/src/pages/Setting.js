@@ -171,6 +171,7 @@ function Setting() {
             
             <div className="box_auth">
                 <div className="inner_box_auth">
+                    <main id="main-content">
                     <h1>Setting</h1>
                     <Button onClick={passVol_0} type="button" id="t0">{content.vol0}</Button><br></br><br></br>
                     <Button onClick={passVol_1} type="button" id="t1">{content.vol1}</Button><br></br><br></br>
@@ -194,6 +195,8 @@ function Setting() {
                     </Dropdown>
 
                         <h2>{content.vol4}</h2>
+                    
+                    </main>
     
                 </div>
             </div>

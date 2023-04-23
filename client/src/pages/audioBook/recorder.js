@@ -64,7 +64,7 @@ class Recorder extends React.Component {
                 <br></br><br></br><br></br><br></br>
               <main id="main-content">
                 <h2 id='btn' tabIndex={0}>Press record button and press tab and enter again to stop.</h2>
-                <Button id='btn2' variant="danger" disabled={isLoading} onClick={this.record} >
+                <Button aria-label='record' id='btn2' variant="danger" disabled={isLoading} onClick={this.record} >
                   {isRecording ? "Stop" : "Record"}
                 </Button>
               </main>
@@ -79,7 +79,7 @@ class Recorder extends React.Component {
                     Please download record file to upload
                     {console.log(url)}
                     <br></br><br></br>
-                    <Button variant="success" size="lg" href="/audiobook" >Return to AudioPage </Button>
+                    <Button aria-label='return to audio page' variant="success" size="lg" href="/audiobook" >Return to AudioPage </Button>
                   </li>
                 ))}
               </ul>
