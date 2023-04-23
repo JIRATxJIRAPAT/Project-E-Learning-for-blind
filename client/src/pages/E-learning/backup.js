@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-import Navbar1 from '../../components/Navbar'
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+
 
 
 

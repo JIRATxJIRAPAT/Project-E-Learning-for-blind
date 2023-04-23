@@ -15,17 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "../css/Auth.css"
 import Navbar1 from "../components/Navbar"
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © Thammasat University'}
-      <Link color="inherit" href="https://mui.com/">
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 const theme = createTheme();
 
@@ -84,7 +74,7 @@ export default function SignIn() {
               <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                 <LockOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h5" tabIndex={0}>
+              <Typography component="h1" variant="h4" tabIndex={0} style={{color:"black"}}>
                 Sign in
               </Typography>
               <Box component="form" onSubmit={loginUser} noValidate sx={{ mt: 1 }}>
@@ -121,13 +111,9 @@ export default function SignIn() {
                   Sign In
                 </Button>
                 <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2">
-                      Forgot password?
-                    </Link>
-                  </Grid>
+
                   <Grid item>
-                    <Link href="#" variant="body2">
+                    <Link href="/register" name="Don't have an account? Sign Up" variant="body2">
                       Don't have an account? Sign Up
                     </Link>
                   </Grid>
@@ -135,7 +121,7 @@ export default function SignIn() {
               </Box>
             </Box>
           </Container>
-          <Copyright sx={{ mt: 8, mb: 4 }} />
+       
         </ThemeProvider>
 
         </div>

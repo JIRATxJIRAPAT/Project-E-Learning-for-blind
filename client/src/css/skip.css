@@ -1,7 +1,8 @@
 .skip-nav-link{
     position: absolute;
-    transform: translateY(-120%);
+    transform: translateY(-180%);
     background: orange;
+    color: black;
     padding: .5rem 1.5rem;
     border-radius: 0 0 0.25rem 0.25rem;
     left: 0.5rem;
@@ -10,6 +11,7 @@
 
 .skip-nav-link:focus {
     transform: translateY(0);
-    
- 
+    border: 1px solid darkblue;
+    outline: none;
+    box-shadow: 0 0 0 5px #061690;
 }

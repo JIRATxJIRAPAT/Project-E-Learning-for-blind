@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import Translation from '../pages/Dataset/Data_navbar.json';
 import '../css/skip.css'
-
+import "../css/navbar.css"
 
 
 
@@ -57,15 +57,15 @@ function Navbar1() {
   return (
     <header>
 
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg" style={{fontWeight:"bold"}}>
         <a className='skip-nav-link' href='#main-content' id='skip'>Skip to content</a>
-        <Container>
-          <Navbar.Brand href="/course" className='example' id="first">{content.value1}</Navbar.Brand>
+        <Container style={{fontSize:"18px"}}>
+          <Navbar.Brand href="/course" className='example' name="first" id="first">{content.value1}</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/course" className='example'>{content.value2}</Nav.Link>
-              <Nav.Link href="/profile" className='example'>{content.value3}</Nav.Link>
+              <Nav.Link href="/course" id="course" name="course" className='example'>{content.value2}</Nav.Link>
+              <Nav.Link href="/profile" id="profile" name="profile" className='example'>{content.value3}</Nav.Link>
               <NavDropdown title={content.value4} id="basic-nav-dropdown" className='example'>
                 <NavDropdown.Item href="/audiobook" className='example'>{content.value5}</NavDropdown.Item>
                 <NavDropdown.Item href="/radio"className='example'>

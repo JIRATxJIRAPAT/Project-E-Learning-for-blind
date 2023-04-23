@@ -26,7 +26,6 @@ import CreateChapter from "./E-learning/CreateChapter";
 import Mp3Upload from "./audioBook/recorder";
 import Mp3_upload from "./audioBook/audioCreateChapter";
 
-import VideoPlayer from "./E-learning/video";
 import AudioBook from "./audioBook/playAudio";
 import Recorder from "./audioBook/recorder";
 import Quiz2 from "./E-learning/quiz2";

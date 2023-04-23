@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import "../../src/css/card2.css"
-import { Link } from 'react-router-dom'
+
 
 function CourseCard(props) {
   return (
@@ -12,6 +12,7 @@ function CourseCard(props) {
             <Card.Img variant="top" width="200" height="200" src={`${props.img}`} alt='course image' />
             <Card.Body >
               <Card.Title tabIndex={0} style={{fontWeight:"bold"}}>{props.name}</Card.Title>
+              <br></br>
               <Card.Text tabIndex={0}>
                 {props.desc}
               </Card.Text>

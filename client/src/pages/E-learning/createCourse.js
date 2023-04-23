@@ -6,7 +6,6 @@ import "../../css/createForm.css"
 import { ref, uploadBytes, getBytes, getDownloadURL,} from "firebase/storage";
 import { storage } from "../../../src/firebase";
 import {useNavigate} from 'react-router-dom'
-import { useParams } from 'react-router-dom'
 import "../../css/course.css"
 import Navbar1 from '../../components/Navbar'
 

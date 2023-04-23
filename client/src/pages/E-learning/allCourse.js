@@ -10,23 +10,6 @@ import Button from 'react-bootstrap/Button';
 
 import "../../css/course.css"
 
-/*
-
-        {courses.map((course,key) => (
-            <div className='container' key={key}>
-                <Link to={{pathname:`/course/${course._id}`} }>
-                <h2>{`${course.name}` }</h2>
-                <img src={`/uploads/images/${course.img}` } width="20%" height="10%" alt={`${course.name}`}/>
-                
-                </Link>
-
-            </div>
-            
-        ))}
-<Link to={{pathname:`/course/edit/${course._id}`}}>
-                    <button className="example" tabIndex="0">edit</button>
-                </Link>
-*/
 
 function CreateCourseCard(course,key){
     return(

@@ -3,7 +3,6 @@ import axios from 'axios'
 import Navbar1 from '../../components/Navbar';
 import TeacherProfile from './teacherProfile';
 import StudentProfile from './studentProfile';
-import Button from 'react-bootstrap/Button';
 import "../../css/Auth.css";
 
 

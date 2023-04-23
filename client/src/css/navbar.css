@@ -1,0 +1,9 @@
+a:focus{
+    outline: none;
+    box-shadow: 0 0 0 5px rgb(254, 254, 254);
+}
+
+button:focus{
+    outline: none;
+    box-shadow: 0 0 0 5px rgb(254, 254, 254);
+}

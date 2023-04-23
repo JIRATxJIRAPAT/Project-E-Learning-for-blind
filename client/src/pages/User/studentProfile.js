@@ -51,7 +51,7 @@ function StudentProfile(props,key) {
             {/*<caption >Enrolled Course</caption>*/}
             <MDBTableHead>
             
-                <tr className="tr">
+                <tr >
                     <th scope='col' tabIndex={0}>Course name</th>
                     
                     <th scope='col' tabIndex={0}>Status</th>

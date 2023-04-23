@@ -107,7 +107,12 @@
           console.log("cancel1",int)
   
           window.speechSynthesis.cancel()
-          setTimeout(function () { speechHandler(document.activeElement.innerHTML); console.log("อ่านลพ") }, 250);
+          setTimeout(function () { 
+            if(document.activeElement.tagName !== "BODY"){
+               speechHandler(document.activeElement.innerHTML); console.log("อ่านลพ") 
+            }
+           
+          }, 250);
           int = 0
         }if(int === 3 ){
           console.log("cancel2",int)
@@ -228,7 +233,7 @@
       //if(e.key === "Tab" && count < max )
       if(e.key === "Tab"  && document.activeElement !== document.body ){
         console.log("count1:",document.activeElement.tagName)
-        //console.log("Index tab:",document.activeElement.textContent)
+        console.log("speak",document.activeElement.textContent)
         //console.log("word",quote[count])
         console.log(e.key)
         speechHandler(document.activeElement.textContent)
@@ -245,6 +250,7 @@
         console.log("count2:",document.activeElement.tagName)
         //console.log("Index tab:",document.activeElement.placeholder)
         //console.log("word",quote[count])
+        console.log("speak:",document.activeElement.placeholder)
         speechHandler(document.activeElement.placeholder)
         count = count + 1;
         //console.log("count after:",count)
@@ -252,7 +258,7 @@
         console.log("-----------------------------")
         
       }
-      else if((e.key === "ArrowRight" || e.key === "ArrowLeft") && (document.activeElement.tagName === "INPUT")){
+      if((e.key === "ArrowRight" || e.key === "ArrowLeft") && (document.activeElement.tagName === "INPUT")){
         //console.log("count3:",document.activeElement.tagName)
        // console.log("Index tab:",document.activeElement.innerHTML)
         //console.log("word",quote[count])
@@ -292,9 +298,6 @@
         count = 1
       }*/
     })
-    function myStopFunction() {
-      window.speechSynthesis.cancel()
-    }
 
     
 
@@ -331,13 +334,8 @@
   
   <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
 
-  <script>
-        var question = document.getElementById("skip")
-        question.addEventListener("focus",(e)=>{
-          console.log("question")
-          speechHandler(question.innerHTML)
-        })
-  </script>
+
+
   <!-- Javascript -->          
   <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
 
