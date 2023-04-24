@@ -10,6 +10,10 @@ export default function RadioFM() {
   const [stationFilter, setStationFilter] = useState("");
 
   useEffect(() => {
+    document.title = 'Radio station';
+  }, []);
+
+  useEffect(() => {
     setupApi(stationFilter).then((data) => {
       console.log(data);
       setStations(data);
