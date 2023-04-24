@@ -35,3 +35,17 @@
   .body_color {
     background-color: rgba(72, 19, 110, 0.507);
   }
+
+ .set_bottom {
+  position: absolute;
+  bottom:2.5px;
+  
+  left: 35%;
+ }
+
+ .set_bottom2 {
+  position: absolute;
+  bottom: 0;
+  
+  
+ }

@@ -166,7 +166,7 @@ function CreateCourse() {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label >Description</Form.Label>
-                            <Form.Control aria-label='description' type="text" placeholder="enter Description" rows={3} onChange={(e) => setDescription(e.target.value)} />
+                            <Form.Control aria-label='description' type="text" placeholder="enter Description" rows={3} maxLength={230} onChange={(e) => setDescription(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
