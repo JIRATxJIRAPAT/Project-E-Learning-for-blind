@@ -110,6 +110,7 @@ const CourseDetail = () => {
         .catch((err)=>{
             console.log(err);
         })
+        navigate(`/course/${id}`)
     }
 
     return(

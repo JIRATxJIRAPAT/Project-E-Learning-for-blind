@@ -5,27 +5,7 @@ import AudioCard from './components/AudioCard'
 import { Button } from '@mui/material'
 
 import "../../css/audio.css";
-/*
 
-        {courses.map((course,key) => (
-            <div className='container' key={key}>
-                <Link to={{pathname:`/course/${course._id}`} }>
-                <h2>{`${course.name}` }</h2>
-                <img src={`/uploads/images/${course.img}` } width="20%" height="10%" alt={`${course.name}`}/>
-                
-                </Link>
-
-            </div>
-            
-        ))}
-<Link to={{pathname:`/course/edit/${course._id}`}}>
-                    <button className="example" tabIndex="0">edit</button>
-                </Link>
-
-        <div>
-        <Navbar1 />
-        {allAudio.map((audio,key) => CreateAudioCard(audio,key))}
-*/
 
 function CreateAudioCard(audio,key){
     return(
@@ -109,9 +89,8 @@ const AllAudioBook = () => {
                 <section>
                         <select onChange={(e) => filterItems(e.target.value)}>
                             <option value="">All</option>
-                            <option value="Comedy">Comedy</option>
+                            <option value="General">General</option>
                             <option value="Horror">Horror</option>
-                            <option value="Novel">Novel</option>
                             <option value="Tales">Tales</option>
                             <option value="History">History</option>
                         

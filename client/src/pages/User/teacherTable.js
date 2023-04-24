@@ -35,12 +35,12 @@ export default function TeacherTable(props) {
             </MDBBadge>
           </td>
           <td>
-          <MDBBtn color='link' rounded size='sm' >
+          <MDBBtn color='link' href={`/course/edit/${props.id}`} rounded size='md' >
               Edit
             </MDBBtn>
           </td>
           <td>
-            <MDBBtn color='link' rounded size='sm' >
+            <MDBBtn color='link' href={`/course/${props.id}`} rounded size='md' >
               View
             </MDBBtn>
           </td>

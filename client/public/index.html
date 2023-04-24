@@ -108,8 +108,11 @@
   
           window.speechSynthesis.cancel()
           setTimeout(function () { 
-            if(document.activeElement.tagName !== "BODY"){
-               speechHandler(document.activeElement.innerHTML); console.log("อ่านต่อ") 
+            if(document.activeElement.tagName !== "BODY" && document.activeElement.tagName !== "INPUT" ){
+               speechHandler(document.activeElement.innerHTML); console.log("อ่านหลังcancel",document.activeElement.innerHTML);
+            }
+            if(document.activeElement.tagName !== "BODY" && document.activeElement.tagName === "INPUT"){
+               speechHandler(document.activeElement.placeholder); console.log("อ่านหลังcancel",document.activeElement.placeholder);
             }
            
           }, 250);
@@ -126,52 +129,6 @@
         
       });
 
-
-    // ปิดไว้ก่อน
-    /*
-    const hp_list = []
-
-      if(window.location.href == "https://e-learningforblind.netlify.app/")
-
-        var hp1 = localStorage.getItem('homepage_pass_val1');
-        var hp2 = localStorage.getItem('homepage_pass_val2');
-        var hp3 = localStorage.getItem('homepage_pass_val3');
-        var hp4 = localStorage.getItem('homepage_pass_val4');
-        var hp5 = localStorage.getItem('homepage_pass_val5');
-
-        hp_list.push(hp1,hp2,hp3,hp4,hp5)
-      }
-
-      console.log(hp1,hp2,hp3,hp4,hp5)
-      console.log('>>>: ',hp_list)
-
-    
-    
-    console.log(hp_list.length)
-    for (let k=0; k < hp_list.length ; k++) {
-      setTimeout(function () {
-        speechHandler(hp_list[k])
-        console.log('load word :',hp_list[k])
-      }, 3500*k);
-      
-    }
-
-
-      //var outputx = slider.value;
-
-      console.log('value:')
-      //console.log(outputx)
-      console.log(slider)
-
-      /* voiceAdjust(slider)
-
-
-    function voiceAdjust (vol=0.5){
-      console.log('zzzzz')
-      msg.volume = (vol/100);
-      console.log(msg.volume,'rrrrrrrrrrrrrr')
-
-    }*/ //ตรงนี้
 
     if(window.location.href=="https://e-learningforblind.netlify.app/"){
       
