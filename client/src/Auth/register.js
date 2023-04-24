@@ -132,8 +132,8 @@ export default function SignUp() {
                       type="password"
                       id="password"
                       autoComplete="new-password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
+                      placeholder="Password"
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -142,10 +142,11 @@ export default function SignUp() {
                 </Grid>
 
                 <br></br>
-                Select Role &nbsp;&nbsp;    
+                <div tabIndex={0}>select role</div>   
+                <FormGroup>
                   <FormControlLabel  placeholder="teacher" label="teacher" control={<Checkbox />} onClick={()=>{setRole("teacher")}} />
-                  <FormControlLabel  placeholder="student" label="student" control={<Checkbox />} onClick={()=>{setRole("student")}} />
-                
+                  <FormControlLabel  placeholer="student" label="student" control={<Checkbox value="student" inputProps={{'aria-label': 'student',}}/>} onClick={()=>{setRole("student")}} />
+                </FormGroup>
                   {console.log("xxxxxxaaaaaxxxx",role)}
                 <Button
                   type="submit"
