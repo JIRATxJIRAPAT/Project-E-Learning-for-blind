@@ -158,7 +158,7 @@ function CreateAudioBook() {
                     <br></br>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
                       <Form.Label >Descriptions</Form.Label>
-                      <Form.Control aria-label='description' type="text" placeholder="enter description" size='lg' onChange={(e) => setDesc(e.target.value)}/>
+                      <Form.Control aria-label='description' type="text" placeholder="enter description" size='lg' maxLength={220} onChange={(e) => setDesc(e.target.value)}/>
                     </Form.Group>
 
                     

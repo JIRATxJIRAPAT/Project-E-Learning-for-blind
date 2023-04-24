@@ -72,7 +72,7 @@ function CreateCourse() {
 		event.preventDefault()
         
         if (imageUpload == null) return;
-        const imageRef = ref(storage, `picture/${imageUpload.name}`);
+        const imageRef = ref(storage, `Picture/${imageUpload.name}`);
 
         await uploadBytes(imageRef, imageUpload).then(() => {
             alert("Image Upload Success")
@@ -166,7 +166,7 @@ function CreateCourse() {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label >Description</Form.Label>
-                            <Form.Control aria-label='description' type="text" placeholder="enter Description" rows={3} onChange={(e) => setDescription(e.target.value)} />
+                            <Form.Control aria-label='description' type="text" placeholder="enter Description" rows={3} maxLength={230} onChange={(e) => setDescription(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">

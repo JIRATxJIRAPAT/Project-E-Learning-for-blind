@@ -73,7 +73,7 @@ function EditCourse() {
 		event.preventDefault()
         
         if (imageUpload == null) {window.speechSynthesis.speak(msg2)};
-        const imageRef = ref(storage, `picture/${imageUpload.name}`);
+        const imageRef = ref(storage, `Picture/${imageUpload.name}`);
 
         await uploadBytes(imageRef, imageUpload).then(() => {
             alert("Image Upload Success")

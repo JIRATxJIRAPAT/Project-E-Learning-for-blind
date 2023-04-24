@@ -17,8 +17,8 @@ function CourseCard(props) {
                 {props.desc}
               </Card.Text>
               
-             
-              <Button variant="primary" href={`/course/detail/${props._id}`}>View</Button>
+              
+              <Button className='set_bottom' variant="primary" href={`/course/detail/${props._id}`}>View</Button>
               
             </Card.Body>
           </Card>
