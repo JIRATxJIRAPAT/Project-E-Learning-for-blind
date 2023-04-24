@@ -14,7 +14,7 @@ function LandingPage() {
 
     useEffect(() => {
         var player = videojs('my-video');
-        player.src(`https://firebasestorage.googleapis.com/v0/b/e-learning-for-the-blind-d7398.appspot.com/o/images%2F4_5_6210612633_%E0%B8%88%E0%B8%B4%E0%B8%A3%E0%B8%B1%E0%B8%8F%E0%B8%90%E0%B9%8C.mp4?alt=media&token=87ac22d5-e21f-42e8-bff6-705995656855`);
+        player.src(`https://firebasestorage.googleapis.com/v0/b/e-learning-for-the-blind-d7398.appspot.com/o/Course%2Fdemo-project1.mp4?alt=media&token=3f9965ab-9021-4ee0-8b14-1121bf4c3695`);
         player.autoplay('true')
 
         

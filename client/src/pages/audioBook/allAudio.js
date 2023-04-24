@@ -83,7 +83,7 @@ const AllAudioBook = () => {
 
                 <section>
                     <Button aria-label='create audio' tabIndex={0} style={{background:"red",color:'white',fontWeight:'bold'}}
-                     href={"/audiobook/create"}>Create AudioBook</Button>
+                     href={"/audiobook/create"}>create audio book</Button>
                  </section>
                 <br></br>
                 <section>
