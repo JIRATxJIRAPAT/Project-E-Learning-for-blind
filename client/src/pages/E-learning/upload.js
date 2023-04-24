@@ -25,7 +25,7 @@ function Firebase_upload() {
     const uploadFile = async(e) => {
         e.preventDefault()
         if (imageUpload == null) return;
-        const imageRef = ref(storage, `images/${imageUpload.name}`);
+        const imageRef = ref(storage, `Course/${imageUpload.name}`);
 
         await uploadBytes(imageRef, imageUpload).then(() => {
             alert("File Upload Success")

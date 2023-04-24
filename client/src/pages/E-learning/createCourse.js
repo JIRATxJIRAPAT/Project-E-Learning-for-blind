@@ -72,7 +72,7 @@ function CreateCourse() {
 		event.preventDefault()
         
         if (imageUpload == null) return;
-        const imageRef = ref(storage, `picture/${imageUpload.name}`);
+        const imageRef = ref(storage, `Picture/${imageUpload.name}`);
 
         await uploadBytes(imageRef, imageUpload).then(() => {
             alert("Image Upload Success")

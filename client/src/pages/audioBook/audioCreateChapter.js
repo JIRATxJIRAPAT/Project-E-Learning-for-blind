@@ -57,7 +57,7 @@ function CreateAudioChapter() {
     const uploadFile = async(e) => {
         e.preventDefault()
         if (imageUpload == null) return;
-        const imageRef = ref(storage, `mp3file/${imageUpload.name}`);
+        const imageRef = ref(storage, `AudioBook/${imageUpload.name}`);
 
         await uploadBytes(imageRef, imageUpload).then(() => {
             alert("File Upload Success")
