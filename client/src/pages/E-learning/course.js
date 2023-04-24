@@ -280,6 +280,12 @@ const Course = () => {
                                     <Button variant="warning" size="lg" href={`/course/edit/${id}`}>
                                         edit course
                                     </Button>
+                                    <br></br>
+                                    <br></br>
+                                    <Button variant="info" size="lg" href={`/course/quiz/create/${id}`}>
+                                        Add quiz
+                                    </Button>
+
                                 </div>
                             }
                                     

@@ -204,6 +204,7 @@ const  Quiz = () => {
                 </p>
                 <br></br>
                 <Button href='/course' variant='primary'>Back to HomePage</Button>
+                <Button href={`/course/quiz/${id}`} variant='danger'>try again</Button>
               </div>
             )}
           </main>
