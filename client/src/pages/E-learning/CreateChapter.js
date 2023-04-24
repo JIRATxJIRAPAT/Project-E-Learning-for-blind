@@ -4,7 +4,7 @@ import { ref, uploadBytes, getBytes, getDownloadURL,} from "firebase/storage";
 import { v4 } from "uuid";
 import { getDatabase, set } from "firebase/database";
 import axios from "axios";
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate} from 'react-router-dom'
 import Navbar1 from "../../components/Navbar";
 
 
@@ -22,7 +22,7 @@ function CreateChapter() {
     const [epiname,setEpiName] = useState('');
     const [role,setRole] = useState('')
     
-    
+    const navigate = useNavigate();
 
     const uploadFile = async(e) => {
         e.preventDefault()
@@ -37,6 +37,7 @@ function CreateChapter() {
         await getDownloadURL(imageRef).then((url) => {
           setUrl(url)
           console.log(url)
+          navigate(`/course/${id}`)
         }).catch((err)=>{
             console.log(err);
         })
@@ -48,10 +49,13 @@ function CreateChapter() {
         if(url !== ""){
             console.log("send api")
             const formData = new FormData();
-            formData.append("url",url)
+            formData.append("url",`${url}`)
             formData.append("episodeName",epiname)
             axios.put(`https://e-learning-backends.onrender.com/api/chapter/create/${id}`,formData)
-            .then((res)=>console.log(res.data))
+            .then((res)=>[
+                console.log(res.data),
+                
+            ])
             .catch((err)=>{
                 console.log(err);
             })

@@ -3,7 +3,7 @@ import { storage } from "../../firebase"
 import { ref, uploadBytes, getBytes, getDownloadURL,} from "firebase/storage";
 import { getDatabase, set } from "firebase/database";
 import axios from "axios";
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import Translation from "../Dataset/Data_upload_form.json"
 import "../../css/audio.css";
 import Navbar1 from '../../components/Navbar'
@@ -26,6 +26,7 @@ function CreateAudioChapter() {
 
     const [content,setContent]=useState({})
     
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(localStorage.getItem("lang")==="english"){
@@ -44,7 +45,10 @@ function CreateAudioChapter() {
             formData.append("url",url)
             formData.append("episodeName",epiname)
             axios.put(`https://e-learning-backends.onrender.com/api/audiobook/chapter/create/${id}`,formData)
-            .then((res)=>console.log(res.data))
+            .then((res)=>[
+                console.log(res.data),
+                
+            ])
             .catch((err)=>{
                 console.log(err);
             })
@@ -66,12 +70,11 @@ function CreateAudioChapter() {
         await getDownloadURL(imageRef).then((url) => {
           setUrl(url)
           console.log(url)
+          navigate(`/audiobook/${id}`)
         }).catch((err)=>{
             console.log(err);
         })
-        //background-color: #9268a1;
-        
-
+    
         
     };
 

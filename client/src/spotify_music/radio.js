@@ -53,16 +53,7 @@ export default function RadioFM() {
   return (
     <div className={styles.App}>
     <div className={styles.radio}>
-      <div className={styles.filters}>
-        {filters.map((filter) => (
-          <span
-            className={stationFilter === filter ? "selected" : ""}
-            onClick={() => setStationFilter(filter)}
-          >
-            {filter}
-          </span>
-        ))}
-      </div>
+
       <div className={styles.stations}>
         {stations &&
           stations.map((station, index) => {

@@ -49,10 +49,23 @@ const AudioBook = () => {
         setOwnerName(res.data.owner_name),
         setVid(`${res.data.chapters[0].video}`),
         setTitle(`${res.data.chapters[0].title}`),
-        FetchData()
         //console.log("course",res.data)
       ])
       .catch(error => console.log(error));
+
+        const tk = localStorage.getItem('token')
+        axios.get(`https://e-learning-backends.onrender.com/api/getUser/`,{
+        headers:  {
+                  "X-Auth-Token":tk,
+                  "content-type": "application/json"
+                }
+        })
+        .then(res => [
+        setUsername(res.data.user.name),
+        setUserID(res.data.user._id),
+        console.log("get user",res.data.user._id)
+        ])
+        .catch(error => console.log(error));
       
 
     },[]);
@@ -64,23 +77,6 @@ const AudioBook = () => {
             player.autoplay()
         }
     },[firstvid])
-
-
-    async function FetchData() {
-        const tk = localStorage.getItem('token')
-        await axios.get(`https://e-learning-backends.onrender.com/api/getUser/`,{
-        headers:  {
-                    "X-Auth-Token":tk,
-                    "content-type": "application/json"
-                  }
-      })
-      .then(res => [
-        setUsername(res.data.user.name),
-        setUserID(res.data.user._id),
-        console.log("get user",res.data.user._id)
-      ])
-      .catch(error => console.log(error));
-    }
 
 
 
@@ -119,6 +115,7 @@ const AudioBook = () => {
                                 {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}    
                             </Dropdown.Menu>
                         </Dropdown>
+
                         {(owner_id === userid) &&
                             <>
                                 <Button variant="danger" size="lg" href={`/audiobook/edit/${id}`} >Edit </Button>
@@ -127,6 +124,7 @@ const AudioBook = () => {
 
                         }
                     </ButtonGroup>
+            
                 </main>
                 <br></br>
                 <br></br>

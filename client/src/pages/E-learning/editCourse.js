@@ -2,7 +2,7 @@ import { useState,useEffect } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import "../../css/course.css"
 import Navbar1 from '../../components/Navbar'
 import { ref, uploadBytes, getBytes, getDownloadURL,} from "firebase/storage";
@@ -29,6 +29,8 @@ function EditCourse() {
 	const [oldimg, setOldPic] = useState('');
     const [olddesc ,setOldDescription] = useState('');
     const [oldepiname,setOldChapters] = useState('');
+
+    const navigate = useNavigate();
     /*
     <Form.Group controlId="formFile" className="mb-3">
     <Form.Label>Default file input example</Form.Label>
@@ -82,6 +84,7 @@ function EditCourse() {
         await getDownloadURL(imageRef).then((url) => {
           setUrl(url)
           console.log(url)
+          navigate(`/course/${id}`)
         }).catch((err)=>{
             console.log(err);
         })
