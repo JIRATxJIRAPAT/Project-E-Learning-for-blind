@@ -85,7 +85,6 @@ function AnimatedRoutes() {
             <Route path="/audiobook/edit/:id" element={<EditAudioBook/>} />
 
             {/* <Route path="/audiobook/create" element={<BasicExample/>} /> */}
-            <Route path="/audiobook/create/:id" element={<Mp3Upload/>} />
           
             <Route path="/uploadvdo" element={<UploadVideo />} />
             <Route path="/radio" element={<RadioFM />} />

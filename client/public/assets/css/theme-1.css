@@ -219,7 +219,7 @@ pre code {
 
 /* ======= Promo Section ======= */
 .promo {
-  background: #17baef;
+  background: #27baeb;
   color: #fff;
   padding-top: 150px;
 }
@@ -231,7 +231,7 @@ pre code {
 }
 
 .promo .title .highlight {
-  color: #eebf3f;
+  color: #2300a2
 }
 
 .promo .intro {
