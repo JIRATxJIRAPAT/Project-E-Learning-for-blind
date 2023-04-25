@@ -53,23 +53,7 @@ function EditCourse() {
 
       },[]);
 
-    
 
-    /*async function onSubmit(event) {
-
-        const formData = new FormData();
-        formData.append("name",name)
-        formData.append("testImage",img)
-        formData.append("desc",desc)
-        formData.append("episodeName",epiname)
-		
-        console.log(formData)
-		axios.put(`https://e-learning-backends.onrender.com/api/course/edit/${id}`,formData)
-        .then((res)=>console.log(res.data))
-        .catch((err)=>{
-            console.log(err);
-        })
-	}*/
 
     async function onSubmit(event) {
 		event.preventDefault()
@@ -92,20 +76,22 @@ function EditCourse() {
 	}
 
     useEffect(()=>{
-           
-        const formData = new FormData();
-        formData.append("name",name)
-        formData.append("img",`${url}`)
-        formData.append("desc",desc)
-        formData.append("episodeName",epiname)
-		
-        console.log(formData)
-		axios.put(`https://e-learning-backends.onrender.com/api/course/edit/${id}`,formData)
-        .then((res)=>console.log(res.data))
-        .catch((err)=>{
-            console.log(err);
-        })
-        
+        if(url !== ""){
+            const formData = new FormData();
+            formData.append("name",name)
+            formData.append("img",`${url}`)
+            formData.append("desc",desc)
+            formData.append("episodeName",epiname)
+            
+            console.log(formData)
+            axios.put(`https://e-learning-backends.onrender.com/api/course/edit/${id}`,formData)
+            .then((res)=>console.log(res.data))
+            .catch((err)=>{
+                console.log(err);
+            })
+            
+        }
+
     },[url])
 
         const msg2 = new SpeechSynthesisUtterance() 
