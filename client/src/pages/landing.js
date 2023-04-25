@@ -18,6 +18,7 @@ function LandingPage() {
         player.autoplay('true')
 
         localStorage.setItem("lang",language)
+        localStorage.setItem("pass_val2",0.5)
         
     },[])
 
