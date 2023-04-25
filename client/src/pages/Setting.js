@@ -172,11 +172,11 @@ function Setting() {
             <div className="box_auth">
                 <div className="inner_box_auth">
                     <main id="main-content">
-                    <h1>Setting</h1>
-                    <Button onClick={passVol_0} type="button" id="t0">{content.vol0}</Button><br></br><br></br>
-                    <Button onClick={passVol_1} type="button" id="t1">{content.vol1}</Button><br></br><br></br>
-                    <Button onClick={passVol_2} type="button" id="t2">{content.vol2}</Button><br></br><br></br>
-                    <Button onClick={passVol_3} type="button" id="t3">{content.vol3}</Button><br></br><br></br>
+                    <h1 style={{ color:'blue'}}>Setting</h1>
+                    <Button onClick={passVol_0} variant="success" type="button" id="t0">{content.vol0}</Button><br></br><br></br>
+                    <Button onClick={passVol_1} variant="success" type="button" id="t1">{content.vol1}</Button><br></br><br></br>
+                    <Button onClick={passVol_2} variant="success" type="button" id="t2">{content.vol2}</Button><br></br><br></br>
+                    <Button onClick={passVol_3} variant="success" type="button" id="t3">{content.vol3}</Button><br></br><br></br>
                     <br></br><br></br><br></br><br></br><br></br><br></br>
                     {content.vol5}<br></br>
                     {/* <select value={language} onChange={(e)=>{setLanguage(e.target.value)}}>
@@ -194,7 +194,7 @@ function Setting() {
                         </Dropdown.Menu>
                     </Dropdown>
 
-                        <h2>{content.vol4}</h2>
+                        <h2 style={{ color:'blue'}}>{content.vol4}</h2>
                     
                     </main>
     
