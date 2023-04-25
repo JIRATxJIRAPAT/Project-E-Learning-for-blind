@@ -60,7 +60,7 @@ function Navbar1() {
       <Navbar bg="dark" variant="dark" expand="lg" style={{fontWeight:"bold"}}>
         <a className='skip-nav-link' href='#main-content' id='skip'>Skip to content</a>
         <Container style={{fontSize:"18px"}}>
-          <Navbar.Brand href="/course" className='example' name="first" id="first">{content.value1}</Navbar.Brand>
+          <Navbar.Brand aria-label='E-learning for blind' href="/course" className='example' name="first" id="first">{content.value1}</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
