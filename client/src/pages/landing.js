@@ -9,7 +9,7 @@ function LandingPage() {
         document.title = 'Landing page';
       }, []);
 
-    const [language,setLanguage]=useState("")
+    const [language,setLanguage]=useState("english")
     const [content,setContent]=useState({})
 
     useEffect(() => {
@@ -17,6 +17,7 @@ function LandingPage() {
         player.src(`https://firebasestorage.googleapis.com/v0/b/e-learning-for-the-blind-d7398.appspot.com/o/Course%2Fdemo-project1.mp4?alt=media&token=3f9965ab-9021-4ee0-8b14-1121bf4c3695`);
         player.autoplay('true')
 
+        localStorage.setItem("lang",language)
         
     },[])
 
