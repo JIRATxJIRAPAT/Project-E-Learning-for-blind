@@ -255,7 +255,7 @@ const Course = () => {
 
                                 <Dropdown.Menu>
                                     {chapters.map((chapter,key)=>ChapterDropDown(chapter,key))}
-                                    {enrolled.map(course=>{
+                                    {/*enrolled.map(course=>{
                                         if(course.coursename === name && (`${course.status}` === "true")){
                                             //setNum(prev=>prev+1)
                                             console.log("statussssss",course.status)
@@ -264,7 +264,8 @@ const Course = () => {
                                             //setNum(prev=>prev+1)
                                             return CreateQuestionList("false")
                                         }
-                                    })}
+                                    })*/}
+                                    {CreateQuestionList("false")}
                                 </Dropdown.Menu>
                             </Dropdown>
                             
