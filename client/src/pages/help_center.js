@@ -1,7 +1,6 @@
 import "../css/help_center.css"
 import Navbar1 from '../components/Navbar'
 import { useState,useEffect } from 'react'
-import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card';
 

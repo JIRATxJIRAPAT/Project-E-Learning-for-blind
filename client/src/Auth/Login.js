@@ -48,7 +48,7 @@ export default function SignIn() {
 			localStorage.setItem('token', data.user)
 			localStorage.setItem('role', data.role)
 			alert('Login successful')
-			window.location.href = '/'
+			window.location.href = '/course'
 		} else {
 			alert('Please check your username and password')
 		}
